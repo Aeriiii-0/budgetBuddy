@@ -1,16 +1,16 @@
-﻿// See https://aka.ms/new-console-template for more information
+// See https://aka.ms/new-console-template for more information
 using System;
 using System.Collections.ObjectModel;
 namespace budgetBuddy
 {
     class budgetBuddy
     {
-        private static double allocation, spent, allowance, weeklyExpense;
-        private static int days, dayInput, userPassword, choice;
-        private static string userUsername;
-        private static char userChoices;
-        private static HashSet<int> selectedDay = new HashSet<int>();
-        static Collection <string> dayArray = new Collection<string>();
+        static double allocation, spent, allowance, weeklyExpense;
+        static int days, dayInput, userPassword, choice;
+        static string userUsername;
+        static char userChoices;
+        static HashSet<int> selectedDay = new HashSet<int>();
+        static Collection<string> dayArray = new Collection<string>();
         static Collection<double> dailyExpenses = new Collection<double>();
         public static void Main(string[] args)
         {
@@ -28,11 +28,11 @@ namespace budgetBuddy
                 Console.WriteLine("===========================");
                 Console.WriteLine();
                 Console.WriteLine("Enter your username: ");
-                userUsername = Console.ReadLine();
+                userUsername = Console.ReadLine().Trim();
 
                 Console.WriteLine();
                 Console.WriteLine("Enter your password: ");
-                userPassword = Convert.ToInt32(Console.ReadLine());
+                userPassword = Convert.ToInt32(Console.ReadLine().Trim());
                 Console.WriteLine("===========================");
 
                 if (password != userPassword || username != userUsername)
@@ -41,12 +41,12 @@ namespace budgetBuddy
                 }
             }
             while (userUsername != username || password != userPassword);
-            
-                Console.WriteLine();
-                Console.WriteLine(">> Successful log-in! <<");
-                regForm();
 
-   
+            Console.WriteLine();
+            Console.WriteLine(">> Successful log-in! <<");
+            regForm();
+
+
             static void regForm()
             {
                 do
@@ -55,7 +55,6 @@ namespace budgetBuddy
                     Console.WriteLine("How many days do you go to school or work? (1-7): ");
                     days = Convert.ToInt32(Console.ReadLine());
 
-
                     if (days < 0 || days > 7)
                     {
                         Console.WriteLine("\nInvalid Input.");
@@ -63,48 +62,53 @@ namespace budgetBuddy
                 }
 
                 while (days < 0 || days > 7);
-                
-                    Console.WriteLine();
+
+                Console.WriteLine();
+                Console.WriteLine("--------------------------");
+                Console.WriteLine("How much is your allowance in Philippine Peso? (e.g: 1000.00)");
+                Console.WriteLine("Enter amount here: ");
+                allowance = Convert.ToDouble(Console.ReadLine());
+
+                Console.WriteLine("---------------------------------------------------");
+
+                allocation = allowance / days;
+                Console.WriteLine();
+                Console.WriteLine($"SUGGESTED ALLOCATION PER DAY: >> {allocation} << ");
+                Console.WriteLine("\n--------------------------------------------------");
+
+                Console.WriteLine("\nCongratulations! You're done with the registration.");
+                Console.WriteLine();
+                Console.WriteLine("--------------------------------------------------");
+
+                appFunctions();
+            }
+
+            static void appFunctions()
+            {
+                do
+                {
+                    Console.WriteLine("\n[1] LOG DAILY EXPENSES\n[2] EXIT");
+                    Console.WriteLine("\nSelect a choice: ");
+                    choice = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("--------------------------");
-                    Console.WriteLine("How much is your allowance in Philippine Peso? (e.g: 1000.00)");
-                    Console.WriteLine("Enter amount here: ");
-                    allowance = Convert.ToDouble(Console.ReadLine());
 
-                    Console.WriteLine("---------------------------------------------------");
-
-                    allocation = allowance / days;
-                    Console.WriteLine();
-                    Console.WriteLine($"SUGGESTED ALLOCATION PER DAY: >> {allocation} << ");
-                    Console.WriteLine("\n--------------------------------------------------");
-
-                    Console.WriteLine("\nCongratulations! You're done with the registration.");
-                    Console.WriteLine();
-                    Console.WriteLine("--------------------------");
-
-                    do
+                    if (choice != 1 && choice != 2)
                     {
-                        Console.WriteLine("\n[1] LOG DAILY EXPENSES\n[2] EXIT");
-                        Console.WriteLine("\nSelect a choice: ");
-                        choice = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("--------------------------");
-
-                        if (choice != 1 && choice != 2)
-                        {
-                            Console.WriteLine("\nPlease enter a valid input");
-                        }
+                        Console.WriteLine("\nPlease enter a valid input");
                     }
+                }
 
-                    while (choice != 1 && choice != 2);
-                    
-                        switch (choice)
-                        {
-                            case 1:
-                                dailyExpense();
-                                break;
-                            case 2:
-                                Console.WriteLine("Good bye >_<");
-                                Environment.Exit(0);
-                                break;
+                while (choice != 1 && choice != 2);
+
+                switch (choice)
+                {
+                    case 1:
+                        dailyExpense();
+                        break;
+                    case 2:
+                        Console.WriteLine("Good bye >_<");
+                        Environment.Exit(0);
+                        break;
                 }
 
             }
@@ -115,6 +119,7 @@ namespace budgetBuddy
             if (selectedDay.Count >= days)
             {
                 Console.WriteLine();
+                Console.WriteLine("--------------------------------------------------------");
                 Console.WriteLine("\nYou've already logged for all the days you registered.\nPlease come back next week <33");
                 financialReport();
                 return;
@@ -126,7 +131,7 @@ namespace budgetBuddy
                 Console.WriteLine("\nPlease select the current day:");
                 dayInput = Convert.ToInt32(Console.ReadLine());
 
-                if (dayInput <1 || dayInput >7)
+                if (dayInput < 1 || dayInput > 7)
                 {
                     Console.WriteLine("Please select a valid input");
                 }
@@ -134,9 +139,10 @@ namespace budgetBuddy
                 else if (selectedDay.Contains(dayInput))
                 {
                     Console.WriteLine("You've already logged for the selected day. Please come back tomorrow.");
+                    askToLog();
                     return;
                 }
-                
+
             }
 
             while (dayInput < 1 || dayInput > 7);
@@ -149,6 +155,8 @@ namespace budgetBuddy
 
         }
 
+       
+
         private static void moneyTracker()
         {
             spent = 0;
@@ -156,22 +164,27 @@ namespace budgetBuddy
 
             Console.WriteLine("\nBreakfast: ");
             spent += Convert.ToDouble(Console.ReadLine());
-        
+
             Console.WriteLine("\nLunch: ");
             spent += Convert.ToDouble(Console.ReadLine());
-           
+
             Console.WriteLine("\nDinner: ");
             spent += Convert.ToDouble(Console.ReadLine());
-       
+
             Console.WriteLine("\nTransportation: ");
             spent += Convert.ToDouble(Console.ReadLine());
-            
+
 
             weeklyExpense += spent;
             dailyExpenses.Add(spent);
             Console.WriteLine("\nTotal expenses for the day: " + spent);
-           
-             if (spent >= allowance)
+
+            allowanceModerator();
+        }
+
+        static void allowanceModerator()
+        {
+            if (spent >= allowance)
             {
                 Console.WriteLine("You have insufficient funds for the rest of the week.");
             }
@@ -190,7 +203,11 @@ namespace budgetBuddy
             {
                 Console.WriteLine("Great Job! You'll be able to save by the end of the week if you keep up on doing it.");
             }
+            askToLog();
+        }
 
+        static void askToLog()
+        {
             do
             {
                 Console.WriteLine("\nDo you want to log expense for another day? ");
@@ -205,7 +222,7 @@ namespace budgetBuddy
                 }
             }
 
-           while (userChoices != 'Y' && userChoices != 'N');
+            while (userChoices != 'Y' && userChoices != 'N');
 
             if (userChoices == 'Y')
             {
@@ -217,7 +234,6 @@ namespace budgetBuddy
                 Console.WriteLine("\nGood Bye! See ya next time!");
                 Environment.Exit(0);
             }
-           
         }
 
         static void financialReport()
@@ -225,8 +241,8 @@ namespace budgetBuddy
             Console.WriteLine("\n");
             Console.WriteLine("\n------------WEEKLY FINANCIAL REPORT-------------");
             Console.WriteLine("\nHere's the summary of your weekly expense:");
-            Console.WriteLine(("\n"+ string.Join("\t", dayArray)));
-            Console.WriteLine("\n"+ string.Join("\t", dailyExpenses));
+            Console.WriteLine(("\n" + string.Join("\t", dayArray)));
+            Console.WriteLine("\n" + string.Join("\t", dailyExpenses));
             Console.WriteLine("\n");
             Console.WriteLine("We'll se you next week!");
             Console.WriteLine("\nTotal expenses throughout the week: " + weeklyExpense);
@@ -237,4 +253,3 @@ namespace budgetBuddy
         }
     }
 }
-
