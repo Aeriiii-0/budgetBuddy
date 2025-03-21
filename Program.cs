@@ -145,11 +145,11 @@ namespace budgetBuddy
             dayArray.Add(daysOfWeek[dayInput - 1]);
 
             double spent = moneyTracker();
-            weeklyExpense += spent;
             dailyExpenses.Add(spent);
+            weeklyExpense += spent;
 
             Console.WriteLine("\nTotal expenses for the day: " + spent);
-            allowanceModerator(spent, allowance / days);
+            allowanceModerator(spent, allowance / days, allowance);
             askToLog(days, allowance, weeklyExpense);
         }
 
@@ -174,9 +174,9 @@ namespace budgetBuddy
             return spent;
         }
 
-        static void allowanceModerator(double spent, double allocation)
+        static void allowanceModerator(double spent, double allocation, double allowance)
         {
-            if (spent >= allocation * 7)
+            if (spent >= allowance)
             {
                 Console.WriteLine("You have insufficient funds for the rest of the week.");
             }
