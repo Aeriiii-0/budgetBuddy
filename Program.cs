@@ -7,8 +7,9 @@ namespace budgetBuddy
     class budgetBuddy
     {
         static HashSet<int> selectedDay = new HashSet<int>();
-        static Collection<string> dayArray = new Collection<string>();
-        static Collection<double> dailyExpenses = new Collection<double>();
+        static List<string> dayArray = new List<string>();
+        static List<double> dailyExpenses = new List<double>();
+
 
         public static void Main(string[] args)
         {
