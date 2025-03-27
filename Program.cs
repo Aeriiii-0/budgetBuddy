@@ -2,7 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using BB_BusinessDataLogicc;
+using BB_BusinessDataLogic;
 
 namespace budgetBuddy
 {
@@ -27,12 +27,12 @@ namespace budgetBuddy
                 Console.WriteLine("\nEnter your password: ");
                 userPassword = Convert.ToInt32(Console.ReadLine().Trim());
 
-                if (!BB_Process.Login(userUsername, userPassword))
+                if (!BBProcess.Login(userUsername, userPassword))
                 {
                     Console.WriteLine("\nIncorrect password entered. Please try again.");
                 }
             }
-            while (!BB_Process.Login(userUsername, userPassword));
+            while (!BBProcess.Login(userUsername, userPassword));
 
             Console.WriteLine("\n--------------------------");
             Console.WriteLine("\n>> Successful log-in! <<");
@@ -50,13 +50,13 @@ namespace budgetBuddy
                 Console.WriteLine("\nHow many days do you go to school or work? (1-7): ");
                 days = Convert.ToInt32(Console.ReadLine());
 
-                if (!BB_Process.WorkDays(days))
+                if (!BBProcess.WorkDays(days))
                 {
                     Console.WriteLine("\nInvalid Input.");
                 }
 
             }
-            while (!BB_Process.WorkDays(days));
+            while (!BBProcess.WorkDays(days));
 
             InputAllowance(days);
             return days;
@@ -70,10 +70,10 @@ namespace budgetBuddy
             Console.WriteLine("\nEnter amount here: ");
             double allowance = Convert.ToDouble(Console.ReadLine());
 
-            BB_Process.WeeklyAllowance(days, allowance);
+            BBProcess.WeeklyAllowance(days, allowance);
 
             Console.WriteLine("\n----------------------------------------------------");
-            Console.WriteLine($"\nSUGGESTED ALLOCATION PER DAY: >> {BB_Process.allocation} <<");
+            Console.WriteLine($"\nSUGGESTED ALLOCATION PER DAY: >> {BBProcess.allocation} <<");
             Console.WriteLine("\nCongratulations! You're done with the registration.");
             Console.WriteLine("\n----------------------------------------------------");
 
@@ -83,7 +83,7 @@ namespace budgetBuddy
 
         static void ToCheckLoggedDays(int days)
         {
-            if (!BB_Process.CheckLoggedDays(days))
+            if (!BBProcess.CheckLoggedDays(days))
             {
                 Console.WriteLine("\n-------------------------------------------------------------------------------------");
                 Console.WriteLine("\nYou've already logged for all the days you registered.\nPlease come back next week <3");
@@ -111,11 +111,11 @@ namespace budgetBuddy
                 Console.Write("\nPlease select the current day: ");
                 dayInput = Convert.ToInt32(Console.ReadLine());
 
-                if (!BB_Process.WorkDays(days))
+                if (!BBProcess.WorkDays(days))
                 {
                     Console.WriteLine("Please select a valid input");
                 }
-                else if (!BB_Process.AddUserInput(days, dayInput))
+                else if (!BBProcess.AddUserInput(days, dayInput))
                 {
                     Console.WriteLine("\n--------------------------------------------------------------------");
                     Console.WriteLine("You've already logged for the selected day. Please come back tomorrow.");
@@ -123,7 +123,7 @@ namespace budgetBuddy
 
                 }
             }
-            while (!BB_Process.WorkDays(days));
+            while (!BBProcess.WorkDays(days));
             moneyTracker(days);
             return (dayInput);
         }
@@ -133,7 +133,7 @@ namespace budgetBuddy
 
         static void moneyTracker(int days)
         {
-            BB_Process BB_Process = new BB_Process();
+            BBProcess BBProcess = new BBProcess();
 
             Console.WriteLine("\n-----------------------------------------------------------------------");
             Console.WriteLine("\nEnter the exact amount (in PHP) you spent based on the asked category.");
@@ -152,7 +152,7 @@ namespace budgetBuddy
 
             double WeeklyExpenses = 0;
 
-            Console.WriteLine("\nTotal expenses for the day: " + BB_Process.DisplayDailyExpenses(Breakfast, Lunch, Dinner, Transportation, WeeklyExpenses));
+            Console.WriteLine("\nTotal expenses for the day: " + BBProcess.DisplayDailyExpenses(Breakfast, Lunch, Dinner, Transportation, WeeklyExpenses));
 
             AllowanceReminder();
             AskToLogDay(days);
@@ -162,7 +162,7 @@ namespace budgetBuddy
         static void AllowanceReminder()
         {
 
-            if (!BB_Process.AllowanceModerator())
+            if (!BBProcess.AllowanceModerator())
             {
                 Console.WriteLine("\nYou exceeded the expense allocation for the day. Try to spend less for the rest of the week.");
             }
@@ -206,11 +206,12 @@ namespace budgetBuddy
         {
             Console.WriteLine("\n------------WEEKLY FINANCIAL REPORT-------------");
             Console.WriteLine("\nSummary of your weekly expenses:");
-            Console.WriteLine("\n" + string.Join("\t", BB_Process.dayArray));
-            Console.WriteLine("\n" + string.Join("\t", BB_Process.dailyExpenses));
-            Console.WriteLine("\nTotal expenses throughout the week: " + BB_Process.WeeklyExpenses);
+            Console.WriteLine("\n" + string.Join("\t", BBProcess.dayArray));
+            Console.WriteLine("\n" + string.Join("\t", BBProcess.dailyExpenses));
+            Console.WriteLine("\nTotal expenses throughout the week: " + BBProcess.WeeklyExpenses);
             Console.WriteLine("\n------------------------------------------------");
             Console.WriteLine("\nThanks for using Budget Buddy :>>.");
+
         }
     }
 }
