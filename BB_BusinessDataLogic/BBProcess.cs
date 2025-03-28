@@ -56,7 +56,7 @@ namespace BB_BusinessDataLogic
             }
         }
 
-        public static bool AddUserInput(int days, int dayInput)
+        public static bool AddUserInput(int dayInput)
         {
 
             if (selectedDay.Contains(dayInput))

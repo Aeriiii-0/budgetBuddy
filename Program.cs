@@ -29,7 +29,7 @@ namespace budgetBuddy
 
                 if (!BBProcess.Login(userUsername, userPassword))
                 {
-                    Console.WriteLine("\nIncorrect password entered. Please try again.");
+                    Console.WriteLine("\nIncorrect password or username entered. Please try again.");
                 }
             }
             while (!BBProcess.Login(userUsername, userPassword));
@@ -115,7 +115,7 @@ namespace budgetBuddy
                 {
                     Console.WriteLine("Please select a valid input");
                 }
-                else if (!BBProcess.AddUserInput(days, dayInput))
+                else if (!BBProcess.AddUserInput(dayInput))
                 {
                     Console.WriteLine("\n--------------------------------------------------------------------");
                     Console.WriteLine("You've already logged for the selected day. Please come back tomorrow.");
