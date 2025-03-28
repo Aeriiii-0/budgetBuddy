@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "budgetBuddy", "budgetBuddy.csproj", "{776BB5D0-1091-413D-BAAE-00C21FFEF6C9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BB_BusinessDataLogic", "..\BB_BusinessDataLogic\BB_BusinessDataLogic.csproj", "{2BBD8FAB-62A4-465E-BC47-21C727A6D503}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BB_BusinessDataLogic", "BB_BusinessDataLogic\BB_BusinessDataLogic.csproj", "{AC0622CE-94D5-4198-AC0F-DEEB27837246}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{776BB5D0-1091-413D-BAAE-00C21FFEF6C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{776BB5D0-1091-413D-BAAE-00C21FFEF6C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{776BB5D0-1091-413D-BAAE-00C21FFEF6C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2BBD8FAB-62A4-465E-BC47-21C727A6D503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2BBD8FAB-62A4-465E-BC47-21C727A6D503}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2BBD8FAB-62A4-465E-BC47-21C727A6D503}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2BBD8FAB-62A4-465E-BC47-21C727A6D503}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC0622CE-94D5-4198-AC0F-DEEB27837246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC0622CE-94D5-4198-AC0F-DEEB27837246}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC0622CE-94D5-4198-AC0F-DEEB27837246}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC0622CE-94D5-4198-AC0F-DEEB27837246}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,7 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BB_BusinessDataLogic\BB_BusinessDataLogic.csproj" />
+    <Compile Remove="BB_BusinessDataLogic\**" />
+    <EmbeddedResource Remove="BB_BusinessDataLogic\**" />
+    <None Remove="BB_BusinessDataLogic\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="BB_BusinessDataLogic\BB_BusinessDataLogic.csproj" />
   </ItemGroup>
 
 </Project>

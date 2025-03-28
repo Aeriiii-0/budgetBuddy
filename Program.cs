@@ -133,7 +133,6 @@ namespace budgetBuddy
 
         static void moneyTracker(int days)
         {
-            BBProcess BBProcess = new BBProcess();
 
             Console.WriteLine("\n-----------------------------------------------------------------------");
             Console.WriteLine("\nEnter the exact amount (in PHP) you spent based on the asked category.");
