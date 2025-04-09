@@ -9,8 +9,17 @@
 
   <ItemGroup>
     <Compile Remove="BB_BusinessDataLogic\**" />
+    <Compile Remove="BB_Common\**" />
+    <Compile Remove="BB_DataLayer\**" />
+    <Compile Remove="BB_DataLogic\**" />
     <EmbeddedResource Remove="BB_BusinessDataLogic\**" />
+    <EmbeddedResource Remove="BB_Common\**" />
+    <EmbeddedResource Remove="BB_DataLayer\**" />
+    <EmbeddedResource Remove="BB_DataLogic\**" />
     <None Remove="BB_BusinessDataLogic\**" />
+    <None Remove="BB_Common\**" />
+    <None Remove="BB_DataLayer\**" />
+    <None Remove="BB_DataLogic\**" />
   </ItemGroup>
 
   <ItemGroup>

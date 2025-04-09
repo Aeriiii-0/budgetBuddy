@@ -3,25 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BB_DataLayer;
 
 namespace BB_BusinessDataLogic
 {
     public class BBProcess
     {
-        public static double allocation, TotalDailyExpense;
-        public static double WeeklyExpenses = 0;
-        public static HashSet<int> selectedDay = new HashSet<int>();
+        static double allocation, TotalDailyExpense;
+        static HashSet<int> selectedDay = new HashSet<int>();
         public static List<string> dayArray = new List<string>();
         public static List<double> dailyExpenses = new List<double>();
+        static BBDataManager dataManager = new BBDataManager(); 
 
 
-        public static bool Login(string userUsername, int userPassword)
+       public static bool Login(string userUsername, string userPassword)
         {
-            string username = "Arra";
-            int password = 4321;
-
-            return username == userUsername || password == userPassword;
+            return dataManager.AccountValidator(userUsername, userPassword);
         }
+
         public static bool WorkDays(int days)
         {
             if (days < 1 || days > 7)
@@ -35,23 +34,14 @@ namespace BB_BusinessDataLogic
 
         }
 
-        public static double WeeklyAllowance(int days, double allowance)
-        {
-
-            allocation = allowance / days;
-            return allocation;
-        }
-
         public static bool CheckLoggedDays(int days)
         {
             if (selectedDay.Count >= days)
             {
                 return false;
             }
-
             else
             {
-
                 return true;
             }
         }
@@ -73,34 +63,59 @@ namespace BB_BusinessDataLogic
             }
         }
 
-        public static double DisplayDailyExpenses(double Breakfast, double Lunch, double Dinner, double Transportation, double WeeklyExpenses)
+        public static double WeeklyAllowance(int days, string userUsername)
+        {
+            allocation = dataManager.GetAllowance(userUsername) / days;
+            return allocation;
+        }
+
+        public static double DisplayWeeklyExpenses()
+        {
+            double WeeklyExpenses = 0;
+            WeeklyExpenses = dailyExpenses.Sum();
+            return WeeklyExpenses;
+        }
+
+
+        public static double DisplayDailyExpenses(double Breakfast, double Lunch, double Dinner, double Transportation)
         {
             TotalDailyExpense = 0;
 
             TotalDailyExpense = Breakfast + Lunch + Dinner + Transportation;
             dailyExpenses.Add(TotalDailyExpense);
-            BBProcess.WeeklyExpenses += TotalDailyExpense;
-
+           
             return TotalDailyExpense;
         }
 
-        public double DisplayWeeklyExpenses(double WeeklyExpenses)
+      
+        public static double DisplayAllowance(string userUsername)
         {
-            return WeeklyExpenses;
+            double AllowanceLeft = 0;
+
+            double allowance = dataManager.GetAllowance(userUsername);
+            double WeeklyExpenses = dailyExpenses.Sum();
+
+            AllowanceLeft = allowance - WeeklyExpenses;
+
+            return AllowanceLeft;
         }
+
+
 
         public static bool AllowanceModerator()
         {
-            if (TotalDailyExpense < allocation)
+            return TotalDailyExpense < allocation;
+
+        }
+
+        public static bool FinancialReportChecker()
+        {
+            if (selectedDay.Count > 0)
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
-
 
     }
 }

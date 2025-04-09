@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "budgetBuddy", "budgetBuddy.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BB_BusinessDataLogic", "BB_BusinessDataLogic\BB_BusinessDataLogic.csproj", "{AC0622CE-94D5-4198-AC0F-DEEB27837246}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BB_DataLayer", "BB_DataLayer\BB_DataLayer.csproj", "{A7DDD02E-3A07-491B-8E41-5C0A795519D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BB_Common", "BB_Common\BB_Common.csproj", "{F897E278-3AAC-4D35-AB93-6BC6D93E3DB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{AC0622CE-94D5-4198-AC0F-DEEB27837246}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC0622CE-94D5-4198-AC0F-DEEB27837246}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC0622CE-94D5-4198-AC0F-DEEB27837246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7DDD02E-3A07-491B-8E41-5C0A795519D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7DDD02E-3A07-491B-8E41-5C0A795519D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7DDD02E-3A07-491B-8E41-5C0A795519D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7DDD02E-3A07-491B-8E41-5C0A795519D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F897E278-3AAC-4D35-AB93-6BC6D93E3DB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F897E278-3AAC-4D35-AB93-6BC6D93E3DB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F897E278-3AAC-4D35-AB93-6BC6D93E3DB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F897E278-3AAC-4D35-AB93-6BC6D93E3DB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
