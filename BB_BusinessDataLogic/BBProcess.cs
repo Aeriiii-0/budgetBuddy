@@ -34,6 +34,20 @@ namespace BB_BusinessDataLogic
 
         }
 
+
+        public static bool ClearData()
+        {
+            if (selectedDay.Count > 0)
+            {
+                selectedDay.Clear();
+                dayArray.Clear();
+                dailyExpenses.Clear();
+                return true ;
+            }
+            return false ;
+        }
+
+
         public static bool CheckLoggedDays(int days)
         {
             if (selectedDay.Count >= days)

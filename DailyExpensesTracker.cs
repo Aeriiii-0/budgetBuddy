@@ -8,7 +8,7 @@ namespace budgetBuddy
 {
     public class DailyExpensesTracker
     {
-        static string[] actions = new string[] { "[1] View Allowance", "[2] Log Expenses", "[3] Release Financial Report", "[4] Update Allowance", "[5] Exit" };
+        static string[] actions = new string[] { "[1] View Allowance", "[2] Log Expenses", "[3] Release Financial Report", "[4] Update Allowance", "[5] Clear Data", "[6] Exit" };
         static int days;
         static string userUsername = string.Empty;
         static double WeeklyExpenses, userInput, allowance;
@@ -73,15 +73,18 @@ namespace budgetBuddy
                         OperationToDo();
                         break;
                     case 5:
+                        DeleteLoggedDays();
+                        break;
+                    case 6:
                         Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("\nInvalid input. (1-5 only)");
+                        Console.WriteLine("\nInvalid input. (1-6 only)");
                         break;
                 }
             }
 
-            while (userInput != 5);
+            while (userInput != 6);
 
         }
 
@@ -272,6 +275,19 @@ namespace budgetBuddy
         {
             Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             Console.WriteLine("\nAllowance Available: " + BBProcess.DisplayAllowance(userUsername));
+        }
+
+        static void DeleteLoggedDays()
+        {
+            if (!BBProcess.ClearData())
+            {
+                Console.WriteLine("\nNo data to delete!");
+            }
+            else
+            {
+                Console.WriteLine("\nData sucessfully deleted!");
+            }
+
         }
 
         static void AskToLogDay()
