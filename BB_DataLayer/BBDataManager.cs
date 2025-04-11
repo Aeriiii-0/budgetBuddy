@@ -78,6 +78,18 @@ namespace BB_DataLayer
             }
         return 0.0;
         }
+
+    public double UpdateAllowance(string userUsername, double Amount)
+        {
+            for (int i = 0; i < accounts.Count; i++)
+            {
+                if (accounts[i].username == userUsername)
+                {
+                    return accounts[i].allowance = Amount;
+                }
+            }
+            return 0.0;
+        }
     }
 
 }

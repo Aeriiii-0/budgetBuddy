@@ -9,14 +9,14 @@ namespace BB_BusinessDataLogic
 {
     public class BBProcess
     {
-        static double allocation, TotalDailyExpense;
+        public static double allocation, TotalDailyExpense;
         static HashSet<int> selectedDay = new HashSet<int>();
         public static List<string> dayArray = new List<string>();
         public static List<double> dailyExpenses = new List<double>();
-        static BBDataManager dataManager = new BBDataManager(); 
+        static BBDataManager dataManager = new BBDataManager();
 
 
-       public static bool Login(string userUsername, string userPassword)
+        public static bool Login(string userUsername, string userPassword)
         {
             return dataManager.AccountValidator(userUsername, userPassword);
         }
@@ -69,11 +69,37 @@ namespace BB_BusinessDataLogic
             return allocation;
         }
 
+
+        public static double UpdateWeeklyAllowance(double Amount, double ToDo, string userUsername, int days)
+        {
+            double allowance = dataManager.GetAllowance(userUsername);
+
+            if (ToDo == 1)
+            {
+                allowance += Amount;
+                dataManager.UpdateAllowance(userUsername, allowance);
+            }
+            else
+            {
+                allowance -= Amount;
+                dataManager.UpdateAllowance(userUsername, allowance);
+            }
+
+            return allowance;
+        }
+
         public static double DisplayWeeklyExpenses()
         {
             double WeeklyExpenses = 0;
             WeeklyExpenses = dailyExpenses.Sum();
             return WeeklyExpenses;
+        }
+
+
+        public static bool CheckAmount(double Amount, double allowance, string userUsername)
+        {
+            allowance = dataManager.GetAllowance(userUsername);
+            return Amount <= allowance;
         }
 
 
@@ -83,11 +109,11 @@ namespace BB_BusinessDataLogic
 
             TotalDailyExpense = Breakfast + Lunch + Dinner + Transportation;
             dailyExpenses.Add(TotalDailyExpense);
-           
+
             return TotalDailyExpense;
         }
 
-      
+
         public static double DisplayAllowance(string userUsername)
         {
             double AllowanceLeft = 0;

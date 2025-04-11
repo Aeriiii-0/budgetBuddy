@@ -8,10 +8,10 @@ namespace budgetBuddy
 {
     public class DailyExpensesTracker
     {
-        static string[] actions = new string[] { "[1] View Allowance", "[2] Log Expenses", "[3] Release Financial Report", "[4] Exit" };
+        static string[] actions = new string[] { "[1] View Allowance", "[2] Log Expenses", "[3] Release Financial Report", "[4] Update Allowance", "[5] Exit" };
         static int days;
         static string userUsername = string.Empty;
-        static double WeeklyExpenses;
+        static double WeeklyExpenses, userInput, allowance;
         static void Main(string[] args)
         {
 
@@ -46,17 +46,17 @@ namespace budgetBuddy
             Console.WriteLine("\n>> Successful log-in! <<");
             Console.WriteLine("\n--------------------------");
 
-            Menu();
-            double userInput= GetUserInput();
-
-            while (userInput != 4)
+            do
             {
+                Menu();
+                userInput = GetUserInput();
+
                 switch (userInput)
                 {
                     case 1:
                         ViewAllowance();
                         break;
-                     case 2:
+                    case 2:
                         RegistrationForm();
                         break;
                     case 3:
@@ -69,13 +69,19 @@ namespace budgetBuddy
                             financialReport();
                         }
                         break;
+                    case 4:
+                        OperationToDo();
+                        break;
+                    case 5:
+                        Environment.Exit(0);
+                        break;
                     default:
-                        Console.WriteLine("\nInvalid input. (1-4 only)");
+                        Console.WriteLine("\nInvalid input. (1-5 only)");
                         break;
                 }
-                Menu();
-                userInput = GetUserInput();
             }
+
+            while (userInput != 5);
 
         }
 
@@ -86,11 +92,11 @@ namespace budgetBuddy
 
             foreach (string action in actions)
             {
-                Console.WriteLine("\n"+ action);
+                Console.WriteLine("\n" + action);
             }
         }
 
-        static double GetUserInput() 
+        static double GetUserInput()
         {
             Console.Write("\nInput Action: ");
             double userInput = Convert.ToDouble(Console.ReadLine());
@@ -113,20 +119,66 @@ namespace budgetBuddy
             }
             while (!BBProcess.WorkDays(days));
 
-            InputAllowance();
+            DisplayWeeklyAllocation();
             return days;
         }
 
-        static void InputAllowance()
+        static void DisplayWeeklyAllocation()
         {
             BBProcess.WeeklyAllowance(days, userUsername);
 
             Console.WriteLine("\n----------------------------------------------------");
             Console.WriteLine($"\nSUGGESTED ALLOCATION PER DAY: >> {BBProcess.WeeklyAllowance(days, userUsername)} <<");
-            Console.WriteLine("\nCongratulations! You're done with the registration.");
+            Console.WriteLine("\nGreat! Try to keep expenses under the allocation to save money!");
             Console.WriteLine("\n----------------------------------------------------");
 
             ToCheckLoggedDays();
+        }
+
+        static double OperationToDo()
+        {
+            double ToDo = 0;
+            do
+            {
+                Console.WriteLine("----------------------------------------------------");
+                Console.WriteLine("\nSelect action to update your allowance ");
+                Console.WriteLine("\n[1] Increase     [2] Decrease");
+                Console.WriteLine("\nAction: ");
+                ToDo = Convert.ToDouble(Console.ReadLine());
+
+                if (ToDo != 1 && ToDo != 2)
+                {
+                    Console.WriteLine("Please input 1 or 2 only");
+                }
+            }
+
+            while (ToDo != 1 && ToDo != 2);
+            InputAllowance(ToDo);
+            return ToDo;
+        }
+
+        static double InputAllowance(double ToDo)
+        {
+            double Amount = 0;
+            do
+            {
+                Console.WriteLine();
+                Console.WriteLine("\nEnter amount here: ");
+                Amount = Convert.ToDouble(Console.ReadLine());
+
+                if (!BBProcess.CheckAmount(Amount, allowance, userUsername))
+                {
+                    Console.WriteLine("Insufficient allowance. Please decrease accordingly.");
+
+                }
+            }
+            while (!BBProcess.CheckAmount(Amount, allowance, userUsername));
+
+            Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+            Console.WriteLine("\nAllowance Updated!");
+            Console.WriteLine("\nAllowance Available:" + BBProcess.UpdateWeeklyAllowance(Amount, ToDo, userUsername, days));
+
+            return Amount;
         }
 
         static void ToCheckLoggedDays()
@@ -138,7 +190,11 @@ namespace budgetBuddy
                 Console.WriteLine("\n-------------------------------------------------------------------------------------");
                 return;
             }
-            UserInput();
+            else
+            {
+                UserInput();
+            }
+
         }
 
         static int UserInput()
@@ -214,6 +270,7 @@ namespace budgetBuddy
 
         static void ViewAllowance()
         {
+            Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             Console.WriteLine("\nAllowance Available: " + BBProcess.DisplayAllowance(userUsername));
         }
 
@@ -241,11 +298,11 @@ namespace budgetBuddy
             else
             {
                 Menu();
-                double userInput = GetUserInput();
+                userInput = GetUserInput();
             }
         }
-        
-     
+
+
         static void financialReport()
         {
             Console.WriteLine("\n------------WEEKLY FINANCIAL REPORT-------------");
@@ -255,7 +312,7 @@ namespace budgetBuddy
             Console.WriteLine("\nTotal expenses throughout the week: " + BBProcess.DisplayWeeklyExpenses());
             Console.WriteLine("\nAllowance left: " + BBProcess.DisplayAllowance(userUsername));
             Console.WriteLine("\n------------------------------------------------");
-       
+
         }
     }
 }
