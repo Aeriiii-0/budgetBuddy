@@ -31,17 +31,16 @@ namespace BB_BusinessDataLogic
             {
                 return true;
             }
-
         }
 
-
-        public static bool ClearData()
+        public static bool ClearData(string userUsername)
         {
             if (selectedDay.Count > 0)
             {
                 selectedDay.Clear();
                 dayArray.Clear();
                 dailyExpenses.Clear();
+                double allowance = dataManager.GetAllowance(userUsername);
                 return true ;
             }
             return false ;
@@ -60,6 +59,14 @@ namespace BB_BusinessDataLogic
             }
         }
 
+        public static bool ValidDay(int dayInput)
+        {
+            if (dayInput > 0 && dayInput < 8)
+            {
+                return true ;
+            }
+                return false;
+        }
         public static bool AddUserInput(int dayInput)
         {
 
@@ -150,11 +157,7 @@ namespace BB_BusinessDataLogic
 
         public static bool FinancialReportChecker()
         {
-            if (selectedDay.Count > 0)
-            {
-                return true;
-            }
-            return false;
+            return selectedDay.Count > 0;
         }
 
     }

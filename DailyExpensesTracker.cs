@@ -62,7 +62,8 @@ namespace budgetBuddy
                     case 3:
                         if (!BBProcess.FinancialReportChecker())
                         {
-                            Console.WriteLine("Please log expenses before releasing financial report.");
+                            Console.WriteLine("\n----------------------------------------------------");
+                            Console.WriteLine("\nPlease log expenses before releasing financial report.");
                         }
                         else
                         {
@@ -212,11 +213,12 @@ namespace budgetBuddy
                 Console.WriteLine("\n[1] MONDAY\n[2] TUESDAY\n[3] WEDNESDAY\n[4] THURSDAY\n[5] FRIDAY\n[6] SATURDAY\n[7] SUNDAY");
                 Console.Write("\nPlease select the current day: ");
                 dayInput = Convert.ToInt32(Console.ReadLine());
-
-                if (!BBProcess.WorkDays(days))
+              
+                if (!BBProcess.ValidDay(dayInput))
                 {
-                    Console.WriteLine("Please select a valid input");
+                    Console.WriteLine("\nInvalid Input.");
                 }
+
                 else if (!BBProcess.AddUserInput(dayInput))
                 {
                     Console.WriteLine("\n--------------------------------------------------------------------");
@@ -224,10 +226,13 @@ namespace budgetBuddy
                     AskToLogDay();
 
                 }
+                else
+                {
+                    moneyTracker();
+                }
             }
-            while (!BBProcess.WorkDays(days));
-            moneyTracker();
-            return (dayInput);
+            while (!BBProcess.ValidDay(dayInput));
+            return dayInput;
         }
 
 
@@ -279,7 +284,7 @@ namespace budgetBuddy
 
         static void DeleteLoggedDays()
         {
-            if (!BBProcess.ClearData())
+            if (!BBProcess.ClearData(userUsername))
             {
                 Console.WriteLine("\nNo data to delete!");
             }
@@ -310,11 +315,6 @@ namespace budgetBuddy
             if (userChoice == 'Y')
             {
                 ToCheckLoggedDays();
-            }
-            else
-            {
-                Menu();
-                userInput = GetUserInput();
             }
         }
 
