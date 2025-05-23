@@ -45,22 +45,6 @@ namespace BB_BusinessDataLogic
             }
         }
 
-        public static bool ClearData(string userUsername, string userPassword)
-        {
-            var userAccounts = GetUserAccounts(userUsername, userPassword);
-
-            if (selectedDay.Count > 0)
-            {
-                selectedDay.Clear();
-                dayArray.Clear();
-                dailyExpenses.Clear();
-                double allowance =  userAccounts.allowance;
-
-                return true ;
-            }
-            return false ;
-        }
-
         public static bool CheckLoggedDays(int days)
         {
             if (selectedDay.Count >= days)
@@ -152,20 +136,25 @@ namespace BB_BusinessDataLogic
 
         public static double DisplayAllowance(string userUsername, string userPassword) 
         {
-            var userAccounts = GetUserAccounts( userUsername,  userPassword);
-            double AllowanceLeft = 0;
 
-            double allowance = userAccounts.allowance;
+            var userAccounts = GetUserAccounts(userUsername, userPassword);
             double WeeklyExpenses = dailyExpenses.Sum();
 
-            AllowanceLeft = allowance - WeeklyExpenses;
-
-            userAccounts.allowance = AllowanceLeft;
+            userAccounts.allowance -= WeeklyExpenses;
             dataManager.UpdateAccount(userAccounts);
 
-            return AllowanceLeft;
+            dailyExpenses.Clear();
+            dayArray.Clear();
+            selectedDay.Clear();
+
+            return UpdateAllowanceDisplay(userUsername, userPassword);
         }
 
+        public static double UpdateAllowanceDisplay(string userUsername, string userPassword)
+        {
+            var userAccounts = GetUserAccounts(userUsername, userPassword);
+            return userAccounts.allowance;
+        }
         public static bool AllowanceModerator()
         {
             return TotalDailyExpense < allocation;
@@ -194,15 +183,15 @@ namespace BB_BusinessDataLogic
             return foundAccount;
         }
 
-        public static void CreateAccount(string userUsername, string userPassword, double newAllowance)
+        public static void CreateAccount(string userUsername, string userPassword, string newUsername, string newPassword, double newAllowance)
         {
             UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
             if (userAccounts != null)
             {
                 userAccounts = new UserAccounts
                 {
-                    username = userUsername,
-                    password = userPassword,
+                    username = newUsername,
+                    password = newPassword,
                     allowance = newAllowance,
                 };
                 dataManager.CreateAccount(userAccounts);

@@ -10,7 +10,7 @@ namespace budgetBuddy
 {
     public class DailyExpensesTracker
     {
-        static string[] actions = new string[] { "[1] View Allowance", "[2] Log Expenses", "[3] Release Financial Report", "[4] Update Allowance", "[5] Clear Data", "[6] Account Settings", "[7] Exit" };
+        static string[] actions = new string[] { "[1] View Allowance", "[2] Log Expenses", "[3] Release Financial Report", "[4] Update Allowance", "[5] Account Settings", "[6] Exit",  };
         static int days, action;
         static string userUsername = string.Empty;
         static string userPassword = string.Empty;
@@ -68,12 +68,9 @@ namespace budgetBuddy
                         OperationToDo();
                         break;
                     case 5:
-                        DeleteLoggedDays();
-                        break;
-                    case 6:
                         AccountSettings(userAccount);
                         break;
-                    case 7:
+                    case 6:
                         Environment.Exit(0);
                         break;
                     default:
@@ -82,7 +79,7 @@ namespace budgetBuddy
                 }
             }
 
-            while (userInput != 7);
+            while (userInput != 6);
 
         }
 
@@ -163,24 +160,38 @@ namespace budgetBuddy
         static double InputAllowance(double ToDo)
         {
             double Amount = 0;
-            do
+            if (ToDo == 2)
+            {
+                do
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("\nEnter amount here: ");
+                    Amount = Convert.ToDouble(Console.ReadLine());
+
+                    if (!BBProcess.CheckAmount(Amount, allowance, userUsername, userPassword))
+                    {
+                        Console.WriteLine("Insufficient allowance. Please decrease accordingly.");
+
+                    }
+                }
+                while (!BBProcess.CheckAmount(Amount, allowance, userUsername, userPassword));
+
+                Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                Console.WriteLine("\nAllowance Updated!");
+                Console.WriteLine("\nAllowance Available:" + BBProcess.UpdateWeeklyAllowance(Amount, ToDo, userUsername, days, userPassword));
+            }
+
+            else
             {
                 Console.WriteLine();
                 Console.WriteLine("\nEnter amount here: ");
                 Amount = Convert.ToDouble(Console.ReadLine());
 
-                if (!BBProcess.CheckAmount(Amount, allowance, userUsername, userPassword))
-                {
-                    Console.WriteLine("Insufficient allowance. Please decrease accordingly.");
 
-                }
+                Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                Console.WriteLine("\nAllowance Updated!");
+                Console.WriteLine("\nAllowance Available:" + BBProcess.UpdateWeeklyAllowance(Amount, ToDo, userUsername, days, userPassword));
             }
-            while (!BBProcess.CheckAmount(Amount, allowance, userUsername, userPassword));
-
-            Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            Console.WriteLine("\nAllowance Updated!");
-            Console.WriteLine("\nAllowance Available:" + BBProcess.UpdateWeeklyAllowance(Amount, ToDo, userUsername, days, userPassword));
-
             return Amount;
         }
 
@@ -278,21 +289,9 @@ namespace budgetBuddy
         static void ViewAllowance()
         {
             Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            Console.WriteLine("\nAllowance Available: " + BBProcess.DisplayAllowance(userUsername, userPassword));
+            Console.WriteLine("\nAllowance Available: " + BBProcess.UpdateAllowanceDisplay( userUsername,  userPassword));
         }
 
-        static void DeleteLoggedDays()
-        {
-            if (!BBProcess.ClearData(userUsername, userPassword))
-            {
-                Console.WriteLine("\nNo data to delete!");
-            }
-            else
-            {
-                Console.WriteLine("\nData sucessfully deleted!");
-            }
-
-        }
 
         static void AskToLogDay()
         {
@@ -325,7 +324,7 @@ namespace budgetBuddy
             Console.WriteLine("\n" + string.Join("\t", BBProcess.dayArray));
             Console.WriteLine("\n" + string.Join("\t", BBProcess.dailyExpenses));
             Console.WriteLine("\nTotal expenses throughout the week: " + BBProcess.DisplayWeeklyExpenses());
-            Console.WriteLine("\nAllowance left: " + BBProcess.DisplayAllowance(userUsername, userPassword));
+            Console.WriteLine("\nAllowance left: " + BBProcess.DisplayAllowance(userUsername, userPassword)); 
             Console.WriteLine("\n------------------------------------------------");
 
         }
@@ -363,7 +362,7 @@ namespace budgetBuddy
                     AddAccountDetails();
                     Console.WriteLine("\n----------------------------------------------------");
                     Console.WriteLine("\nAccount Created!");
-                    BBProcess.CreateAccount(newUsername, newPassword, newAllowance);
+                    BBProcess.CreateAccount(userUsername, userPassword, newUsername, newPassword, newAllowance);
                     break;
                 case 4:
                     Menu();

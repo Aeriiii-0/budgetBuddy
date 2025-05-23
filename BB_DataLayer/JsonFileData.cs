@@ -19,10 +19,7 @@ namespace BB_DataLayer
         private void ReadJsonDataFromFile()
         {
             string jsonText = File.ReadAllText(jsonFilePath);
-
-            userAccounts = JsonSerializer.Deserialize<List<UserAccounts>>(jsonText,
-                new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
-            );
+            userAccounts = JsonSerializer.Deserialize<List<UserAccounts>>(jsonText,  new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
         private void WriteJsonDataToFile()
@@ -32,7 +29,7 @@ namespace BB_DataLayer
 
             File.WriteAllText(jsonFilePath, jsonString);
         }
-        private int FindAccountIndex(string userUsername, string userPassword)  //note this parameter for txt
+        private int FindAccountIndex(string userUsername, string userPassword)  
         {
             var accounts = GetAccounts();
 

@@ -81,9 +81,9 @@ namespace BB_DataLayer
 
         public void CreateAccount(UserAccounts userAccounts)
         {
-            var newLine = $"{userAccounts.username},{userAccounts.password},{userAccounts.allowance}";
+            var newLine = $"{userAccounts.username},{userAccounts.password},{userAccounts.allowance} ";
 
-            File.AppendAllText(filePath, newLine);
+            File.AppendAllText(filePath, newLine +"\n");
 
         }
 

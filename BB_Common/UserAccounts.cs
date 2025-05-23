@@ -14,7 +14,7 @@ namespace BB_Common
             get { return Password; }
             set
             {
-                if (value.Length < 5)
+                if (value.Length <6 )
                 {
                     Password = value;
                 }
@@ -27,7 +27,7 @@ namespace BB_Common
             get { return Username; }
             set
             {
-                if (value.Length < 5)
+                if (value.Length < 6)
                 {
                     Username = value;
                 }
