@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using BB_Common;
 using BB_DataLayer;
 
 namespace BB_BusinessDataLogic
@@ -18,7 +20,17 @@ namespace BB_BusinessDataLogic
 
         public static bool Login(string userUsername, string userPassword)
         {
-            return dataManager.AccountValidator(userUsername, userPassword);
+            var userAccounts = dataManager.GetAccounts();
+
+            foreach (var account in userAccounts)
+            {
+                if (account.username == userUsername && account.password == userPassword)
+                {
+                    return true;
+                }
+
+            }
+            return false;
         }
 
         public static bool WorkDays(int days)
@@ -33,19 +45,21 @@ namespace BB_BusinessDataLogic
             }
         }
 
-        public static bool ClearData(string userUsername)
+        public static bool ClearData(string userUsername, string userPassword)
         {
+            var userAccounts = GetUserAccounts(userUsername, userPassword);
+
             if (selectedDay.Count > 0)
             {
                 selectedDay.Clear();
                 dayArray.Clear();
                 dailyExpenses.Clear();
-                double allowance = dataManager.GetAllowance(userUsername);
+                double allowance =  userAccounts.allowance;
+
                 return true ;
             }
             return false ;
         }
-
 
         public static bool CheckLoggedDays(int days)
         {
@@ -67,6 +81,7 @@ namespace BB_BusinessDataLogic
             }
                 return false;
         }
+
         public static bool AddUserInput(int dayInput)
         {
 
@@ -84,28 +99,30 @@ namespace BB_BusinessDataLogic
             }
         }
 
-        public static double WeeklyAllowance(int days, string userUsername)
+        public static double WeeklyAllowance(int days, string userUsername, string userPassword)
         {
-            allocation = dataManager.GetAllowance(userUsername) / days;
+            var userAccounts = GetUserAccounts(userUsername, userPassword);
+            allocation = userAccounts.allowance / days;
             return allocation;
         }
 
-
-        public static double UpdateWeeklyAllowance(double Amount, double ToDo, string userUsername, int days)
+        public static double UpdateWeeklyAllowance(double Amount, double ToDo, string userUsername, int days, string userPassword )
         {
-            double allowance = dataManager.GetAllowance(userUsername);
+            var userAccounts = GetUserAccounts(userUsername, userPassword);
+            double allowance = userAccounts.allowance;
 
             if (ToDo == 1)
             {
                 allowance += Amount;
-                dataManager.UpdateAllowance(userUsername, allowance);
+                userAccounts.allowance = allowance;
             }
             else
             {
                 allowance -= Amount;
-                dataManager.UpdateAllowance(userUsername, allowance);
+                userAccounts.allowance = allowance;
+                
             }
-
+            dataManager.UpdateAccount(userAccounts);
             return allowance;
         }
 
@@ -116,13 +133,12 @@ namespace BB_BusinessDataLogic
             return WeeklyExpenses;
         }
 
-
-        public static bool CheckAmount(double Amount, double allowance, string userUsername)
+        public static bool CheckAmount(double Amount, double allowance, string userUsername, string userPassword)
         {
-            allowance = dataManager.GetAllowance(userUsername);
+            var userAccounts = GetUserAccounts(userUsername, userPassword); 
+            allowance = userAccounts.allowance;
             return Amount <= allowance;
         }
-
 
         public static double DisplayDailyExpenses(double Breakfast, double Lunch, double Dinner, double Transportation)
         {
@@ -134,20 +150,21 @@ namespace BB_BusinessDataLogic
             return TotalDailyExpense;
         }
 
-
-        public static double DisplayAllowance(string userUsername)
+        public static double DisplayAllowance(string userUsername, string userPassword) 
         {
+            var userAccounts = GetUserAccounts( userUsername,  userPassword);
             double AllowanceLeft = 0;
 
-            double allowance = dataManager.GetAllowance(userUsername);
+            double allowance = userAccounts.allowance;
             double WeeklyExpenses = dailyExpenses.Sum();
 
             AllowanceLeft = allowance - WeeklyExpenses;
 
+            userAccounts.allowance = AllowanceLeft;
+            dataManager.UpdateAccount(userAccounts);
+
             return AllowanceLeft;
         }
-
-
 
         public static bool AllowanceModerator()
         {
@@ -160,5 +177,74 @@ namespace BB_BusinessDataLogic
             return selectedDay.Count > 0;
         }
 
+        public static UserAccounts GetUserAccounts(string userUsername, string userPassword)
+        {
+
+            var userAccounts = dataManager.GetAccounts();
+            var foundAccount = new UserAccounts();
+
+            foreach (var account in userAccounts)
+            {
+                if (account.username == userUsername && account.password == userPassword)
+                {
+                    foundAccount = account;
+                }
+
+            }
+            return foundAccount;
+        }
+
+        public static void CreateAccount(string userUsername, string userPassword, double newAllowance)
+        {
+            UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
+            if (userAccounts != null)
+            {
+                userAccounts = new UserAccounts
+                {
+                    username = userUsername,
+                    password = userPassword,
+                    allowance = newAllowance,
+                };
+                dataManager.CreateAccount(userAccounts);
+            }
+            else
+            {
+                throw new Exception("Can't create  account");
+            }
+        }
+
+
+        public static void DeleteAccount(string userUsername, string userPassword)
+        {
+            UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
+
+            if (userAccounts == null)
+            {
+                throw new Exception("User account not found.");
+            }
+            else
+            {
+                dataManager.DeleteAccount(userAccounts);
+            }
+        }
+        
+        
+
+        public static void UpdateAccount(string userUsername, string userPassword, string newUsername, string newPassword, double newAllowance)
+        {
+            UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
+
+            if (userAccounts == null)
+            {
+                throw new Exception("User account not found.");
+            }
+            else
+            {
+                userAccounts.username = newUsername;
+                userAccounts.password = newPassword;
+                userAccounts.allowance = newAllowance;
+                dataManager.UpdateAccount(userAccounts);
+            }
+        }
     }
 }

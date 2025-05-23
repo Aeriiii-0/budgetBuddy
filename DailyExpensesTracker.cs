@@ -2,16 +2,24 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Security.Principal;
 using BB_BusinessDataLogic;
+using BB_Common;
 
 namespace budgetBuddy
 {
     public class DailyExpensesTracker
     {
-        static string[] actions = new string[] { "[1] View Allowance", "[2] Log Expenses", "[3] Release Financial Report", "[4] Update Allowance", "[5] Clear Data", "[6] Exit" };
-        static int days;
+        static string[] actions = new string[] { "[1] View Allowance", "[2] Log Expenses", "[3] Release Financial Report", "[4] Update Allowance", "[5] Clear Data", "[6] Account Settings", "[7] Exit" };
+        static int days, action;
         static string userUsername = string.Empty;
+        static string userPassword = string.Empty;
         static double WeeklyExpenses, userInput, allowance;
+        static List<UserAccounts> userAccount = new List<UserAccounts>();
+        static string newUsername, newPassword;
+        static double newAllowance;
+
+
         static void Main(string[] args)
         {
 
@@ -25,22 +33,8 @@ namespace budgetBuddy
 
         static void Login()
         {
-            string userPassword = string.Empty;
 
-            do
-            {
-                Console.WriteLine("\nEnter your username: ");
-                userUsername = Console.ReadLine().Trim();
-
-                Console.WriteLine("\nEnter your password: ");
-                userPassword = Console.ReadLine().Trim();
-
-                if (!BBProcess.Login(userUsername, userPassword))
-                {
-                    Console.WriteLine("\nIncorrect password or username entered. Please try again.");
-                }
-            }
-            while (!BBProcess.Login(userUsername, userPassword));
+            AccountChecker();
 
             Console.WriteLine("\n--------------------------");
             Console.WriteLine("\n>> Successful log-in! <<");
@@ -77,6 +71,9 @@ namespace budgetBuddy
                         DeleteLoggedDays();
                         break;
                     case 6:
+                        AccountSettings(userAccount);
+                        break;
+                    case 7:
                         Environment.Exit(0);
                         break;
                     default:
@@ -85,9 +82,11 @@ namespace budgetBuddy
                 }
             }
 
-            while (userInput != 6);
+            while (userInput != 7);
 
         }
+
+
 
         static void Menu()
         {
@@ -129,10 +128,10 @@ namespace budgetBuddy
 
         static void DisplayWeeklyAllocation()
         {
-            BBProcess.WeeklyAllowance(days, userUsername);
+            BBProcess.WeeklyAllowance(days, userUsername, userPassword);
 
             Console.WriteLine("\n----------------------------------------------------");
-            Console.WriteLine($"\nSUGGESTED ALLOCATION PER DAY: >> {BBProcess.WeeklyAllowance(days, userUsername)} <<");
+            Console.WriteLine($"\nSUGGESTED ALLOCATION PER DAY: >> {BBProcess.WeeklyAllowance(days, userUsername, userPassword)} <<");
             Console.WriteLine("\nGreat! Try to keep expenses under the allocation to save money!");
             Console.WriteLine("\n----------------------------------------------------");
 
@@ -152,7 +151,7 @@ namespace budgetBuddy
 
                 if (ToDo != 1 && ToDo != 2)
                 {
-                    Console.WriteLine("Please input 1 or 2 only");
+                    Console.WriteLine("\nPlease input 1 or 2 only");
                 }
             }
 
@@ -170,17 +169,17 @@ namespace budgetBuddy
                 Console.WriteLine("\nEnter amount here: ");
                 Amount = Convert.ToDouble(Console.ReadLine());
 
-                if (!BBProcess.CheckAmount(Amount, allowance, userUsername))
+                if (!BBProcess.CheckAmount(Amount, allowance, userUsername, userPassword))
                 {
                     Console.WriteLine("Insufficient allowance. Please decrease accordingly.");
 
                 }
             }
-            while (!BBProcess.CheckAmount(Amount, allowance, userUsername));
+            while (!BBProcess.CheckAmount(Amount, allowance, userUsername, userPassword));
 
             Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             Console.WriteLine("\nAllowance Updated!");
-            Console.WriteLine("\nAllowance Available:" + BBProcess.UpdateWeeklyAllowance(Amount, ToDo, userUsername, days));
+            Console.WriteLine("\nAllowance Available:" + BBProcess.UpdateWeeklyAllowance(Amount, ToDo, userUsername, days, userPassword));
 
             return Amount;
         }
@@ -213,7 +212,7 @@ namespace budgetBuddy
                 Console.WriteLine("\n[1] MONDAY\n[2] TUESDAY\n[3] WEDNESDAY\n[4] THURSDAY\n[5] FRIDAY\n[6] SATURDAY\n[7] SUNDAY");
                 Console.Write("\nPlease select the current day: ");
                 dayInput = Convert.ToInt32(Console.ReadLine());
-              
+
                 if (!BBProcess.ValidDay(dayInput))
                 {
                     Console.WriteLine("\nInvalid Input.");
@@ -279,12 +278,12 @@ namespace budgetBuddy
         static void ViewAllowance()
         {
             Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            Console.WriteLine("\nAllowance Available: " + BBProcess.DisplayAllowance(userUsername));
+            Console.WriteLine("\nAllowance Available: " + BBProcess.DisplayAllowance(userUsername, userPassword));
         }
 
         static void DeleteLoggedDays()
         {
-            if (!BBProcess.ClearData(userUsername))
+            if (!BBProcess.ClearData(userUsername, userPassword))
             {
                 Console.WriteLine("\nNo data to delete!");
             }
@@ -326,10 +325,88 @@ namespace budgetBuddy
             Console.WriteLine("\n" + string.Join("\t", BBProcess.dayArray));
             Console.WriteLine("\n" + string.Join("\t", BBProcess.dailyExpenses));
             Console.WriteLine("\nTotal expenses throughout the week: " + BBProcess.DisplayWeeklyExpenses());
-            Console.WriteLine("\nAllowance left: " + BBProcess.DisplayAllowance(userUsername));
+            Console.WriteLine("\nAllowance left: " + BBProcess.DisplayAllowance(userUsername, userPassword));
             Console.WriteLine("\n------------------------------------------------");
 
         }
+
+        static void AccountSettings(List<UserAccounts> userAccount)
+        {
+            Console.WriteLine("\n----------------------------------------------------");
+            Console.WriteLine("\nAccount Settings");
+            Console.WriteLine("\n[1] Update Account");
+            Console.WriteLine("\n[2] Delete Account");
+            Console.WriteLine("\n[3] Create New Account");
+            Console.WriteLine("\n[4] Back to Main Menu");
+
+
+            Console.Write("\nSelect action: ");
+            action = Convert.ToInt32(Console.ReadLine());
+
+
+            switch (action)
+            {
+                case 1:
+                    AccountChecker();
+                    AddAccountDetails();
+                    Console.WriteLine("\n----------------------------------------------------");
+                    Console.WriteLine("\nAccount Updated!");
+                    BBProcess.UpdateAccount(userUsername, userPassword, newUsername, newPassword, newAllowance);
+                    break;
+                case 2:
+                    AccountChecker();
+                    Console.WriteLine("\n----------------------------------------------------");
+                    Console.WriteLine("\nAccount Deleted!");
+                    BBProcess.DeleteAccount(userUsername, userPassword);
+                    break;
+                case 3:
+                    AddAccountDetails();
+                    Console.WriteLine("\n----------------------------------------------------");
+                    Console.WriteLine("\nAccount Created!");
+                    BBProcess.CreateAccount(newUsername, newPassword, newAllowance);
+                    break;
+                case 4:
+                    Menu();
+                    userInput = GetUserInput();
+                    break;
+                default:
+                    Console.WriteLine("\nInvalid input. (1-4 only)");
+                    break;
+
+            }
+
+
+        }
+        static void AccountChecker()
+        {
+            do
+            {
+                Console.WriteLine("\nEnter your username: ");
+                userUsername = Console.ReadLine().Trim();
+
+                Console.WriteLine("\nEnter your password: ");
+                userPassword = Console.ReadLine().Trim();
+
+                if (!BBProcess.Login(userUsername, userPassword))
+                {
+                    Console.WriteLine("\nIncorrect password or username entered. Please try again.");
+                }
+            }
+            while (!BBProcess.Login(userUsername, userPassword));
+        }
+
+        static void AddAccountDetails()
+        {
+            Console.Write("\nEnter New Username: ");
+            newUsername = Console.ReadLine().Trim();
+
+            Console.Write("\nEnter New Password: ");
+            newPassword = Console.ReadLine().Trim();
+
+            Console.Write("\nEnter New Allowance: ");
+            newAllowance = Convert.ToDouble(Console.ReadLine());
+        }
+
     }
 }
 
