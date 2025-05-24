@@ -57,7 +57,7 @@ namespace BB_BusinessDataLogic
             }
         }
 
-        public static bool ValidDay(int dayInput)
+        public static bool ValidDay(int dayInput) 
         {
             if (dayInput > 0 && dayInput < 8)
             {
@@ -143,10 +143,6 @@ namespace BB_BusinessDataLogic
             userAccounts.allowance -= WeeklyExpenses;
             dataManager.UpdateAccount(userAccounts);
 
-            dailyExpenses.Clear();
-            dayArray.Clear();
-            selectedDay.Clear();
-
             return UpdateAllowanceDisplay(userUsername, userPassword);
         }
 
@@ -168,7 +164,6 @@ namespace BB_BusinessDataLogic
 
         public static UserAccounts GetUserAccounts(string userUsername, string userPassword)
         {
-
             var userAccounts = dataManager.GetAccounts();
             var foundAccount = new UserAccounts();
 
@@ -216,8 +211,6 @@ namespace BB_BusinessDataLogic
                 dataManager.DeleteAccount(userAccounts);
             }
         }
-        
-        
 
         public static void UpdateAccount(string userUsername, string userPassword, string newUsername, string newPassword, double newAllowance)
         {

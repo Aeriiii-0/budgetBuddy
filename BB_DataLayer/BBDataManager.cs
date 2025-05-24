@@ -16,7 +16,9 @@ namespace BB_DataLayer
         {
             //budgetBuddyData = new InMemoryData();
             //budgetBuddyData = new TextFileData();
-            budgetBuddyData = new JsonFileData();
+            //budgetBuddyData = new JsonFileData();
+            budgetBuddyData = new DBDataLayer();
+
         }
 
         public List<UserAccounts> GetAccounts()

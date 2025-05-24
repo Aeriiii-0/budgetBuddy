@@ -125,7 +125,6 @@ namespace budgetBuddy
 
         static void DisplayWeeklyAllocation()
         {
-            BBProcess.WeeklyAllowance(days, userUsername, userPassword);
 
             Console.WriteLine("\n----------------------------------------------------");
             Console.WriteLine($"\nSUGGESTED ALLOCATION PER DAY: >> {BBProcess.WeeklyAllowance(days, userUsername, userPassword)} <<");

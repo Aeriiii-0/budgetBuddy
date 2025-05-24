@@ -59,7 +59,7 @@ namespace BB_DataLayer
 
 
 
-        private int FindAccountIndex(string userUsername, string userPassword)  //note this parameter for txt
+        private int FindAccountIndex(string userUsername, string userPassword)  
         {
             var accounts = GetAccounts();
 
