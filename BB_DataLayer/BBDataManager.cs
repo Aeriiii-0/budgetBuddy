@@ -41,5 +41,19 @@ namespace BB_DataLayer
             budgetBuddyData.DeleteAccount(userAccounts);
         }
 
+        public void AddExpense(FinancialReport expense)
+        {
+            budgetBuddyData.AddExpense(expense);
+        }
+
+        public int GetAccountId(UserAccounts userAccounts)
+        {
+            return budgetBuddyData.GetAccountId(userAccounts);
+        }
+
+        public void ClearData(int accountId)
+        {
+            budgetBuddyData.DeleteLoggedDays(accountId);
+        }
     }
 }

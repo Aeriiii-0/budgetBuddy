@@ -36,6 +36,8 @@ namespace BB_Common
 
         public double allowance { get; set; }
 
+
+
     }
 }
 

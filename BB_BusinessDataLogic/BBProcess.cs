@@ -1,11 +1,12 @@
-﻿using System;
+﻿using BB_Common;
+using BB_DataLayer;
+using Microsoft.Identity.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
-using BB_Common;
-using BB_DataLayer;
 
 namespace BB_BusinessDataLogic
 {
@@ -124,12 +125,17 @@ namespace BB_BusinessDataLogic
             return Amount <= allowance;
         }
 
-        public static double DisplayDailyExpenses(double Breakfast, double Lunch, double Dinner, double Transportation)
+        public static double DisplayDailyExpenses(double Breakfast, double Lunch, double Dinner, double Transportation, string userUsername, string userPassword, int dayInput)
         {
-            TotalDailyExpense = 0;
-
+            
             TotalDailyExpense = Breakfast + Lunch + Dinner + Transportation;
             dailyExpenses.Add(TotalDailyExpense);
+
+            string[] daysOfWeek = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+            string dayOfWeek = daysOfWeek[dayInput - 1];
+
+            SaveDailyExpenseToDB(userUsername, userPassword, dayOfWeek, TotalDailyExpense);
+
 
             return TotalDailyExpense;
         }
@@ -212,7 +218,7 @@ namespace BB_BusinessDataLogic
             }
         }
 
-        public static void UpdateAccount(string userUsername, string userPassword, string newUsername, string newPassword, double newAllowance)
+        public static void UpdateAccount(string userUsername, string userPassword,  string newPassword, double newAllowance)
         {
             UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
 
@@ -222,11 +228,49 @@ namespace BB_BusinessDataLogic
             }
             else
             {
-                userAccounts.username = newUsername;
                 userAccounts.password = newPassword;
                 userAccounts.allowance = newAllowance;
                 dataManager.UpdateAccount(userAccounts);
             }
         }
+
+        public static bool ClearData(string userUsername, string userPassword)
+        {
+            var userAccounts = GetUserAccounts(userUsername, userPassword);
+            int accountId = dataManager.GetAccountId(userAccounts);
+
+            if (selectedDay.Count > 0)
+            {
+                dataManager.ClearData(accountId); 
+                return true;
+            }
+            return false;
+        }
+
+
+        public static void SaveDailyExpenseToDB(string userUsername, string userPassword, string dayOfWeek, double totalExpense)
+        {
+            var userAccounts = GetUserAccounts(userUsername, userPassword);
+            int accountId = dataManager.GetAccountId(userAccounts); 
+
+            FinancialReport expense = new FinancialReport
+            {
+                account_id = accountId,
+                DayOfWeek = dayOfWeek,
+                TotalExpense = totalExpense,
+                ExpenseDate = DateTime.Today
+            };
+
+            dataManager.AddExpense(expense);
+            UpdateAllowanceDisplay( userUsername,  userPassword);
+        }
+
+        public static void LogAnotherWeek()
+        {
+            selectedDay.Clear(); 
+                dayArray.Clear();
+            dailyExpenses.Clear();
+        }
+
     }
 }

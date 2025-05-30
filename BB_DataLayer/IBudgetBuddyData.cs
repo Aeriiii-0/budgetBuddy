@@ -13,5 +13,9 @@ namespace BB_DataLayer
         public void CreateAccount(UserAccounts userAccounts);
         public void UpdateAccount(UserAccounts userAccounts);
         public void DeleteAccount(UserAccounts userAccounts);
+        void AddExpense(FinancialReport expense);
+        int GetAccountId(UserAccounts userAccounts);
+        void DeleteLoggedDays(int accountId);
+
     }
 }

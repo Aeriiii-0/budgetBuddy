@@ -117,5 +117,19 @@ namespace BB_DataLayer
             WriteDataToFile();
         }
 
+        public void AddExpense(FinancialReport expense)
+        {
+
+        }
+
+        public int GetAccountId(UserAccounts userAccounts)
+        {
+            return 0;
+        }
+
+        public void DeleteLoggedDays(int accountId)
+        {
+
+        }
     }
 }

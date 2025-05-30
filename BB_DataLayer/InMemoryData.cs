@@ -1,9 +1,10 @@
-﻿using System;
+﻿using BB_Common;
+using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BB_Common;
 
 namespace BB_DataLayer
 {
@@ -72,7 +73,7 @@ namespace BB_DataLayer
             {
                 if (accounts[i].username == userAccounts.username)
                 {
-                     accounts[i].allowance = userAccounts.allowance;
+                    accounts[i].allowance = userAccounts.allowance;
                 }
             }
         }
@@ -92,5 +93,21 @@ namespace BB_DataLayer
         {
 
         }
+
+        public void AddExpense(FinancialReport expense)
+        {
+
+        }
+
+        public int GetAccountId(UserAccounts userAccounts)
+        {
+            return 0;
+        }
+
+        public void DeleteLoggedDays(int accountId)
+        {
+           
+        }
+
     }
 }

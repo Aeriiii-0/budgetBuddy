@@ -10,8 +10,9 @@ namespace budgetBuddy
 {
     public class DailyExpensesTracker
     {
-        static string[] actions = new string[] { "[1] View Allowance", "[2] Log Expenses", "[3] Release Financial Report", "[4] Update Allowance", "[5] Account Settings", "[6] Exit",  };
-        static int days, action;
+        static string[] actions = new string[] { "[1] View Allowance", "[2] Log Expenses", "[3] Release Financial Report", "[4] Update Allowance", "[5] Account Settings", "[6] Log Another week", "[7] Log-out ", "[8] Exit" };
+
+        static int days, action, dayInput;
         static string userUsername = string.Empty;
         static string userPassword = string.Empty;
         static double WeeklyExpenses, userInput, allowance;
@@ -27,18 +28,14 @@ namespace budgetBuddy
             Console.WriteLine("WELCOME TO BUDGET BUDDY! ");
             Console.WriteLine("--------------------------");
 
+            Entrance();
             Login();
+            BBProcess.GetUserAccounts(userUsername, userPassword);
 
         }
 
         static void Login()
         {
-
-            AccountChecker();
-
-            Console.WriteLine("\n--------------------------");
-            Console.WriteLine("\n>> Successful log-in! <<");
-            Console.WriteLine("\n--------------------------");
 
             do
             {
@@ -71,18 +68,24 @@ namespace budgetBuddy
                         AccountSettings(userAccount);
                         break;
                     case 6:
+                        LogAnotherWeek();
+                        break;
+                    case 7:
+                        Entrance();
+                        Login();
+                        break;
+                    case 8:
                         Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("\nInvalid input. (1-6 only)");
+                        Console.WriteLine("\nInvalid input. (1-8 only)");
                         break;
                 }
             }
 
-            while (userInput != 6);
+            while (userInput != 7);
 
         }
-
 
 
         static void Menu()
@@ -213,7 +216,6 @@ namespace budgetBuddy
         static int UserInput()
         {
 
-            int dayInput;
 
             do
             {
@@ -244,8 +246,6 @@ namespace budgetBuddy
             return dayInput;
         }
 
-
-
         static void moneyTracker()
         {
 
@@ -264,7 +264,7 @@ namespace budgetBuddy
             Console.Write("\nTransportation: ");
             double Transportation = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine("\nTotal expenses for the day: " + BBProcess.DisplayDailyExpenses(Breakfast, Lunch, Dinner, Transportation));
+            Console.WriteLine("\nTotal expenses for the day: " + BBProcess.DisplayDailyExpenses(Breakfast, Lunch, Dinner, Transportation, userUsername, userPassword, dayInput));
 
             AllowanceReminder();
             AskToLogDay();
@@ -288,9 +288,8 @@ namespace budgetBuddy
         static void ViewAllowance()
         {
             Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-            Console.WriteLine("\nAllowance Available: " + BBProcess.UpdateAllowanceDisplay( userUsername,  userPassword));
+            Console.WriteLine("\nAllowance Available: " + BBProcess.UpdateAllowanceDisplay(userUsername, userPassword));
         }
-
 
         static void AskToLogDay()
         {
@@ -315,7 +314,6 @@ namespace budgetBuddy
             }
         }
 
-
         static void financialReport()
         {
             Console.WriteLine("\n------------WEEKLY FINANCIAL REPORT-------------");
@@ -323,7 +321,7 @@ namespace budgetBuddy
             Console.WriteLine("\n" + string.Join("\t", BBProcess.dayArray));
             Console.WriteLine("\n" + string.Join("\t", BBProcess.dailyExpenses));
             Console.WriteLine("\nTotal expenses throughout the week: " + BBProcess.DisplayWeeklyExpenses());
-            Console.WriteLine("\nAllowance left: " + BBProcess.DisplayAllowance(userUsername, userPassword)); 
+            Console.WriteLine("\nAllowance left: " + BBProcess.DisplayAllowance(userUsername, userPassword));
             Console.WriteLine("\n------------------------------------------------");
 
         }
@@ -334,7 +332,7 @@ namespace budgetBuddy
             Console.WriteLine("\nAccount Settings");
             Console.WriteLine("\n[1] Update Account");
             Console.WriteLine("\n[2] Delete Account");
-            Console.WriteLine("\n[3] Create New Account");
+            Console.WriteLine("\n[3] Clear Logged Data");
             Console.WriteLine("\n[4] Back to Main Menu");
 
 
@@ -346,10 +344,14 @@ namespace budgetBuddy
             {
                 case 1:
                     AccountChecker();
-                    AddAccountDetails();
+                    Console.Write("\nEnter New Password: ");
+                    newPassword = Console.ReadLine().Trim();
+
+                    Console.Write("\nEnter New Allowance: ");
+                    newAllowance = Convert.ToDouble(Console.ReadLine());
                     Console.WriteLine("\n----------------------------------------------------");
                     Console.WriteLine("\nAccount Updated!");
-                    BBProcess.UpdateAccount(userUsername, userPassword, newUsername, newPassword, newAllowance);
+                    BBProcess.UpdateAccount(userUsername, userPassword, newPassword, newAllowance);
                     break;
                 case 2:
                     AccountChecker();
@@ -358,10 +360,7 @@ namespace budgetBuddy
                     BBProcess.DeleteAccount(userUsername, userPassword);
                     break;
                 case 3:
-                    AddAccountDetails();
-                    Console.WriteLine("\n----------------------------------------------------");
-                    Console.WriteLine("\nAccount Created!");
-                    BBProcess.CreateAccount(userUsername, userPassword, newUsername, newPassword, newAllowance);
+                    ClearData();
                     break;
                 case 4:
                     Menu();
@@ -403,6 +402,63 @@ namespace budgetBuddy
 
             Console.Write("\nEnter New Allowance: ");
             newAllowance = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("\n----------------------------------------------------");
+            Console.WriteLine("\nAccount Created!");
+            BBProcess.CreateAccount(userUsername, userPassword, newUsername, newPassword, newAllowance);
+        }
+
+        static void LogAnotherWeek()
+        {
+            BBProcess.LogAnotherWeek();
+            RegistrationForm();
+        }
+
+        static void ClearData()
+        {
+            if (!BBProcess.ClearData(userUsername, userPassword))
+            {
+                Console.WriteLine("No data to delete.");
+            }
+            else
+            {
+                Console.WriteLine("Logged days data has been deleted.");
+            }
+
+        }
+
+        static void Entrance(){
+            float actionInput;
+
+            do
+            {
+
+                Console.WriteLine("\n--------------------------");
+                Console.WriteLine("\nPick Action: ");
+                Console.WriteLine("\n[1] Log-in \n \n[2] Sign-up");
+                Console.WriteLine();
+                actionInput = Convert.ToSingle(Console.ReadLine());
+
+
+                if (actionInput == 1)
+                {
+                    AccountChecker();
+
+                    Console.WriteLine("\n--------------------------");
+                    Console.WriteLine("\n>> Successful log-in! <<");
+                    Console.WriteLine("\n--------------------------");
+                }
+                else if (actionInput == 2)
+                {
+                    AddAccountDetails();
+                }
+
+                if (actionInput != 1 && actionInput != 2)
+                {
+                    Console.WriteLine("\nInvalid Input. Please enter 1 or 2 only.");
+                }
+            }
+            while (actionInput != 1 && actionInput != 2);
         }
 
     }
