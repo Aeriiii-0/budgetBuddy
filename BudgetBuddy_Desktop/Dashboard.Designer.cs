@@ -61,14 +61,20 @@
             panel7 = new Panel();
             label3 = new Label();
             pictureBox3 = new PictureBox();
+            accSettingsContainer = new FlowLayoutPanel();
+            panel17 = new Panel();
+            button11 = new Button();
+            panel6 = new Panel();
+            button5 = new Button();
             panel13 = new Panel();
             button12 = new Button();
-            panel15 = new Panel();
-            button14 = new Button();
             panel14 = new Panel();
             button13 = new Button();
+            panel15 = new Panel();
+            button14 = new Button();
             profilebarTimer = new System.Windows.Forms.Timer(components);
             panel16 = new Panel();
+            settingsTimer = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             sidebarContainer.SuspendLayout();
             panel3.SuspendLayout();
@@ -87,18 +93,21 @@
             sidebarProfile.SuspendLayout();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            accSettingsContainer.SuspendLayout();
+            panel17.SuspendLayout();
+            panel6.SuspendLayout();
             panel13.SuspendLayout();
-            panel15.SuspendLayout();
             panel14.SuspendLayout();
+            panel15.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
-            pictureBox2.Location = new Point(0, 588);
+            pictureBox2.Location = new Point(0, 563);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(1178, 61);
+            pictureBox2.Size = new Size(1178, 87);
             pictureBox2.TabIndex = 2;
             pictureBox2.TabStop = false;
             pictureBox2.Click += pictureBox2_Click;
@@ -407,7 +416,7 @@
             // 
             // sidebarTimer
             // 
-            sidebarTimer.Interval = 20;
+            sidebarTimer.Interval = 10;
             sidebarTimer.Tick += sidebarTimer_Tick;
             // 
             // pictureBox1
@@ -424,22 +433,23 @@
             // 
             // budgetActionTimer
             // 
-            budgetActionTimer.Interval = 20;
+            budgetActionTimer.Interval = 10;
             budgetActionTimer.Tick += budgetActionTimer_Tick;
             // 
             // sidebarProfile
             // 
             sidebarProfile.BackColor = Color.WhiteSmoke;
             sidebarProfile.Controls.Add(panel7);
-            sidebarProfile.Controls.Add(panel13);
-            sidebarProfile.Controls.Add(panel15);
+            sidebarProfile.Controls.Add(accSettingsContainer);
             sidebarProfile.Controls.Add(panel14);
+            sidebarProfile.Controls.Add(panel15);
             sidebarProfile.Location = new Point(936, 77);
             sidebarProfile.MaximumSize = new Size(208, 271);
             sidebarProfile.MinimumSize = new Size(208, 66);
             sidebarProfile.Name = "sidebarProfile";
-            sidebarProfile.Size = new Size(208, 76);
+            sidebarProfile.Size = new Size(208, 79);
             sidebarProfile.TabIndex = 30;
+            sidebarProfile.Paint += sidebarProfile_Paint;
             // 
             // panel7
             // 
@@ -447,7 +457,7 @@
             panel7.Controls.Add(pictureBox3);
             panel7.Location = new Point(3, 3);
             panel7.Name = "panel7";
-            panel7.Size = new Size(208, 67);
+            panel7.Size = new Size(208, 76);
             panel7.TabIndex = 29;
             // 
             // label3
@@ -474,10 +484,72 @@
             pictureBox3.TabStop = false;
             pictureBox3.Click += pictureBox3_Click_2;
             // 
+            // accSettingsContainer
+            // 
+            accSettingsContainer.Controls.Add(panel17);
+            accSettingsContainer.Controls.Add(panel6);
+            accSettingsContainer.Controls.Add(panel13);
+            accSettingsContainer.Location = new Point(3, 85);
+            accSettingsContainer.MaximumSize = new Size(212, 196);
+            accSettingsContainer.MinimumSize = new Size(212, 61);
+            accSettingsContainer.Name = "accSettingsContainer";
+            accSettingsContainer.Size = new Size(212, 64);
+            accSettingsContainer.TabIndex = 34;
+            // 
+            // panel17
+            // 
+            panel17.Controls.Add(button11);
+            panel17.Location = new Point(3, 3);
+            panel17.Name = "panel17";
+            panel17.Size = new Size(208, 58);
+            panel17.TabIndex = 32;
+            // 
+            // button11
+            // 
+            button11.BackColor = Color.Transparent;
+            button11.FlatAppearance.BorderSize = 0;
+            button11.FlatStyle = FlatStyle.Flat;
+            button11.ForeColor = Color.SteelBlue;
+            button11.Image = (Image)resources.GetObject("button11.Image");
+            button11.ImageAlign = ContentAlignment.MiddleLeft;
+            button11.Location = new Point(3, 3);
+            button11.Name = "button11";
+            button11.Size = new Size(188, 52);
+            button11.TabIndex = 30;
+            button11.Text = "            Account Settings";
+            button11.TextAlign = ContentAlignment.MiddleLeft;
+            button11.UseVisualStyleBackColor = false;
+            button11.Click += button11_Click;
+            // 
+            // panel6
+            // 
+            panel6.Controls.Add(button5);
+            panel6.Location = new Point(3, 67);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(208, 58);
+            panel6.TabIndex = 32;
+            // 
+            // button5
+            // 
+            button5.BackColor = Color.Transparent;
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.ForeColor = Color.SteelBlue;
+            button5.Image = (Image)resources.GetObject("button5.Image");
+            button5.ImageAlign = ContentAlignment.MiddleLeft;
+            button5.Location = new Point(3, 3);
+            button5.Name = "button5";
+            button5.Size = new Size(202, 52);
+            button5.TabIndex = 30;
+            button5.Text = "             Change Password";
+            button5.TextAlign = ContentAlignment.MiddleLeft;
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click_2;
+            // 
             // panel13
             // 
             panel13.Controls.Add(button12);
-            panel13.Location = new Point(3, 76);
+            panel13.Location = new Point(3, 131);
             panel13.Name = "panel13";
             panel13.Size = new Size(208, 58);
             panel13.TabIndex = 31;
@@ -494,38 +566,15 @@
             button12.Name = "button12";
             button12.Size = new Size(188, 52);
             button12.TabIndex = 30;
-            button12.Text = "           Account Settings";
+            button12.Text = "             Delete Account";
             button12.TextAlign = ContentAlignment.MiddleLeft;
             button12.UseVisualStyleBackColor = false;
-            // 
-            // panel15
-            // 
-            panel15.Controls.Add(button14);
-            panel15.Location = new Point(3, 140);
-            panel15.Name = "panel15";
-            panel15.Size = new Size(208, 58);
-            panel15.TabIndex = 33;
-            // 
-            // button14
-            // 
-            button14.BackColor = Color.Transparent;
-            button14.FlatAppearance.BorderSize = 0;
-            button14.FlatStyle = FlatStyle.Flat;
-            button14.ForeColor = Color.SteelBlue;
-            button14.Image = (Image)resources.GetObject("button14.Image");
-            button14.ImageAlign = ContentAlignment.MiddleLeft;
-            button14.Location = new Point(0, 0);
-            button14.Name = "button14";
-            button14.Size = new Size(183, 58);
-            button14.TabIndex = 30;
-            button14.Text = "                Log-out";
-            button14.TextAlign = ContentAlignment.MiddleLeft;
-            button14.UseVisualStyleBackColor = false;
+            button12.Click += button12_Click;
             // 
             // panel14
             // 
             panel14.Controls.Add(button13);
-            panel14.Location = new Point(3, 204);
+            panel14.Location = new Point(3, 155);
             panel14.Name = "panel14";
             panel14.Size = new Size(208, 58);
             panel14.TabIndex = 32;
@@ -547,6 +596,30 @@
             button13.UseVisualStyleBackColor = false;
             button13.Click += button13_Click;
             // 
+            // panel15
+            // 
+            panel15.Controls.Add(button14);
+            panel15.Location = new Point(3, 219);
+            panel15.Name = "panel15";
+            panel15.Size = new Size(208, 58);
+            panel15.TabIndex = 33;
+            // 
+            // button14
+            // 
+            button14.BackColor = Color.Transparent;
+            button14.FlatAppearance.BorderSize = 0;
+            button14.FlatStyle = FlatStyle.Flat;
+            button14.ForeColor = Color.SteelBlue;
+            button14.Image = (Image)resources.GetObject("button14.Image");
+            button14.ImageAlign = ContentAlignment.MiddleLeft;
+            button14.Location = new Point(0, 0);
+            button14.Name = "button14";
+            button14.Size = new Size(183, 58);
+            button14.TabIndex = 30;
+            button14.Text = "                Log-out";
+            button14.TextAlign = ContentAlignment.MiddleLeft;
+            button14.UseVisualStyleBackColor = false;
+            // 
             // profilebarTimer
             // 
             profilebarTimer.Interval = 10;
@@ -559,6 +632,11 @@
             panel16.Name = "panel16";
             panel16.Size = new Size(1074, 79);
             panel16.TabIndex = 31;
+            // 
+            // settingsTimer
+            // 
+            settingsTimer.Interval = 10;
+            settingsTimer.Tick += settingsTimer_Tick;
             // 
             // Dashboard
             // 
@@ -597,9 +675,12 @@
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            accSettingsContainer.ResumeLayout(false);
+            panel17.ResumeLayout(false);
+            panel6.ResumeLayout(false);
             panel13.ResumeLayout(false);
-            panel15.ResumeLayout(false);
             panel14.ResumeLayout(false);
+            panel15.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -643,5 +724,11 @@
         private Label label3;
         private PictureBox pictureBox3;
         private Panel panel16;
+        private FlowLayoutPanel accSettingsContainer;
+        private Panel panel17;
+        private Button button11;
+        private Panel panel6;
+        private Button button5;
+        private System.Windows.Forms.Timer settingsTimer;
     }
 }

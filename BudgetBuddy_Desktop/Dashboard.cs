@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BB_BusinessDataLogic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace BudgetBuddy_Desktop
         bool sidebarContainerExpand;
         bool budgetActionCollapsed;
         bool profileExpanded;
+        bool profileCollapsed;
         public Dashboard()
         {
             InitializeComponent();
@@ -289,6 +291,53 @@ namespace BudgetBuddy_Desktop
 
         }
 
-       
+        private void sidebarProfile_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            settingsTimer.Start();
+        }
+
+        private void settingsTimer_Tick(object sender, EventArgs e)
+        {
+            if (!profileCollapsed)
+            {
+                accSettingsContainer.Height += 10;
+                if (accSettingsContainer.Height >= accSettingsContainer.MaximumSize.Height)
+                {
+                    accSettingsContainer.Height = accSettingsContainer.MaximumSize.Height;
+                    profileCollapsed = true;
+                    settingsTimer.Stop();
+                }
+            }
+            else
+            {
+                accSettingsContainer.Height -= 10;
+                if (accSettingsContainer.Height <= accSettingsContainer.MinimumSize.Height)
+                {
+                    accSettingsContainer.Height = accSettingsContainer.MinimumSize.Height;
+                    profileCollapsed = false;
+                    settingsTimer.Stop();
+                }
+            }
+        }
+
+        private void panel17_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            //delete account
+        }
+
+        private void button5_Click_2(object sender, EventArgs e)
+        {
+            //change password
+        }
     }
 }
