@@ -13,6 +13,8 @@ namespace BudgetBuddy_Desktop
     public partial class Dashboard : Form
     {
         bool sidebarContainerExpand;
+        bool budgetActionCollapsed;
+        bool profileExpanded;
         public Dashboard()
         {
             InitializeComponent();
@@ -77,11 +79,6 @@ namespace BudgetBuddy_Desktop
 
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Environment.Exit(0);
-        }
-
         private void pictureBox3_Click(object sender, EventArgs e)
         {
 
@@ -119,7 +116,7 @@ namespace BudgetBuddy_Desktop
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-
+            budgetActionTimer.Start();
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
@@ -201,15 +198,97 @@ namespace BudgetBuddy_Desktop
 
         }
 
-        private void button5_Click_2(object sender, EventArgs e)
+
+
+        private void budgetActionTimer_Tick(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show( "Are you sure you want to exit?", "Exit Confirmation",MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (budgetActionCollapsed)
+            {
+                budgetActContainer.Height += 10;
+                if (budgetActContainer.Height == budgetActContainer.MaximumSize.Height)
+                {
+                    budgetActionCollapsed = false;
+                    budgetActionTimer.Stop();
+                }
+            }
+            else
+            {
+                budgetActContainer.Height -= 10;
+                if (budgetActContainer.Height == budgetActContainer.MinimumSize.Height)
+                {
+                    budgetActionCollapsed = true;
+                    budgetActionTimer.Stop();
+                }
+            }
+        }
+
+        private void sidebarContainer_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
+
+        private void profilebarTimer_Tick(object sender, EventArgs e)
+        {
+
+            if (!profileExpanded)
+            {
+                sidebarProfile.Height += 10;
+                if (sidebarProfile.Height >= sidebarProfile.MaximumSize.Height)
+                {
+                    sidebarProfile.Height = sidebarProfile.MaximumSize.Height;
+                    profileExpanded = true;
+                    profilebarTimer.Stop();
+                }
+            }
+            else
+            {
+                sidebarProfile.Height -= 10;
+                if (sidebarProfile.Height <= sidebarProfile.MinimumSize.Height)
+                {
+                    sidebarProfile.Height = sidebarProfile.MinimumSize.Height;
+                    profileExpanded = false;
+                    profilebarTimer.Stop();
+                }
+            }
+        }
+
+        private void pictureBox3_Click_2(object sender, EventArgs e)
+        {
+            profilebarTimer.Start();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel13_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to exit?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
                 Application.Exit();
             }
-            
         }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }
