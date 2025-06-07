@@ -30,7 +30,6 @@ namespace budgetBuddy
 
             Entrance();
             Login();
-            BBProcess.GetUserAccounts(userUsername, userPassword);
 
         }
 
@@ -395,17 +394,17 @@ namespace budgetBuddy
         static void AddAccountDetails()
         {
             Console.Write("\nEnter New Username: ");
-            newUsername = Console.ReadLine().Trim();
+            userUsername = Console.ReadLine().Trim();
 
             Console.Write("\nEnter New Password: ");
-            newPassword = Console.ReadLine().Trim();
+            userPassword = Console.ReadLine().Trim();
 
             Console.Write("\nEnter New Allowance: ");
-            newAllowance = Convert.ToDouble(Console.ReadLine());
+            allowance = Convert.ToDouble(Console.ReadLine());
 
             Console.WriteLine("\n----------------------------------------------------");
             Console.WriteLine("\nAccount Created!");
-            BBProcess.CreateAccount(userUsername, userPassword, newUsername, newPassword, newAllowance);
+            BBProcess.CreateAccount(userUsername, userPassword,allowance);
         }
 
         static void LogAnotherWeek()

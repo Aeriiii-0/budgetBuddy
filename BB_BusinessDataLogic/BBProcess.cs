@@ -184,16 +184,16 @@ namespace BB_BusinessDataLogic
             return foundAccount;
         }
 
-        public static void CreateAccount(string userUsername, string userPassword, string newUsername, string newPassword, double newAllowance)
+        public static void CreateAccount(string userUsername, string userPassword, double allowance)
         {
             UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
             if (userAccounts != null)
             {
                 userAccounts = new UserAccounts
                 {
-                    username = newUsername,
-                    password = newPassword,
-                    allowance = newAllowance,
+                    username = userUsername,
+                    password = userPassword,
+                    allowance = allowance,
                 };
                 dataManager.CreateAccount(userAccounts);
             }
