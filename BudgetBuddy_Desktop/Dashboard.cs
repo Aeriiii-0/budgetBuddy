@@ -118,6 +118,8 @@ namespace BudgetBuddy_Desktop
 
         private void button1_Click_2(object sender, EventArgs e)
         {
+            pnlAllowance.Visible = false;
+            pnDashboard.Visible = false;
             budgetActionTimer.Start();
         }
 
@@ -283,6 +285,8 @@ namespace BudgetBuddy_Desktop
 
         private void button3_Click_1(object sender, EventArgs e)
         {
+            pnDashboard.Visible = false;
+            pnlAllowance.Visible = false;
             Environment.Exit(0);
         }
 
@@ -338,6 +342,44 @@ namespace BudgetBuddy_Desktop
         private void button5_Click_2(object sender, EventArgs e)
         {
             //change password
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            pnDashboard.Visible = !pnDashboard.Visible;
+            pnlAllowance.Visible = !pnlAllowance.Visible;
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+
+            pnDashboard.Visible = false;
+            pnlAllowance.Visible = false;
+        }
+
+        private void panel18_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label2_Click_3(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label23_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

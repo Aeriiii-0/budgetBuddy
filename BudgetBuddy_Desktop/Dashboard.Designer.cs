@@ -75,6 +75,29 @@
             profilebarTimer = new System.Windows.Forms.Timer(components);
             panel16 = new Panel();
             settingsTimer = new System.Windows.Forms.Timer(components);
+            pnDashboard = new Panel();
+            lblTotal = new Label();
+            label20 = new Label();
+            label19 = new Label();
+            lblSun = new Label();
+            lblSat = new Label();
+            lblFri = new Label();
+            lblThu = new Label();
+            lblWed = new Label();
+            lblTue = new Label();
+            lblMon = new Label();
+            label11 = new Label();
+            label10 = new Label();
+            label9 = new Label();
+            label8 = new Label();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            pnlAllowance = new Panel();
+            label2 = new Label();
+            lblAllowanceLeft = new Label();
+            lblAllowanceCount = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             sidebarContainer.SuspendLayout();
             panel3.SuspendLayout();
@@ -99,6 +122,8 @@
             panel13.SuspendLayout();
             panel14.SuspendLayout();
             panel15.SuspendLayout();
+            pnDashboard.SuspendLayout();
+            pnlAllowance.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox2
@@ -360,6 +385,7 @@
             button2.TabIndex = 0;
             button2.Text = "DASHBOARD";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click_1;
             // 
             // panel5
             // 
@@ -387,6 +413,7 @@
             button4.Text = "                       ABOUT";
             button4.TextAlign = ContentAlignment.MiddleLeft;
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click_1;
             // 
             // panel4
             // 
@@ -638,6 +665,302 @@
             settingsTimer.Interval = 10;
             settingsTimer.Tick += settingsTimer_Tick;
             // 
+            // pnDashboard
+            // 
+            pnDashboard.BackColor = Color.FromArgb(11, 22, 41);
+            pnDashboard.Controls.Add(lblAllowanceLeft);
+            pnDashboard.Controls.Add(lblTotal);
+            pnDashboard.Controls.Add(label20);
+            pnDashboard.Controls.Add(label19);
+            pnDashboard.Controls.Add(lblSun);
+            pnDashboard.Controls.Add(lblSat);
+            pnDashboard.Controls.Add(lblFri);
+            pnDashboard.Controls.Add(lblThu);
+            pnDashboard.Controls.Add(lblWed);
+            pnDashboard.Controls.Add(lblTue);
+            pnDashboard.Controls.Add(lblMon);
+            pnDashboard.Controls.Add(label11);
+            pnDashboard.Controls.Add(label10);
+            pnDashboard.Controls.Add(label9);
+            pnDashboard.Controls.Add(label8);
+            pnDashboard.Controls.Add(label7);
+            pnDashboard.Controls.Add(label6);
+            pnDashboard.Controls.Add(label5);
+            pnDashboard.Controls.Add(label4);
+            pnDashboard.Location = new Point(570, 202);
+            pnDashboard.Name = "pnDashboard";
+            pnDashboard.Size = new Size(527, 233);
+            pnDashboard.TabIndex = 32;
+            pnDashboard.Visible = false;
+            // 
+            // lblTotal
+            // 
+            lblTotal.AutoSize = true;
+            lblTotal.BackColor = Color.Transparent;
+            lblTotal.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotal.ForeColor = Color.Lime;
+            lblTotal.Location = new Point(110, 159);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(22, 23);
+            lblTotal.TabIndex = 36;
+            lblTotal.Text = "0";
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.BackColor = Color.Transparent;
+            label20.Font = new Font("Cambria", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label20.ForeColor = Color.White;
+            label20.Location = new Point(37, 191);
+            label20.Name = "label20";
+            label20.Size = new Size(160, 20);
+            label20.TabIndex = 35;
+            label20.Text = "ALLOWANCE LEFT :";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.BackColor = Color.Transparent;
+            label19.Font = new Font("Cambria", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label19.ForeColor = Color.White;
+            label19.Location = new Point(37, 162);
+            label19.Name = "label19";
+            label19.Size = new Size(74, 20);
+            label19.TabIndex = 34;
+            label19.Text = "TOTAL : ";
+            // 
+            // lblSun
+            // 
+            lblSun.AutoSize = true;
+            lblSun.BackColor = Color.Transparent;
+            lblSun.Font = new Font("Cambria", 13.8F, FontStyle.Bold);
+            lblSun.ForeColor = Color.White;
+            lblSun.Location = new Point(452, 110);
+            lblSun.Name = "lblSun";
+            lblSun.Size = new Size(26, 27);
+            lblSun.TabIndex = 33;
+            lblSun.Text = "0";
+            // 
+            // lblSat
+            // 
+            lblSat.AutoSize = true;
+            lblSat.BackColor = Color.Transparent;
+            lblSat.Font = new Font("Cambria", 13.8F, FontStyle.Bold);
+            lblSat.ForeColor = Color.White;
+            lblSat.Location = new Point(388, 110);
+            lblSat.Name = "lblSat";
+            lblSat.Size = new Size(26, 27);
+            lblSat.TabIndex = 32;
+            lblSat.Text = "0";
+            lblSat.Click += label16_Click;
+            // 
+            // lblFri
+            // 
+            lblFri.AutoSize = true;
+            lblFri.BackColor = Color.Transparent;
+            lblFri.Font = new Font("Cambria", 13.8F, FontStyle.Bold);
+            lblFri.ForeColor = Color.White;
+            lblFri.Location = new Point(328, 110);
+            lblFri.Name = "lblFri";
+            lblFri.Size = new Size(26, 27);
+            lblFri.TabIndex = 31;
+            lblFri.Text = "0";
+            // 
+            // lblThu
+            // 
+            lblThu.AutoSize = true;
+            lblThu.BackColor = Color.Transparent;
+            lblThu.Font = new Font("Cambria", 13.8F, FontStyle.Bold);
+            lblThu.ForeColor = Color.White;
+            lblThu.Location = new Point(262, 110);
+            lblThu.Name = "lblThu";
+            lblThu.Size = new Size(26, 27);
+            lblThu.TabIndex = 30;
+            lblThu.Text = "0";
+            // 
+            // lblWed
+            // 
+            lblWed.AutoSize = true;
+            lblWed.BackColor = Color.Transparent;
+            lblWed.Font = new Font("Cambria", 13.8F, FontStyle.Bold);
+            lblWed.ForeColor = Color.White;
+            lblWed.Location = new Point(190, 110);
+            lblWed.Name = "lblWed";
+            lblWed.Size = new Size(26, 27);
+            lblWed.TabIndex = 29;
+            lblWed.Text = "0";
+            // 
+            // lblTue
+            // 
+            lblTue.AutoSize = true;
+            lblTue.BackColor = Color.Transparent;
+            lblTue.Font = new Font("Cambria", 13.8F, FontStyle.Bold);
+            lblTue.ForeColor = Color.White;
+            lblTue.Location = new Point(123, 110);
+            lblTue.Name = "lblTue";
+            lblTue.Size = new Size(26, 27);
+            lblTue.TabIndex = 28;
+            lblTue.Text = "0";
+            // 
+            // lblMon
+            // 
+            lblMon.AutoSize = true;
+            lblMon.BackColor = Color.Transparent;
+            lblMon.Font = new Font("Cambria", 13.8F, FontStyle.Bold);
+            lblMon.ForeColor = Color.White;
+            lblMon.Location = new Point(51, 110);
+            lblMon.Name = "lblMon";
+            lblMon.Size = new Size(26, 27);
+            lblMon.TabIndex = 27;
+            lblMon.Text = "0";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.BackColor = Color.Transparent;
+            label11.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.ForeColor = Color.Lime;
+            label11.Location = new Point(443, 75);
+            label11.Name = "label11";
+            label11.Size = new Size(48, 23);
+            label11.TabIndex = 26;
+            label11.Text = "SUN";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BackColor = Color.Transparent;
+            label10.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.ForeColor = Color.Lime;
+            label10.Location = new Point(375, 75);
+            label10.Name = "label10";
+            label10.Size = new Size(44, 23);
+            label10.TabIndex = 25;
+            label10.Text = "SAT";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.BackColor = Color.Transparent;
+            label9.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.ForeColor = Color.Lime;
+            label9.Location = new Point(172, 75);
+            label9.Name = "label9";
+            label9.Size = new Size(55, 23);
+            label9.TabIndex = 24;
+            label9.Text = "WED";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BackColor = Color.Transparent;
+            label8.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.Lime;
+            label8.Location = new Point(318, 75);
+            label8.Name = "label8";
+            label8.Size = new Size(41, 23);
+            label8.TabIndex = 23;
+            label8.Text = "FRI";
+            label8.Click += label8_Click;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.Lime;
+            label7.Location = new Point(246, 75);
+            label7.Name = "label7";
+            label7.Size = new Size(51, 23);
+            label7.TabIndex = 22;
+            label7.Text = "THU";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Lime;
+            label6.Location = new Point(110, 75);
+            label6.Name = "label6";
+            label6.Size = new Size(49, 23);
+            label6.TabIndex = 21;
+            label6.Text = "TUE";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Lime;
+            label5.Location = new Point(37, 75);
+            label5.Name = "label5";
+            label5.Size = new Size(55, 23);
+            label5.TabIndex = 20;
+            label5.Text = "MON";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(172, 30);
+            label4.Name = "label4";
+            label4.Size = new Size(187, 23);
+            label4.TabIndex = 19;
+            label4.Text = "WEEKLY SUMMARY";
+            // 
+            // pnlAllowance
+            // 
+            pnlAllowance.BackColor = Color.White;
+            pnlAllowance.Controls.Add(lblAllowanceCount);
+            pnlAllowance.Controls.Add(label2);
+            pnlAllowance.Location = new Point(313, 202);
+            pnlAllowance.Name = "pnlAllowance";
+            pnlAllowance.Size = new Size(260, 233);
+            pnlAllowance.TabIndex = 33;
+            pnlAllowance.Visible = false;
+            pnlAllowance.Paint += panel18_Paint;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.FromArgb(11, 22, 41);
+            label2.Location = new Point(20, 70);
+            label2.Name = "label2";
+            label2.Size = new Size(208, 23);
+            label2.TabIndex = 18;
+            label2.Text = "WEEKLY ALLOWANCE";
+            label2.Click += label2_Click_3;
+            // 
+            // lblAllowanceLeft
+            // 
+            lblAllowanceLeft.AutoSize = true;
+            lblAllowanceLeft.BackColor = Color.Transparent;
+            lblAllowanceLeft.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAllowanceLeft.ForeColor = Color.Lime;
+            lblAllowanceLeft.Location = new Point(205, 188);
+            lblAllowanceLeft.Name = "lblAllowanceLeft";
+            lblAllowanceLeft.Size = new Size(22, 23);
+            lblAllowanceLeft.TabIndex = 37;
+            lblAllowanceLeft.Text = "0";
+            // 
+            // lblAllowanceCount
+            // 
+            lblAllowanceCount.AutoSize = true;
+            lblAllowanceCount.BackColor = Color.Transparent;
+            lblAllowanceCount.Font = new Font("Cambria", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAllowanceCount.ForeColor = Color.DarkGreen;
+            lblAllowanceCount.Location = new Point(107, 112);
+            lblAllowanceCount.Name = "lblAllowanceCount";
+            lblAllowanceCount.Size = new Size(37, 40);
+            lblAllowanceCount.TabIndex = 19;
+            lblAllowanceCount.Text = "0";
+            lblAllowanceCount.Click += label23_Click;
+            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
@@ -645,6 +968,8 @@
             BackColor = Color.White;
             BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(1143, 625);
+            Controls.Add(pnlAllowance);
+            Controls.Add(pnDashboard);
             Controls.Add(pictureBox1);
             Controls.Add(sidebarProfile);
             Controls.Add(pictureBox2);
@@ -681,6 +1006,10 @@
             panel13.ResumeLayout(false);
             panel14.ResumeLayout(false);
             panel15.ResumeLayout(false);
+            pnDashboard.ResumeLayout(false);
+            pnDashboard.PerformLayout();
+            pnlAllowance.ResumeLayout(false);
+            pnlAllowance.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -730,5 +1059,28 @@
         private Panel panel6;
         private Button button5;
         private System.Windows.Forms.Timer settingsTimer;
+        private Panel pnDashboard;
+        private Panel pnlAllowance;
+        private Label label2;
+        private Label label4;
+        private Label label11;
+        private Label label10;
+        private Label label9;
+        private Label label8;
+        private Label label7;
+        private Label label6;
+        private Label label5;
+        private Label lblThu;
+        private Label lblWed;
+        private Label lblTue;
+        private Label lblMon;
+        private Label lblSat;
+        private Label lblFri;
+        private Label lblTotal;
+        private Label label20;
+        private Label label19;
+        private Label lblSun;
+        private Label lblAllowanceLeft;
+        private Label lblAllowanceCount;
     }
 }
