@@ -1,6 +1,6 @@
 ﻿namespace BudgetBuddy_Desktop
 {
-    partial class InputForms
+    partial class SettingsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,45 +28,57 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InputForms));
-            panel1 = new Panel();
-            txtAllowance = new TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
+            btnExit = new Button();
+            pictureBox1 = new PictureBox();
+            btnExt = new Button();
             txtPassword = new TextBox();
-            label4 = new Label();
+            lblNewPass = new Label();
             label3 = new Label();
             label2 = new Label();
             txtUsername = new TextBox();
+            panel1 = new Panel();
+            txtNewPassword = new TextBox();
             btnEnter = new Button();
             label1 = new Label();
             label7 = new Label();
-            btnExit = new Button();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // panel1
+            // btnExit
             // 
-            panel1.Controls.Add(txtAllowance);
-            panel1.Controls.Add(txtPassword);
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(txtUsername);
-            panel1.Controls.Add(btnEnter);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(label7);
-            panel1.Location = new Point(275, 109);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(474, 434);
-            panel1.TabIndex = 0;
+            btnExit.BackColor = Color.FromArgb(11, 22, 41);
+            btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.ForeColor = Color.Transparent;
+            btnExit.Location = new Point(881, 547);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(94, 29);
+            btnExit.TabIndex = 19;
+            btnExit.Text = "Exit";
+            btnExit.UseVisualStyleBackColor = false;
             // 
-            // txtAllowance
+            // pictureBox1
             // 
-            txtAllowance.BorderStyle = BorderStyle.FixedSingle;
-            txtAllowance.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtAllowance.Location = new Point(36, 298);
-            txtAllowance.Name = "txtAllowance";
-            txtAllowance.Size = new Size(402, 27);
-            txtAllowance.TabIndex = 23;
+            pictureBox1.ErrorImage = (Image)resources.GetObject("pictureBox1.ErrorImage");
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(-43, 2);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(1103, 653);
+            pictureBox1.TabIndex = 20;
+            pictureBox1.TabStop = false;
+            // 
+            // btnExt
+            // 
+            btnExt.FlatStyle = FlatStyle.Flat;
+            btnExt.ForeColor = Color.Transparent;
+            btnExt.Location = new Point(881, 582);
+            btnExt.Name = "btnExt";
+            btnExt.Size = new Size(94, 29);
+            btnExt.TabIndex = 21;
+            btnExt.Text = "Exit";
+            btnExt.UseVisualStyleBackColor = true;
+            btnExt.Click += button1_Click;
             // 
             // txtPassword
             // 
@@ -77,18 +89,18 @@
             txtPassword.Size = new Size(402, 27);
             txtPassword.TabIndex = 22;
             // 
-            // label4
+            // lblNewPass
             // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Cambria", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Black;
-            label4.Location = new Point(36, 275);
-            label4.Name = "label4";
-            label4.Size = new Size(90, 20);
-            label4.TabIndex = 21;
-            label4.Text = "Allowance";
-            label4.Click += label4_Click;
+            lblNewPass.AutoSize = true;
+            lblNewPass.BackColor = Color.Transparent;
+            lblNewPass.Font = new Font("Cambria", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNewPass.ForeColor = Color.Black;
+            lblNewPass.Location = new Point(36, 275);
+            lblNewPass.Name = "lblNewPass";
+            lblNewPass.Size = new Size(125, 20);
+            lblNewPass.TabIndex = 21;
+            lblNewPass.Text = "New Password";
+            lblNewPass.Visible = false;
             // 
             // label3
             // 
@@ -101,7 +113,6 @@
             label3.Size = new Size(86, 20);
             label3.TabIndex = 20;
             label3.Text = "Password";
-            label3.Click += label3_Click_1;
             // 
             // label2
             // 
@@ -124,6 +135,33 @@
             txtUsername.Size = new Size(402, 27);
             txtUsername.TabIndex = 17;
             // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.Control;
+            panel1.Controls.Add(txtNewPassword);
+            panel1.Controls.Add(txtPassword);
+            panel1.Controls.Add(lblNewPass);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(txtUsername);
+            panel1.Controls.Add(btnEnter);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(label7);
+            panel1.Location = new Point(271, 111);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(474, 434);
+            panel1.TabIndex = 22;
+            // 
+            // txtNewPassword
+            // 
+            txtNewPassword.BorderStyle = BorderStyle.FixedSingle;
+            txtNewPassword.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtNewPassword.Location = new Point(36, 298);
+            txtNewPassword.Name = "txtNewPassword";
+            txtNewPassword.Size = new Size(402, 27);
+            txtNewPassword.TabIndex = 23;
+            txtNewPassword.Visible = false;
+            // 
             // btnEnter
             // 
             btnEnter.AccessibleName = "btnEnter";
@@ -139,7 +177,7 @@
             btnEnter.Text = "Enter";
             btnEnter.TextImageRelation = TextImageRelation.TextAboveImage;
             btnEnter.UseVisualStyleBackColor = false;
-            btnEnter.Click += btnEnter_Click;
+            btnEnter.Click += btnEnter_Click_1;
             // 
             // label1
             // 
@@ -149,10 +187,9 @@
             label1.ForeColor = Color.DimGray;
             label1.Location = new Point(34, 59);
             label1.Name = "label1";
-            label1.Size = new Size(402, 20);
+            label1.Size = new Size(350, 20);
             label1.TabIndex = 5;
-            label1.Text = "How much money do you plan to spend this week?";
-            label1.Click += label1_Click;
+            label1.Text = "Update your password by answering below.";
             // 
             // label7
             // 
@@ -162,38 +199,24 @@
             label7.ForeColor = Color.Black;
             label7.Location = new Point(34, 36);
             label7.Name = "label7";
-            label7.Size = new Size(143, 23);
+            label7.Size = new Size(95, 23);
             label7.TabIndex = 4;
-            label7.Text = "Welcome, Bud!";
-            label7.Click += label7_Click;
+            label7.Text = "Hey, Bud!";
             // 
-            // btnExit
-            // 
-            btnExit.BackColor = Color.FromArgb(11, 22, 41);
-            btnExit.FlatStyle = FlatStyle.Flat;
-            btnExit.ForeColor = Color.Transparent;
-            btnExit.Location = new Point(899, 604);
-            btnExit.Name = "btnExit";
-            btnExit.Size = new Size(94, 29);
-            btnExit.TabIndex = 14;
-            btnExit.Text = "Exit";
-            btnExit.UseVisualStyleBackColor = false;
-            btnExit.Click += btnExit_Click;
-            // 
-            // InputForms
+            // SettingsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            BackgroundImageLayout = ImageLayout.Stretch;
+            BackColor = Color.FromArgb(11, 22, 41);
             ClientSize = new Size(1016, 657);
-            Controls.Add(btnExit);
             Controls.Add(panel1);
-            DoubleBuffered = true;
+            Controls.Add(btnExt);
+            Controls.Add(pictureBox1);
+            Controls.Add(btnExit);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "InputForms";
-            Text = "InputForms";
-            Load += InputForms_Load;
+            Name = "SettingsForm";
+            Text = "SettingsForm";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -201,16 +224,18 @@
 
         #endregion
 
-        private Panel panel1;
-        private Label label7;
-        private Label label1;
-        private Button btnEnter;
         private Button btnExit;
+        private PictureBox pictureBox1;
+        private Button btnExt;
+        private TextBox txtPassword;
+        private Label lblNewPass;
         private Label label3;
         private Label label2;
         private TextBox txtUsername;
-        private Label label4;
-        private TextBox txtAllowance;
-        private TextBox txtPassword;
+        private Panel panel1;
+        private TextBox txtNewPassword;
+        private Button btnEnter;
+        private Label label1;
+        private Label label7;
     }
 }

@@ -336,12 +336,17 @@ namespace BudgetBuddy_Desktop
 
         private void button12_Click(object sender, EventArgs e)
         {
-            //delete account
+            DeleteForm deleteForm = new DeleteForm();
+            deleteForm.Show();
+            this.Hide();
         }
 
         private void button5_Click_2(object sender, EventArgs e)
         {
-            //change password
+            SettingsForm settingsForm = new SettingsForm(); //delete form
+            settingsForm.Show();
+
+            this.Hide();
         }
 
         private void button2_Click_1(object sender, EventArgs e)

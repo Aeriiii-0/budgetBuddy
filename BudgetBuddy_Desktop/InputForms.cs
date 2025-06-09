@@ -66,13 +66,18 @@ namespace BudgetBuddy_Desktop
 
             BBProcess.CreateAccount(userUsername, userPassword, allowance);
 
+            txtUsername.Clear();
+            txtPassword.Clear();
+
             Dashboard dashboard = new Dashboard();
             dashboard.Show();
             MessageBox.Show("Congrats, Bud! \nEnjoy setting-up!");
 
             this.Hide();
 
+          
 
-        }
+
+    }
     }
 }

@@ -76,6 +76,7 @@
             panel16 = new Panel();
             settingsTimer = new System.Windows.Forms.Timer(components);
             pnDashboard = new Panel();
+            lblAllowanceLeft = new Label();
             lblTotal = new Label();
             label20 = new Label();
             label19 = new Label();
@@ -95,9 +96,8 @@
             label5 = new Label();
             label4 = new Label();
             pnlAllowance = new Panel();
-            label2 = new Label();
-            lblAllowanceLeft = new Label();
             lblAllowanceCount = new Label();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             sidebarContainer.SuspendLayout();
             panel3.SuspendLayout();
@@ -474,7 +474,7 @@
             sidebarProfile.MaximumSize = new Size(208, 271);
             sidebarProfile.MinimumSize = new Size(208, 66);
             sidebarProfile.Name = "sidebarProfile";
-            sidebarProfile.Size = new Size(208, 79);
+            sidebarProfile.Size = new Size(208, 271);
             sidebarProfile.TabIndex = 30;
             sidebarProfile.Paint += sidebarProfile_Paint;
             // 
@@ -520,7 +520,7 @@
             accSettingsContainer.MaximumSize = new Size(212, 196);
             accSettingsContainer.MinimumSize = new Size(212, 61);
             accSettingsContainer.Name = "accSettingsContainer";
-            accSettingsContainer.Size = new Size(212, 64);
+            accSettingsContainer.Size = new Size(212, 177);
             accSettingsContainer.TabIndex = 34;
             // 
             // panel17
@@ -601,7 +601,7 @@
             // panel14
             // 
             panel14.Controls.Add(button13);
-            panel14.Location = new Point(3, 155);
+            panel14.Location = new Point(3, 268);
             panel14.Name = "panel14";
             panel14.Size = new Size(208, 58);
             panel14.TabIndex = 32;
@@ -626,7 +626,7 @@
             // panel15
             // 
             panel15.Controls.Add(button14);
-            panel15.Location = new Point(3, 219);
+            panel15.Location = new Point(3, 332);
             panel15.Name = "panel15";
             panel15.Size = new Size(208, 58);
             panel15.TabIndex = 33;
@@ -639,7 +639,7 @@
             button14.ForeColor = Color.SteelBlue;
             button14.Image = (Image)resources.GetObject("button14.Image");
             button14.ImageAlign = ContentAlignment.MiddleLeft;
-            button14.Location = new Point(0, 0);
+            button14.Location = new Point(0, -6);
             button14.Name = "button14";
             button14.Size = new Size(183, 58);
             button14.TabIndex = 30;
@@ -657,7 +657,7 @@
             panel16.BackColor = Color.WhiteSmoke;
             panel16.Location = new Point(73, 77);
             panel16.Name = "panel16";
-            panel16.Size = new Size(1074, 79);
+            panel16.Size = new Size(838, 79);
             panel16.TabIndex = 31;
             // 
             // settingsTimer
@@ -692,6 +692,18 @@
             pnDashboard.Size = new Size(527, 233);
             pnDashboard.TabIndex = 32;
             pnDashboard.Visible = false;
+            // 
+            // lblAllowanceLeft
+            // 
+            lblAllowanceLeft.AutoSize = true;
+            lblAllowanceLeft.BackColor = Color.Transparent;
+            lblAllowanceLeft.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAllowanceLeft.ForeColor = Color.Lime;
+            lblAllowanceLeft.Location = new Point(205, 188);
+            lblAllowanceLeft.Name = "lblAllowanceLeft";
+            lblAllowanceLeft.Size = new Size(22, 23);
+            lblAllowanceLeft.TabIndex = 37;
+            lblAllowanceLeft.Text = "0";
             // 
             // lblTotal
             // 
@@ -923,31 +935,6 @@
             pnlAllowance.Visible = false;
             pnlAllowance.Paint += panel18_Paint;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.FromArgb(11, 22, 41);
-            label2.Location = new Point(20, 70);
-            label2.Name = "label2";
-            label2.Size = new Size(208, 23);
-            label2.TabIndex = 18;
-            label2.Text = "WEEKLY ALLOWANCE";
-            label2.Click += label2_Click_3;
-            // 
-            // lblAllowanceLeft
-            // 
-            lblAllowanceLeft.AutoSize = true;
-            lblAllowanceLeft.BackColor = Color.Transparent;
-            lblAllowanceLeft.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAllowanceLeft.ForeColor = Color.Lime;
-            lblAllowanceLeft.Location = new Point(205, 188);
-            lblAllowanceLeft.Name = "lblAllowanceLeft";
-            lblAllowanceLeft.Size = new Size(22, 23);
-            lblAllowanceLeft.TabIndex = 37;
-            lblAllowanceLeft.Text = "0";
-            // 
             // lblAllowanceCount
             // 
             lblAllowanceCount.AutoSize = true;
@@ -961,6 +948,19 @@
             lblAllowanceCount.Text = "0";
             lblAllowanceCount.Click += label23_Click;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.FromArgb(11, 22, 41);
+            label2.Location = new Point(20, 70);
+            label2.Name = "label2";
+            label2.Size = new Size(208, 23);
+            label2.TabIndex = 18;
+            label2.Text = "WEEKLY ALLOWANCE";
+            label2.Click += label2_Click_3;
+            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
@@ -969,12 +969,12 @@
             BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(1143, 625);
             Controls.Add(pnlAllowance);
-            Controls.Add(pnDashboard);
             Controls.Add(pictureBox1);
             Controls.Add(sidebarProfile);
             Controls.Add(pictureBox2);
             Controls.Add(sidebarContainer);
             Controls.Add(panel16);
+            Controls.Add(pnDashboard);
             Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ForeColor = Color.Transparent;
             FormBorderStyle = FormBorderStyle.None;

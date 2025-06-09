@@ -125,6 +125,7 @@ namespace BudgetBuddy_Desktop
 
             if (result)
             {
+                ClearFields();
                 MessageBox.Show("Successful");
                 Dashboard dashboardForm = new Dashboard();
                 dashboardForm.Show();
@@ -134,7 +135,9 @@ namespace BudgetBuddy_Desktop
             }
             else
             {
+                ClearFields();
                 MessageBox.Show("Failed");
+              
             }
         }
 
@@ -153,6 +156,12 @@ namespace BudgetBuddy_Desktop
             {
                 txtPassword.UseSystemPasswordChar= true;
             }
+        }
+
+        private void ClearFields()
+        {
+            txtUsername.Clear();
+            txtPassword.Clear();
         }
     }
 }

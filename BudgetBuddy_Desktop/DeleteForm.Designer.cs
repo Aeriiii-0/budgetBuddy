@@ -1,6 +1,6 @@
 ﻿namespace BudgetBuddy_Desktop
 {
-    partial class InputForms
+    partial class DeleteForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,45 +28,62 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InputForms));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeleteForm));
             panel1 = new Panel();
-            txtAllowance = new TextBox();
+            label1 = new Label();
+            label7 = new Label();
             txtPassword = new TextBox();
-            label4 = new Label();
             label3 = new Label();
             label2 = new Label();
             txtUsername = new TextBox();
             btnEnter = new Button();
-            label1 = new Label();
-            label7 = new Label();
             btnExit = new Button();
+            pictureBox1 = new PictureBox();
+            label4 = new Label();
+            label5 = new Label();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.Controls.Add(txtAllowance);
-            panel1.Controls.Add(txtPassword);
+            panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(txtPassword);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(txtUsername);
             panel1.Controls.Add(btnEnter);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(label7);
-            panel1.Location = new Point(275, 109);
+            panel1.Location = new Point(344, 69);
             panel1.Name = "panel1";
             panel1.Size = new Size(474, 434);
-            panel1.TabIndex = 0;
+            panel1.TabIndex = 15;
             // 
-            // txtAllowance
+            // label1
             // 
-            txtAllowance.BorderStyle = BorderStyle.FixedSingle;
-            txtAllowance.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtAllowance.Location = new Point(36, 298);
-            txtAllowance.Name = "txtAllowance";
-            txtAllowance.Size = new Size(402, 27);
-            txtAllowance.TabIndex = 23;
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Cambria", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.DimGray;
+            label1.Location = new Point(36, 61);
+            label1.Name = "label1";
+            label1.Size = new Size(345, 20);
+            label1.TabIndex = 23;
+            label1.Text = "Delete your password by answering below.";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Cambria", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.Black;
+            label7.Location = new Point(36, 38);
+            label7.Name = "label7";
+            label7.Size = new Size(95, 23);
+            label7.TabIndex = 22;
+            label7.Text = "Hey, Bud!";
             // 
             // txtPassword
             // 
@@ -76,19 +93,6 @@
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(402, 27);
             txtPassword.TabIndex = 22;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Cambria", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Black;
-            label4.Location = new Point(36, 275);
-            label4.Name = "label4";
-            label4.Size = new Size(90, 20);
-            label4.TabIndex = 21;
-            label4.Text = "Allowance";
-            label4.Click += label4_Click;
             // 
             // label3
             // 
@@ -101,7 +105,6 @@
             label3.Size = new Size(86, 20);
             label3.TabIndex = 20;
             label3.Text = "Password";
-            label3.Click += label3_Click_1;
             // 
             // label2
             // 
@@ -141,76 +144,81 @@
             btnEnter.UseVisualStyleBackColor = false;
             btnEnter.Click += btnEnter_Click;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Cambria", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.DimGray;
-            label1.Location = new Point(34, 59);
-            label1.Name = "label1";
-            label1.Size = new Size(402, 20);
-            label1.TabIndex = 5;
-            label1.Text = "How much money do you plan to spend this week?";
-            label1.Click += label1_Click;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.BackColor = Color.Transparent;
-            label7.Font = new Font("Cambria", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.Black;
-            label7.Location = new Point(34, 36);
-            label7.Name = "label7";
-            label7.Size = new Size(143, 23);
-            label7.TabIndex = 4;
-            label7.Text = "Welcome, Bud!";
-            label7.Click += label7_Click;
-            // 
             // btnExit
             // 
             btnExit.BackColor = Color.FromArgb(11, 22, 41);
             btnExit.FlatStyle = FlatStyle.Flat;
             btnExit.ForeColor = Color.Transparent;
-            btnExit.Location = new Point(899, 604);
+            btnExit.Location = new Point(987, 551);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(94, 29);
-            btnExit.TabIndex = 14;
+            btnExit.TabIndex = 16;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = false;
             btnExit.Click += btnExit_Click;
             // 
-            // InputForms
+            // pictureBox1
+            // 
+            pictureBox1.ErrorImage = (Image)resources.GetObject("pictureBox1.ErrorImage");
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(-26, -14);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(1174, 653);
+            pictureBox1.TabIndex = 21;
+            pictureBox1.TabStop = false;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Cambria", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.DimGray;
+            label4.Location = new Point(24, 295);
+            label4.Name = "label4";
+            label4.Size = new Size(417, 17);
+            label4.TabIndex = 24;
+            label4.Text = "All saved data, including budgets, expenses, and reports, will ";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Cambria", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.DimGray;
+            label5.Location = new Point(24, 314);
+            label5.Name = "label5";
+            label5.Size = new Size(348, 17);
+            label5.TabIndex = 25;
+            label5.Text = "be permanently removed and cannot be recovered.";
+            // 
+            // DeleteForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1016, 657);
-            Controls.Add(btnExit);
+            ClientSize = new Size(1143, 625);
             Controls.Add(panel1);
-            DoubleBuffered = true;
+            Controls.Add(btnExit);
+            Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "InputForms";
-            Text = "InputForms";
-            Load += InputForms_Load;
+            Name = "DeleteForm";
+            Text = "DeleteForm";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panel1;
-        private Label label7;
-        private Label label1;
-        private Button btnEnter;
-        private Button btnExit;
+        private TextBox txtPassword;
         private Label label3;
         private Label label2;
         private TextBox txtUsername;
+        private Button btnEnter;
+        private Button btnExit;
+        private PictureBox pictureBox1;
+        private Label label1;
+        private Label label7;
+        private Label label5;
         private Label label4;
-        private TextBox txtAllowance;
-        private TextBox txtPassword;
     }
 }

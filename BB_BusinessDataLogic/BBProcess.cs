@@ -218,7 +218,7 @@ namespace BB_BusinessDataLogic
             }
         }
 
-        public static void UpdateAccount(string userUsername, string userPassword,  string newPassword, double newAllowance)
+        public static void UpdateAccount(string userUsername, string userPassword,  string newPassword) //removed allowance sa ui be
         {
             UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
 
@@ -229,6 +229,20 @@ namespace BB_BusinessDataLogic
             else
             {
                 userAccounts.password = newPassword;
+                dataManager.UpdateAccount(userAccounts);
+            }
+        }
+
+        public static void UpdateAllowance(string userUsername, string userPassword,  double newAllowance) //added update allowance method
+        {
+            UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
+
+            if (userAccounts == null)
+            {
+                throw new Exception("User account not found.");
+            }
+            else
+            {
                 userAccounts.allowance = newAllowance;
                 dataManager.UpdateAccount(userAccounts);
             }
