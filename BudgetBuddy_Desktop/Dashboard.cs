@@ -118,8 +118,6 @@ namespace BudgetBuddy_Desktop
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-            pnlAllowance.Visible = false;
-            pnDashboard.Visible = false;
             budgetActionTimer.Start();
         }
 
@@ -285,8 +283,6 @@ namespace BudgetBuddy_Desktop
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            pnDashboard.Visible = false;
-            pnlAllowance.Visible = false;
             Environment.Exit(0);
         }
 
@@ -351,20 +347,20 @@ namespace BudgetBuddy_Desktop
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            pnDashboard.Visible = !pnDashboard.Visible;
-            pnlAllowance.Visible = !pnlAllowance.Visible;
+            pnDashboard.Visible = true;
+            pnlAllowance.Visible = true;
         }
 
         private void button4_Click_1(object sender, EventArgs e)
         {
+            AboutPnlVisiblity();
 
-            pnDashboard.Visible = false;
-            pnlAllowance.Visible = false;
         }
 
         private void panel18_Paint(object sender, PaintEventArgs e)
         {
 
+            //  lblAllowanceCount = BBProcess.DisplayAllowance(userUsername, userPassword); allowance label
         }
 
         private void label2_Click_3(object sender, EventArgs e)
@@ -382,7 +378,61 @@ namespace BudgetBuddy_Desktop
 
         }
 
-        private void label23_Click(object sender, EventArgs e)
+
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+
+            DialogResult result = MessageBox.Show("Do you want to log out on your account?", "Log-out Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                BudgetBuddy budgetBuddy = new BudgetBuddy();
+                budgetBuddy.Show();
+                MessageBox.Show("You have Logged out on your account", "Notification");
+
+            }
+            this.Hide();
+        }
+
+        private void budgetActContainer_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void budgetActContainer_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button6_Click_2(object sender, EventArgs e)
+        {
+            // BBProcess.ClearData(userUsername, userPassword);
+        }
+
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+            //log another week
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            //log
+        }
+
+        private void button10_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AboutPnlVisiblity()
+        {
+            pnlAbout.Visible = true;
+            pnlAllowance.Visible = false;
+            pnDashboard.Visible = false;
+        }
+
+        private void label12_Click(object sender, EventArgs e)
         {
 
         }

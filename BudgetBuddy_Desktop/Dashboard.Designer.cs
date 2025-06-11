@@ -98,6 +98,9 @@
             pnlAllowance = new Panel();
             lblAllowanceCount = new Label();
             label2 = new Label();
+            pnlAbout = new Panel();
+            label12 = new Label();
+            richTextBox1 = new RichTextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             sidebarContainer.SuspendLayout();
             panel3.SuspendLayout();
@@ -124,6 +127,7 @@
             panel15.SuspendLayout();
             pnDashboard.SuspendLayout();
             pnlAllowance.SuspendLayout();
+            pnlAbout.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox2
@@ -200,8 +204,9 @@
             budgetActContainer.MaximumSize = new Size(250, 309);
             budgetActContainer.MinimumSize = new Size(250, 66);
             budgetActContainer.Name = "budgetActContainer";
-            budgetActContainer.Size = new Size(250, 66);
+            budgetActContainer.Size = new Size(250, 180);
             budgetActContainer.TabIndex = 29;
+            budgetActContainer.Paint += budgetActContainer_Paint_1;
             // 
             // panel12
             // 
@@ -228,6 +233,7 @@
             button10.TabIndex = 0;
             button10.Text = "            WEEKLY SUMMARY";
             button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click_1;
             // 
             // panel11
             // 
@@ -280,6 +286,7 @@
             button8.TabIndex = 0;
             button8.Text = "                  LOG ANOTHER WEEK";
             button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click_1;
             // 
             // panel9
             // 
@@ -306,6 +313,7 @@
             button7.TabIndex = 0;
             button7.Text = "     LOG EXPENSES";
             button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
             // 
             // panel8
             // 
@@ -332,13 +340,14 @@
             button6.TabIndex = 0;
             button6.Text = "CLEAR LOGS";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click_2;
             // 
             // panel1
             // 
             panel1.Controls.Add(button1);
             panel1.Location = new Point(0, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(255, 64);
+            panel1.Size = new Size(255, 35);
             panel1.TabIndex = 20;
             panel1.Paint += panel1_Paint;
             // 
@@ -355,7 +364,7 @@
             button1.Location = new Point(0, 0);
             button1.Name = "button1";
             button1.Padding = new Padding(1, 0, 0, 0);
-            button1.Size = new Size(255, 64);
+            button1.Size = new Size(205, 35);
             button1.TabIndex = 0;
             button1.Text = "         BUDGET ACTIONS";
             button1.UseVisualStyleBackColor = true;
@@ -365,7 +374,7 @@
             // 
             panel2.Anchor = AnchorStyles.None;
             panel2.Controls.Add(button2);
-            panel2.Location = new Point(3, 231);
+            panel2.Location = new Point(3, 345);
             panel2.Name = "panel2";
             panel2.Size = new Size(255, 64);
             panel2.TabIndex = 21;
@@ -390,7 +399,7 @@
             // panel5
             // 
             panel5.Controls.Add(button4);
-            panel5.Location = new Point(3, 301);
+            panel5.Location = new Point(3, 415);
             panel5.Name = "panel5";
             panel5.Size = new Size(255, 64);
             panel5.TabIndex = 21;
@@ -418,7 +427,7 @@
             // panel4
             // 
             panel4.Controls.Add(button3);
-            panel4.Location = new Point(3, 371);
+            panel4.Location = new Point(3, 485);
             panel4.Name = "panel4";
             panel4.Size = new Size(255, 64);
             panel4.TabIndex = 21;
@@ -471,10 +480,10 @@
             sidebarProfile.Controls.Add(panel14);
             sidebarProfile.Controls.Add(panel15);
             sidebarProfile.Location = new Point(936, 77);
-            sidebarProfile.MaximumSize = new Size(208, 271);
+            sidebarProfile.MaximumSize = new Size(208, 280);
             sidebarProfile.MinimumSize = new Size(208, 66);
             sidebarProfile.Name = "sidebarProfile";
-            sidebarProfile.Size = new Size(208, 271);
+            sidebarProfile.Size = new Size(208, 79);
             sidebarProfile.TabIndex = 30;
             sidebarProfile.Paint += sidebarProfile_Paint;
             // 
@@ -484,7 +493,7 @@
             panel7.Controls.Add(pictureBox3);
             panel7.Location = new Point(3, 3);
             panel7.Name = "panel7";
-            panel7.Size = new Size(208, 76);
+            panel7.Size = new Size(208, 73);
             panel7.TabIndex = 29;
             // 
             // label3
@@ -516,11 +525,11 @@
             accSettingsContainer.Controls.Add(panel17);
             accSettingsContainer.Controls.Add(panel6);
             accSettingsContainer.Controls.Add(panel13);
-            accSettingsContainer.Location = new Point(3, 85);
+            accSettingsContainer.Location = new Point(3, 82);
             accSettingsContainer.MaximumSize = new Size(212, 196);
             accSettingsContainer.MinimumSize = new Size(212, 61);
             accSettingsContainer.Name = "accSettingsContainer";
-            accSettingsContainer.Size = new Size(212, 177);
+            accSettingsContainer.Size = new Size(212, 61);
             accSettingsContainer.TabIndex = 34;
             // 
             // panel17
@@ -561,7 +570,7 @@
             button5.BackColor = Color.Transparent;
             button5.FlatAppearance.BorderSize = 0;
             button5.FlatStyle = FlatStyle.Flat;
-            button5.ForeColor = Color.SteelBlue;
+            button5.ForeColor = Color.Teal;
             button5.Image = (Image)resources.GetObject("button5.Image");
             button5.ImageAlign = ContentAlignment.MiddleLeft;
             button5.Location = new Point(3, 3);
@@ -586,10 +595,10 @@
             button12.BackColor = Color.Transparent;
             button12.FlatAppearance.BorderSize = 0;
             button12.FlatStyle = FlatStyle.Flat;
-            button12.ForeColor = Color.SteelBlue;
+            button12.ForeColor = Color.Teal;
             button12.Image = (Image)resources.GetObject("button12.Image");
             button12.ImageAlign = ContentAlignment.MiddleLeft;
-            button12.Location = new Point(3, 3);
+            button12.Location = new Point(3, 0);
             button12.Name = "button12";
             button12.Size = new Size(188, 52);
             button12.TabIndex = 30;
@@ -601,7 +610,7 @@
             // panel14
             // 
             panel14.Controls.Add(button13);
-            panel14.Location = new Point(3, 268);
+            panel14.Location = new Point(3, 149);
             panel14.Name = "panel14";
             panel14.Size = new Size(208, 58);
             panel14.TabIndex = 32;
@@ -614,7 +623,7 @@
             button13.ForeColor = Color.SteelBlue;
             button13.Image = (Image)resources.GetObject("button13.Image");
             button13.ImageAlign = ContentAlignment.MiddleLeft;
-            button13.Location = new Point(0, 3);
+            button13.Location = new Point(3, 0);
             button13.Name = "button13";
             button13.Size = new Size(186, 58);
             button13.TabIndex = 30;
@@ -626,7 +635,7 @@
             // panel15
             // 
             panel15.Controls.Add(button14);
-            panel15.Location = new Point(3, 332);
+            panel15.Location = new Point(3, 213);
             panel15.Name = "panel15";
             panel15.Size = new Size(208, 58);
             panel15.TabIndex = 33;
@@ -639,13 +648,14 @@
             button14.ForeColor = Color.SteelBlue;
             button14.Image = (Image)resources.GetObject("button14.Image");
             button14.ImageAlign = ContentAlignment.MiddleLeft;
-            button14.Location = new Point(0, -6);
+            button14.Location = new Point(3, -3);
             button14.Name = "button14";
             button14.Size = new Size(183, 58);
             button14.TabIndex = 30;
             button14.Text = "                Log-out";
             button14.TextAlign = ContentAlignment.MiddleLeft;
             button14.UseVisualStyleBackColor = false;
+            button14.Click += button14_Click;
             // 
             // profilebarTimer
             // 
@@ -657,7 +667,7 @@
             panel16.BackColor = Color.WhiteSmoke;
             panel16.Location = new Point(73, 77);
             panel16.Name = "panel16";
-            panel16.Size = new Size(838, 79);
+            panel16.Size = new Size(1077, 79);
             panel16.TabIndex = 31;
             // 
             // settingsTimer
@@ -925,7 +935,7 @@
             // 
             // pnlAllowance
             // 
-            pnlAllowance.BackColor = Color.White;
+            pnlAllowance.BackColor = Color.WhiteSmoke;
             pnlAllowance.Controls.Add(lblAllowanceCount);
             pnlAllowance.Controls.Add(label2);
             pnlAllowance.Location = new Point(313, 202);
@@ -946,7 +956,6 @@
             lblAllowanceCount.Size = new Size(37, 40);
             lblAllowanceCount.TabIndex = 19;
             lblAllowanceCount.Text = "0";
-            lblAllowanceCount.Click += label23_Click;
             // 
             // label2
             // 
@@ -961,6 +970,38 @@
             label2.Text = "WEEKLY ALLOWANCE";
             label2.Click += label2_Click_3;
             // 
+            // pnlAbout
+            // 
+            pnlAbout.Controls.Add(richTextBox1);
+            pnlAbout.Controls.Add(label12);
+            pnlAbout.Location = new Point(283, 172);
+            pnlAbout.Name = "pnlAbout";
+            pnlAbout.Size = new Size(842, 346);
+            pnlAbout.TabIndex = 34;
+            pnlAbout.Visible = false;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.BackColor = Color.Transparent;
+            label12.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label12.ForeColor = Color.DarkSlateGray;
+            label12.Location = new Point(50, 30);
+            label12.Name = "label12";
+            label12.Size = new Size(184, 21);
+            label12.TabIndex = 18;
+            label12.Text = "About Budget Buddy";
+            label12.Click += label12_Click;
+            // 
+            // richTextBox1
+            // 
+            richTextBox1.BorderStyle = BorderStyle.None;
+            richTextBox1.Location = new Point(50, 86);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(745, 120);
+            richTextBox1.TabIndex = 19;
+            richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
@@ -968,6 +1009,7 @@
             BackColor = Color.White;
             BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(1143, 625);
+            Controls.Add(pnlAbout);
             Controls.Add(pnlAllowance);
             Controls.Add(pictureBox1);
             Controls.Add(sidebarProfile);
@@ -1010,6 +1052,8 @@
             pnDashboard.PerformLayout();
             pnlAllowance.ResumeLayout(false);
             pnlAllowance.PerformLayout();
+            pnlAbout.ResumeLayout(false);
+            pnlAbout.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1082,5 +1126,8 @@
         private Label lblSun;
         private Label lblAllowanceLeft;
         private Label lblAllowanceCount;
+        private Panel pnlAbout;
+        private Label label12;
+        private RichTextBox richTextBox1;
     }
 }
