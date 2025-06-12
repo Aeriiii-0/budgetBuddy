@@ -154,9 +154,9 @@ namespace BudgetBuddy_Desktop
             cbShowPassword.Font = new Font("Cambria", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbShowPassword.Location = new Point(244, 253);
             cbShowPassword.Name = "cbShowPassword";
-            cbShowPassword.Size = new Size(116, 19);
+            cbShowPassword.Size = new Size(110, 19);
             cbShowPassword.TabIndex = 8;
-            cbShowPassword.Text = "show password";
+            cbShowPassword.Text = "hide password";
             cbShowPassword.UseVisualStyleBackColor = true;
             cbShowPassword.CheckedChanged += checkBox1_CheckedChanged_1;
             // 

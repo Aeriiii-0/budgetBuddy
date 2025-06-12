@@ -150,11 +150,11 @@ namespace BudgetBuddy_Desktop
         {
             if (cbShowPassword.Checked)
             {
-                txtPassword.UseSystemPasswordChar = false;
+                txtPassword.UseSystemPasswordChar = true;
             }
             else
             {
-                txtPassword.UseSystemPasswordChar= true;
+                txtPassword.UseSystemPasswordChar= false;
             }
         }
 

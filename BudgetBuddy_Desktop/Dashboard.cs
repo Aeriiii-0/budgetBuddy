@@ -20,6 +20,7 @@ namespace BudgetBuddy_Desktop
         bool profileCollapsed;
         public string userUsername;
         public string userPassword;
+        int days;
 
         public Dashboard(string userUsername, string userPassword)
         {
@@ -27,7 +28,6 @@ namespace BudgetBuddy_Desktop
             this.userUsername = userUsername;
             this.userPassword = userPassword;
 
-            lblAllowanceCount.Text = BBProcess.DisplayAllowance(userUsername, userPassword).ToString("F2");
         }
 
 
@@ -221,6 +221,8 @@ namespace BudgetBuddy_Desktop
         private void button2_Click_1(object sender, EventArgs e)
         {
             DashboardPnlVisiblity();
+            lblAllowanceCount.Text = BBProcess.DisplayAllowance(userUsername, userPassword).ToString("F2");
+            lblAllowanceLeft.Text = BBProcess.allocation.ToString("F2");
         }
 
         private void button4_Click_1(object sender, EventArgs e)
@@ -268,6 +270,7 @@ namespace BudgetBuddy_Desktop
             pnlAllowance.Visible = false;
             pnDashboard.Visible = false;
             pnlLogExpenses.Visible = false;
+            pnlDays.Visible = false;
         }
 
         private void DashboardPnlVisiblity()
@@ -276,6 +279,7 @@ namespace BudgetBuddy_Desktop
             pnlAllowance.Visible = true;
             pnDashboard.Visible = true;
             pnlLogExpenses.Visible = false;
+            pnlDays.Visible = false;
         }
 
         private void LogExpensePnlVisiblity()
@@ -284,11 +288,31 @@ namespace BudgetBuddy_Desktop
             pnlAllowance.Visible = false;
             pnDashboard.Visible = false;
             pnlLogExpenses.Visible = true;
+            pnlDays.Visible = false;
+        }
+
+        private void LogDaysPnlVisiblity()
+        {
+            pnlAbout.Visible = false;
+            pnlAllowance.Visible = false;
+            pnDashboard.Visible = false;
+            pnlLogExpenses.Visible = false;
+            pnlDays.Visible = true;
         }
 
         private void btnLogExpense_Click(object sender, EventArgs e)
         {
-            LogExpensePnlVisiblity();
+            DialogResult result = MessageBox.Show("Have you registered number of work days? ", "Log Expenses Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+              LogDaysPnlVisiblity();
+
+            }
+            else
+            {
+                LogExpensePnlVisiblity();
+            }
+
         }
 
         private void btnLogAnother_Click(object sender, EventArgs e)
@@ -298,10 +322,29 @@ namespace BudgetBuddy_Desktop
 
         private void btnDone_Click(object sender, EventArgs e)
         {
-            var days = comboBox1.SelectedIndex +1;
+             days = comboBox1.SelectedIndex + 1;
 
             lblAllocationCount.Text = BBProcess.WeeklyAllowance(days, userUsername, userPassword).ToString("F2");
-            MessageBox.Show("GREAT!\nNote: Try to keep expenses under the allocation to save money!");
+            MessageBox.Show("GREAT!\nNote: Try to keep expenses under the allocation to save money!", "Notification");
+
+
+        }
+
+        private void btnDays_Click(object sender, EventArgs e)
+        {
+            var dayInput = comboBox1.SelectedIndex + 1;
+
+            var result = BBProcess.AddUserInput(dayInput);
+
+            if (result)
+            {
+                MessageBox.Show("Day recorded!\nCome back tomorrow to log your expense!", "Notification");
+                //call expense logger
+            }
+            else
+            {
+                MessageBox.Show("Oops! Not recorded.\nTry Again", "Notification");
+            }
         }
 
 
