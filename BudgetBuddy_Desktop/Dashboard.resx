@@ -1086,7 +1086,7 @@
         jjrmif8D09IbfKt9h1kAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="button10.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnWeeklySummary.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACoAAAAuCAYAAABeUotNAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAACHJJREFUWEftWFlTlFcazr3sW7PIItDQe9Mb3c3StCwdEWhUJKIji+CGAdlEBAlR
@@ -1128,7 +1128,7 @@
         c9UPJUlsSfSngp+Jxhv/AyExiqxc880gAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="button9.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnUpdateAllowance.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAhCAYAAACfiCi5AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAABkJJREFUWEftWFlTk2cU9l4CsmUhEAiELRtZIQkhLIFEFgFHFCoiihUQDSJYFRRH
@@ -1161,7 +1161,7 @@
         wrzQOwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="button8.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnLogAnother.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAC0AAAA4CAYAAABpAXGyAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAABhpJREFUaEPtmGlwU1UUx/nehXaAljbQpgvSdC8ttEmhW9omTdM0haaUYZRFUFGR
@@ -1193,7 +1193,7 @@
         eEV7Cq9oT+EV7Sm8oj3Fvw3Ji2SSivj/AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="button7.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnLogExpense.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADQAAAAoCAYAAACxbNkLAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAABrFJREFUaEPtWFtTWlcUznu8IwICgoAgN8ELyEVAvEUBb4j3qImJpjE1VzVeEps0
@@ -1228,7 +1228,7 @@
         RU5ErkJggg==
 </value>
   </data>
-  <data name="button6.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnLog.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACgAAAApCAYAAABHomvIAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAABmJJREFUWEftmOlTU1cYxv0uW0TCnhCWQDYIkI3sEQMIiAtawLKICzCIKJsysikC
@@ -2685,6 +2685,25 @@
     <value>517, 17</value>
   </metadata>
   <data name="richTextBox1.Text" xml:space="preserve">
-    <value>Budget Buddy is your personal financial companion, designed to empower you with clarity and control over your money. We understand that managing finances can feel overwhelming, which is why we've built a simple yet powerful tool to help you stay on track and achieve your financial goals.</value>
+    <value>Budget Buddy is your personal financial companion, designed to empower you with clarity and control over your 
+money. We understand that managing finances can feel overwhelming, which is why we've built a simple yet 
+powerful tool to help you stay on track and achieve your financial goals.               
+
+WHAT BUDGET BUDDY OFFERS:
+
+Daily Finance Monitoring: 
+Effortlessly track your income and expenses as they happen. Budget Buddy provides a clear, real-time overview of your daily spending, so you always know where your money is going.
+
+Insightful Weekly Reports: 
+Gain valuable insights into your spending habits with our comprehensive weekly reports. These easy-to-understand summaries highlight trends, identify areas where you might be overspending, and help you make informed financial decisions.
+
+Clear Allowance Tracking: 
+Set and monitor your allowances with ease. Budget Buddy helps you stick to your designated spending limits, providing a visual representation of how much you have left for the day, week, or month.
+
+Intuitive and User-Friendly Interface: 
+We believe managing your money should be straightforward, not complicated. Budget Buddy features a clean, intuitive design that makes tracking your finances a breeze, even for beginners.
+
+Secure and Private: 
+Your financial data is sensitive, and we treat it with the utmost care. Budget Buddy is built with robust security measures to ensure your information remains private and protected.</value>
   </data>
 </root>

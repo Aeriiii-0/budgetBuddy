@@ -127,7 +127,7 @@ namespace BudgetBuddy_Desktop
             {
                 ClearFields();
                 MessageBox.Show("Successful");
-                Dashboard dashboardForm = new Dashboard();
+                Dashboard dashboardForm = new Dashboard(userUsername, userPassword);
                 dashboardForm.Show();
 
                 this.Hide();

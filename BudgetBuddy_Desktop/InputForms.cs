@@ -69,7 +69,7 @@ namespace BudgetBuddy_Desktop
             txtUsername.Clear();
             txtPassword.Clear();
 
-            Dashboard dashboard = new Dashboard();
+            Dashboard dashboard = new Dashboard(userUsername, userPassword);
             dashboard.Show();
             MessageBox.Show("Congrats, Bud! \nEnjoy setting-up!");
 

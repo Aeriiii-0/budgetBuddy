@@ -37,15 +37,15 @@
             label1 = new Label();
             budgetActContainer = new Panel();
             panel12 = new Panel();
-            button10 = new Button();
+            btnWeeklySummary = new Button();
             panel11 = new Panel();
-            button9 = new Button();
+            btnUpdateAllowance = new Button();
             panel10 = new Panel();
-            button8 = new Button();
+            btnLogAnother = new Button();
             panel9 = new Panel();
-            button7 = new Button();
+            btnLogExpense = new Button();
             panel8 = new Panel();
-            button6 = new Button();
+            btnLog = new Button();
             panel1 = new Panel();
             button1 = new Button();
             panel2 = new Panel();
@@ -99,8 +99,14 @@
             lblAllowanceCount = new Label();
             label2 = new Label();
             pnlAbout = new Panel();
-            label12 = new Label();
             richTextBox1 = new RichTextBox();
+            label12 = new Label();
+            pnlLogExpenses = new Panel();
+            btnDone = new Button();
+            lblAllocationCount = new Label();
+            label14 = new Label();
+            comboBox1 = new ComboBox();
+            label13 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             sidebarContainer.SuspendLayout();
             panel3.SuspendLayout();
@@ -128,6 +134,7 @@
             pnDashboard.SuspendLayout();
             pnlAllowance.SuspendLayout();
             pnlAbout.SuspendLayout();
+            pnlLogExpenses.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox2
@@ -139,7 +146,6 @@
             pictureBox2.Size = new Size(1178, 87);
             pictureBox2.TabIndex = 2;
             pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
             // 
             // sidebarContainer
             // 
@@ -204,143 +210,142 @@
             budgetActContainer.MaximumSize = new Size(250, 309);
             budgetActContainer.MinimumSize = new Size(250, 66);
             budgetActContainer.Name = "budgetActContainer";
-            budgetActContainer.Size = new Size(250, 180);
+            budgetActContainer.Size = new Size(250, 309);
             budgetActContainer.TabIndex = 29;
             budgetActContainer.Paint += budgetActContainer_Paint_1;
             // 
             // panel12
             // 
-            panel12.Controls.Add(button10);
+            panel12.Controls.Add(btnWeeklySummary);
             panel12.Location = new Point(0, 243);
             panel12.Name = "panel12";
             panel12.Size = new Size(255, 47);
             panel12.TabIndex = 22;
             // 
-            // button10
+            // btnWeeklySummary
             // 
-            button10.BackgroundImageLayout = ImageLayout.None;
-            button10.Cursor = Cursors.Hand;
-            button10.Dock = DockStyle.Left;
-            button10.FlatAppearance.BorderSize = 0;
-            button10.FlatStyle = FlatStyle.Flat;
-            button10.Font = new Font("Cambria", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button10.Image = (Image)resources.GetObject("button10.Image");
-            button10.ImageAlign = ContentAlignment.MiddleLeft;
-            button10.Location = new Point(0, 0);
-            button10.Name = "button10";
-            button10.Padding = new Padding(1, 0, 0, 0);
-            button10.Size = new Size(228, 47);
-            button10.TabIndex = 0;
-            button10.Text = "            WEEKLY SUMMARY";
-            button10.UseVisualStyleBackColor = true;
-            button10.Click += button10_Click_1;
+            btnWeeklySummary.BackgroundImageLayout = ImageLayout.None;
+            btnWeeklySummary.Cursor = Cursors.Hand;
+            btnWeeklySummary.Dock = DockStyle.Left;
+            btnWeeklySummary.FlatAppearance.BorderSize = 0;
+            btnWeeklySummary.FlatStyle = FlatStyle.Flat;
+            btnWeeklySummary.Font = new Font("Cambria", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnWeeklySummary.Image = (Image)resources.GetObject("btnWeeklySummary.Image");
+            btnWeeklySummary.ImageAlign = ContentAlignment.MiddleLeft;
+            btnWeeklySummary.Location = new Point(0, 0);
+            btnWeeklySummary.Name = "btnWeeklySummary";
+            btnWeeklySummary.Padding = new Padding(1, 0, 0, 0);
+            btnWeeklySummary.Size = new Size(228, 47);
+            btnWeeklySummary.TabIndex = 0;
+            btnWeeklySummary.Text = "            WEEKLY SUMMARY";
+            btnWeeklySummary.UseVisualStyleBackColor = true;
             // 
             // panel11
             // 
-            panel11.Controls.Add(button9);
+            panel11.Controls.Add(btnUpdateAllowance);
             panel11.Location = new Point(3, 205);
             panel11.Name = "panel11";
             panel11.Size = new Size(255, 38);
             panel11.TabIndex = 22;
             // 
-            // button9
+            // btnUpdateAllowance
             // 
-            button9.BackgroundImageLayout = ImageLayout.None;
-            button9.Cursor = Cursors.Hand;
-            button9.Dock = DockStyle.Left;
-            button9.FlatAppearance.BorderSize = 0;
-            button9.FlatStyle = FlatStyle.Flat;
-            button9.Font = new Font("Cambria", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button9.Image = (Image)resources.GetObject("button9.Image");
-            button9.ImageAlign = ContentAlignment.MiddleLeft;
-            button9.Location = new Point(0, 0);
-            button9.Name = "button9";
-            button9.Padding = new Padding(1, 0, 0, 0);
-            button9.Size = new Size(228, 38);
-            button9.TabIndex = 0;
-            button9.Text = "                UPDATE ALLOWANCE";
-            button9.UseVisualStyleBackColor = true;
+            btnUpdateAllowance.BackgroundImageLayout = ImageLayout.None;
+            btnUpdateAllowance.Cursor = Cursors.Hand;
+            btnUpdateAllowance.Dock = DockStyle.Left;
+            btnUpdateAllowance.FlatAppearance.BorderSize = 0;
+            btnUpdateAllowance.FlatStyle = FlatStyle.Flat;
+            btnUpdateAllowance.Font = new Font("Cambria", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnUpdateAllowance.Image = (Image)resources.GetObject("btnUpdateAllowance.Image");
+            btnUpdateAllowance.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUpdateAllowance.Location = new Point(0, 0);
+            btnUpdateAllowance.Name = "btnUpdateAllowance";
+            btnUpdateAllowance.Padding = new Padding(1, 0, 0, 0);
+            btnUpdateAllowance.Size = new Size(228, 38);
+            btnUpdateAllowance.TabIndex = 0;
+            btnUpdateAllowance.Text = "                UPDATE ALLOWANCE";
+            btnUpdateAllowance.UseVisualStyleBackColor = true;
             // 
             // panel10
             // 
-            panel10.Controls.Add(button8);
+            panel10.Controls.Add(btnLogAnother);
             panel10.Location = new Point(3, 161);
             panel10.Name = "panel10";
             panel10.Size = new Size(255, 38);
             panel10.TabIndex = 22;
             // 
-            // button8
+            // btnLogAnother
             // 
-            button8.BackgroundImageLayout = ImageLayout.None;
-            button8.Cursor = Cursors.Hand;
-            button8.Dock = DockStyle.Left;
-            button8.FlatAppearance.BorderSize = 0;
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.Font = new Font("Cambria", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button8.Image = (Image)resources.GetObject("button8.Image");
-            button8.ImageAlign = ContentAlignment.MiddleLeft;
-            button8.Location = new Point(0, 0);
-            button8.Name = "button8";
-            button8.Padding = new Padding(1, 0, 0, 0);
-            button8.Size = new Size(228, 38);
-            button8.TabIndex = 0;
-            button8.Text = "                  LOG ANOTHER WEEK";
-            button8.UseVisualStyleBackColor = true;
-            button8.Click += button8_Click_1;
+            btnLogAnother.BackgroundImageLayout = ImageLayout.None;
+            btnLogAnother.Cursor = Cursors.Hand;
+            btnLogAnother.Dock = DockStyle.Left;
+            btnLogAnother.FlatAppearance.BorderSize = 0;
+            btnLogAnother.FlatStyle = FlatStyle.Flat;
+            btnLogAnother.Font = new Font("Cambria", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogAnother.Image = (Image)resources.GetObject("btnLogAnother.Image");
+            btnLogAnother.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLogAnother.Location = new Point(0, 0);
+            btnLogAnother.Name = "btnLogAnother";
+            btnLogAnother.Padding = new Padding(1, 0, 0, 0);
+            btnLogAnother.Size = new Size(228, 38);
+            btnLogAnother.TabIndex = 0;
+            btnLogAnother.Text = "                  LOG ANOTHER WEEK";
+            btnLogAnother.UseVisualStyleBackColor = true;
+            btnLogAnother.Click += btnLogAnother_Click;
             // 
             // panel9
             // 
-            panel9.Controls.Add(button7);
+            panel9.Controls.Add(btnLogExpense);
             panel9.Location = new Point(0, 108);
             panel9.Name = "panel9";
             panel9.Size = new Size(255, 47);
             panel9.TabIndex = 22;
             // 
-            // button7
+            // btnLogExpense
             // 
-            button7.BackgroundImageLayout = ImageLayout.None;
-            button7.Cursor = Cursors.Hand;
-            button7.Dock = DockStyle.Left;
-            button7.FlatAppearance.BorderSize = 0;
-            button7.FlatStyle = FlatStyle.Flat;
-            button7.Font = new Font("Cambria", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button7.Image = (Image)resources.GetObject("button7.Image");
-            button7.ImageAlign = ContentAlignment.MiddleLeft;
-            button7.Location = new Point(0, 0);
-            button7.Name = "button7";
-            button7.Padding = new Padding(1, 0, 0, 0);
-            button7.Size = new Size(228, 47);
-            button7.TabIndex = 0;
-            button7.Text = "     LOG EXPENSES";
-            button7.UseVisualStyleBackColor = true;
-            button7.Click += button7_Click;
+            btnLogExpense.BackgroundImageLayout = ImageLayout.None;
+            btnLogExpense.Cursor = Cursors.Hand;
+            btnLogExpense.Dock = DockStyle.Left;
+            btnLogExpense.FlatAppearance.BorderSize = 0;
+            btnLogExpense.FlatStyle = FlatStyle.Flat;
+            btnLogExpense.Font = new Font("Cambria", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLogExpense.Image = (Image)resources.GetObject("btnLogExpense.Image");
+            btnLogExpense.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLogExpense.Location = new Point(0, 0);
+            btnLogExpense.Name = "btnLogExpense";
+            btnLogExpense.Padding = new Padding(1, 0, 0, 0);
+            btnLogExpense.Size = new Size(228, 47);
+            btnLogExpense.TabIndex = 0;
+            btnLogExpense.Text = "     LOG EXPENSES";
+            btnLogExpense.UseVisualStyleBackColor = true;
+            btnLogExpense.Click += btnLogExpense_Click;
             // 
             // panel8
             // 
-            panel8.Controls.Add(button6);
+            panel8.Controls.Add(btnLog);
             panel8.Location = new Point(0, 73);
             panel8.Name = "panel8";
             panel8.Size = new Size(255, 38);
             panel8.TabIndex = 21;
             // 
-            // button6
+            // btnLog
             // 
-            button6.BackgroundImageLayout = ImageLayout.None;
-            button6.Cursor = Cursors.Hand;
-            button6.Dock = DockStyle.Left;
-            button6.FlatAppearance.BorderSize = 0;
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.Font = new Font("Cambria", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button6.Image = (Image)resources.GetObject("button6.Image");
-            button6.ImageAlign = ContentAlignment.MiddleLeft;
-            button6.Location = new Point(0, 0);
-            button6.Name = "button6";
-            button6.Padding = new Padding(1, 0, 0, 0);
-            button6.Size = new Size(228, 38);
-            button6.TabIndex = 0;
-            button6.Text = "CLEAR LOGS";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += button6_Click_2;
+            btnLog.BackgroundImageLayout = ImageLayout.None;
+            btnLog.Cursor = Cursors.Hand;
+            btnLog.Dock = DockStyle.Left;
+            btnLog.FlatAppearance.BorderSize = 0;
+            btnLog.FlatStyle = FlatStyle.Flat;
+            btnLog.Font = new Font("Cambria", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLog.Image = (Image)resources.GetObject("btnLog.Image");
+            btnLog.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLog.Location = new Point(0, 0);
+            btnLog.Name = "btnLog";
+            btnLog.Padding = new Padding(1, 0, 0, 0);
+            btnLog.Size = new Size(228, 38);
+            btnLog.TabIndex = 0;
+            btnLog.Text = "CLEAR LOGS";
+            btnLog.UseVisualStyleBackColor = true;
+            btnLog.Click += button6_Click_2;
             // 
             // panel1
             // 
@@ -349,7 +354,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(255, 35);
             panel1.TabIndex = 20;
-            panel1.Paint += panel1_Paint;
             // 
             // button1
             // 
@@ -374,7 +378,7 @@
             // 
             panel2.Anchor = AnchorStyles.None;
             panel2.Controls.Add(button2);
-            panel2.Location = new Point(3, 345);
+            panel2.Location = new Point(3, 474);
             panel2.Name = "panel2";
             panel2.Size = new Size(255, 64);
             panel2.TabIndex = 21;
@@ -390,7 +394,7 @@
             button2.ImageAlign = ContentAlignment.MiddleLeft;
             button2.Location = new Point(0, 0);
             button2.Name = "button2";
-            button2.Size = new Size(255, 64);
+            button2.Size = new Size(231, 64);
             button2.TabIndex = 0;
             button2.Text = "DASHBOARD";
             button2.UseVisualStyleBackColor = true;
@@ -399,7 +403,7 @@
             // panel5
             // 
             panel5.Controls.Add(button4);
-            panel5.Location = new Point(3, 415);
+            panel5.Location = new Point(3, 544);
             panel5.Name = "panel5";
             panel5.Size = new Size(255, 64);
             panel5.TabIndex = 21;
@@ -417,7 +421,7 @@
             button4.Margin = new Padding(8, 5, 3, 3);
             button4.Name = "button4";
             button4.Padding = new Padding(7, 0, 0, 0);
-            button4.Size = new Size(258, 64);
+            button4.Size = new Size(228, 64);
             button4.TabIndex = 0;
             button4.Text = "                       ABOUT";
             button4.TextAlign = ContentAlignment.MiddleLeft;
@@ -427,7 +431,7 @@
             // panel4
             // 
             panel4.Controls.Add(button3);
-            panel4.Location = new Point(3, 485);
+            panel4.Location = new Point(3, 614);
             panel4.Name = "panel4";
             panel4.Size = new Size(255, 64);
             panel4.TabIndex = 21;
@@ -443,7 +447,7 @@
             button3.ImageAlign = ContentAlignment.MiddleLeft;
             button3.Location = new Point(0, 0);
             button3.Name = "button3";
-            button3.Size = new Size(258, 64);
+            button3.Size = new Size(231, 64);
             button3.TabIndex = 0;
             button3.Text = "                         TUTORIAL";
             button3.TextAlign = ContentAlignment.MiddleLeft;
@@ -465,7 +469,6 @@
             pictureBox1.Size = new Size(1170, 82);
             pictureBox1.TabIndex = 23;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
             // 
             // budgetActionTimer
             // 
@@ -485,7 +488,6 @@
             sidebarProfile.Name = "sidebarProfile";
             sidebarProfile.Size = new Size(208, 79);
             sidebarProfile.TabIndex = 30;
-            sidebarProfile.Paint += sidebarProfile_Paint;
             // 
             // panel7
             // 
@@ -735,9 +737,9 @@
             label20.ForeColor = Color.White;
             label20.Location = new Point(37, 191);
             label20.Name = "label20";
-            label20.Size = new Size(160, 20);
+            label20.Size = new Size(173, 20);
             label20.TabIndex = 35;
-            label20.Text = "ALLOWANCE LEFT :";
+            label20.Text = "DAILY ALLOCATION : ";
             // 
             // label19
             // 
@@ -774,7 +776,6 @@
             lblSat.Size = new Size(26, 27);
             lblSat.TabIndex = 32;
             lblSat.Text = "0";
-            lblSat.Click += label16_Click;
             // 
             // lblFri
             // 
@@ -883,7 +884,6 @@
             label8.Size = new Size(41, 23);
             label8.TabIndex = 23;
             label8.Text = "FRI";
-            label8.Click += label8_Click;
             // 
             // label7
             // 
@@ -936,6 +936,7 @@
             // pnlAllowance
             // 
             pnlAllowance.BackColor = Color.WhiteSmoke;
+            pnlAllowance.BorderStyle = BorderStyle.Fixed3D;
             pnlAllowance.Controls.Add(lblAllowanceCount);
             pnlAllowance.Controls.Add(label2);
             pnlAllowance.Location = new Point(313, 202);
@@ -943,7 +944,6 @@
             pnlAllowance.Size = new Size(260, 233);
             pnlAllowance.TabIndex = 33;
             pnlAllowance.Visible = false;
-            pnlAllowance.Paint += panel18_Paint;
             // 
             // lblAllowanceCount
             // 
@@ -951,7 +951,7 @@
             lblAllowanceCount.BackColor = Color.Transparent;
             lblAllowanceCount.Font = new Font("Cambria", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblAllowanceCount.ForeColor = Color.DarkGreen;
-            lblAllowanceCount.Location = new Point(107, 112);
+            lblAllowanceCount.Location = new Point(49, 112);
             lblAllowanceCount.Name = "lblAllowanceCount";
             lblAllowanceCount.Size = new Size(37, 40);
             lblAllowanceCount.TabIndex = 19;
@@ -968,7 +968,6 @@
             label2.Size = new Size(208, 23);
             label2.TabIndex = 18;
             label2.Text = "WEEKLY ALLOWANCE";
-            label2.Click += label2_Click_3;
             // 
             // pnlAbout
             // 
@@ -980,27 +979,101 @@
             pnlAbout.TabIndex = 34;
             pnlAbout.Visible = false;
             // 
+            // richTextBox1
+            // 
+            richTextBox1.BorderStyle = BorderStyle.None;
+            richTextBox1.ForeColor = Color.DarkSlateGray;
+            richTextBox1.Location = new Point(3, 64);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical;
+            richTextBox1.Size = new Size(836, 438);
+            richTextBox1.TabIndex = 19;
+            richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            // 
             // label12
             // 
             label12.AutoSize = true;
             label12.BackColor = Color.Transparent;
             label12.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.ForeColor = Color.DarkSlateGray;
-            label12.Location = new Point(50, 30);
+            label12.ForeColor = SystemColors.ActiveCaptionText;
+            label12.Location = new Point(3, 24);
             label12.Name = "label12";
             label12.Size = new Size(184, 21);
             label12.TabIndex = 18;
             label12.Text = "About Budget Buddy";
-            label12.Click += label12_Click;
             // 
-            // richTextBox1
+            // pnlLogExpenses
             // 
-            richTextBox1.BorderStyle = BorderStyle.None;
-            richTextBox1.Location = new Point(50, 86);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(745, 120);
-            richTextBox1.TabIndex = 19;
-            richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            pnlLogExpenses.BackColor = Color.WhiteSmoke;
+            pnlLogExpenses.BorderStyle = BorderStyle.Fixed3D;
+            pnlLogExpenses.Controls.Add(btnDone);
+            pnlLogExpenses.Controls.Add(lblAllocationCount);
+            pnlLogExpenses.Controls.Add(label14);
+            pnlLogExpenses.Controls.Add(comboBox1);
+            pnlLogExpenses.Controls.Add(label13);
+            pnlLogExpenses.Location = new Point(479, 162);
+            pnlLogExpenses.Name = "pnlLogExpenses";
+            pnlLogExpenses.Size = new Size(460, 376);
+            pnlLogExpenses.TabIndex = 20;
+            pnlLogExpenses.Visible = false;
+            // 
+            // btnDone
+            // 
+            btnDone.ForeColor = Color.Black;
+            btnDone.Location = new Point(335, 310);
+            btnDone.Name = "btnDone";
+            btnDone.Size = new Size(94, 29);
+            btnDone.TabIndex = 22;
+            btnDone.Text = "Done";
+            btnDone.UseVisualStyleBackColor = true;
+            btnDone.Click += btnDone_Click;
+            // 
+            // lblAllocationCount
+            // 
+            lblAllocationCount.AutoSize = true;
+            lblAllocationCount.BackColor = Color.Transparent;
+            lblAllocationCount.Font = new Font("Cambria", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAllocationCount.ForeColor = Color.Black;
+            lblAllocationCount.Location = new Point(140, 216);
+            lblAllocationCount.Name = "lblAllocationCount";
+            lblAllocationCount.Size = new Size(32, 33);
+            lblAllocationCount.TabIndex = 21;
+            lblAllocationCount.Text = "0";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.BackColor = Color.Transparent;
+            label14.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label14.ForeColor = Color.Black;
+            label14.Location = new Point(92, 164);
+            label14.Name = "label14";
+            label14.Size = new Size(242, 21);
+            label14.TabIndex = 20;
+            label14.Text = "Suggested Daily Allocation: ";
+            // 
+            // comboBox1
+            // 
+            comboBox1.ForeColor = Color.DarkSlateGray;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7" });
+            comboBox1.Location = new Point(34, 81);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(369, 27);
+            comboBox1.TabIndex = 19;
+            comboBox1.Text = "Select Days";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.BackColor = Color.Transparent;
+            label13.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label13.ForeColor = Color.Black;
+            label13.Location = new Point(27, 34);
+            label13.Name = "label13";
+            label13.Size = new Size(376, 21);
+            label13.TabIndex = 18;
+            label13.Text = "How many days do you go to school or work?";
             // 
             // Dashboard
             // 
@@ -1009,14 +1082,15 @@
             BackColor = Color.White;
             BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(1143, 625);
-            Controls.Add(pnlAbout);
-            Controls.Add(pnlAllowance);
+            Controls.Add(pictureBox2);
+            Controls.Add(pnlLogExpenses);
             Controls.Add(pictureBox1);
             Controls.Add(sidebarProfile);
-            Controls.Add(pictureBox2);
             Controls.Add(sidebarContainer);
             Controls.Add(panel16);
             Controls.Add(pnDashboard);
+            Controls.Add(pnlAllowance);
+            Controls.Add(pnlAbout);
             Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ForeColor = Color.Transparent;
             FormBorderStyle = FormBorderStyle.None;
@@ -1054,6 +1128,8 @@
             pnlAllowance.PerformLayout();
             pnlAbout.ResumeLayout(false);
             pnlAbout.PerformLayout();
+            pnlLogExpenses.ResumeLayout(false);
+            pnlLogExpenses.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1075,15 +1151,15 @@
         private PictureBox pictureBox1;
         private Panel budgetActContainer;
         private Panel panel12;
-        private Button button10;
+        private Button btnWeeklySummary;
         private Panel panel11;
-        private Button button9;
+        private Button btnUpdateAllowance;
         private Panel panel10;
-        private Button button8;
+        private Button btnLogAnother;
         private Panel panel9;
-        private Button button7;
+        private Button btnLogExpense;
         private Panel panel8;
-        private Button button6;
+        private Button btnLog;
         private System.Windows.Forms.Timer budgetActionTimer;
         private FlowLayoutPanel sidebarProfile;
         private Panel panel13;
@@ -1129,5 +1205,11 @@
         private Panel pnlAbout;
         private Label label12;
         private RichTextBox richTextBox1;
+        private Panel pnlLogExpenses;
+        private Label label13;
+        private ComboBox comboBox1;
+        private Label label14;
+        private Label lblAllocationCount;
+        private Button btnDone;
     }
 }

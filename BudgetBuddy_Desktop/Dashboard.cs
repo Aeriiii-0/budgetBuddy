@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace BudgetBuddy_Desktop
 {
@@ -17,119 +18,33 @@ namespace BudgetBuddy_Desktop
         bool budgetActionCollapsed;
         bool profileExpanded;
         bool profileCollapsed;
-        public Dashboard()
+        public string userUsername;
+        public string userPassword;
+
+        public Dashboard(string userUsername, string userPassword)
         {
             InitializeComponent();
+            this.userUsername = userUsername;
+            this.userPassword = userPassword;
+
+            lblAllowanceCount.Text = BBProcess.DisplayAllowance(userUsername, userPassword).ToString("F2");
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button5_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox5_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label2_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void button1_Click_2(object sender, EventArgs e)
         {
             budgetActionTimer.Start();
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
-
-        private void panel6_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void sidebarTimer_Tick(object sender, EventArgs e)
         {
@@ -162,43 +77,16 @@ namespace BudgetBuddy_Desktop
 
         private void btnExt_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            Environment.Exit(0); //delete this
         }
 
-        private void label2_Click_2(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox5_Click_1(object sender, EventArgs e)
-        {
-
-        }
 
         private void label1_Click_2(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox3_Click_1(object sender, EventArgs e)
-        {
 
-        }
-
-        private void panel6_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button6_Click_1(object sender, EventArgs e)
-        {
-
-        }
 
 
 
@@ -266,10 +154,7 @@ namespace BudgetBuddy_Desktop
 
         }
 
-        private void panel13_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
 
         private void button13_Click(object sender, EventArgs e)
         {
@@ -286,15 +171,6 @@ namespace BudgetBuddy_Desktop
             Environment.Exit(0);
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void sidebarProfile_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void button11_Click(object sender, EventArgs e)
         {
@@ -325,10 +201,7 @@ namespace BudgetBuddy_Desktop
             }
         }
 
-        private void panel17_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
 
         private void button12_Click(object sender, EventArgs e)
         {
@@ -347,8 +220,7 @@ namespace BudgetBuddy_Desktop
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            pnDashboard.Visible = true;
-            pnlAllowance.Visible = true;
+            DashboardPnlVisiblity();
         }
 
         private void button4_Click_1(object sender, EventArgs e)
@@ -357,26 +229,7 @@ namespace BudgetBuddy_Desktop
 
         }
 
-        private void panel18_Paint(object sender, PaintEventArgs e)
-        {
 
-            //  lblAllowanceCount = BBProcess.DisplayAllowance(userUsername, userPassword); allowance label
-        }
-
-        private void label2_Click_3(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label16_Click(object sender, EventArgs e)
-        {
-
-        }
 
 
 
@@ -395,10 +248,7 @@ namespace BudgetBuddy_Desktop
             this.Hide();
         }
 
-        private void budgetActContainer_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
 
         private void budgetActContainer_Paint_1(object sender, PaintEventArgs e)
         {
@@ -407,22 +257,9 @@ namespace BudgetBuddy_Desktop
 
         private void button6_Click_2(object sender, EventArgs e)
         {
-            // BBProcess.ClearData(userUsername, userPassword);
-        }
+            BBProcess.ClearData(userUsername, userPassword);
 
-        private void button8_Click_1(object sender, EventArgs e)
-        {
-            //log another week
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            //log
-        }
-
-        private void button10_Click_1(object sender, EventArgs e)
-        {
-
+            //add panel ask if sure.
         }
 
         private void AboutPnlVisiblity()
@@ -430,11 +267,43 @@ namespace BudgetBuddy_Desktop
             pnlAbout.Visible = true;
             pnlAllowance.Visible = false;
             pnDashboard.Visible = false;
+            pnlLogExpenses.Visible = false;
         }
 
-        private void label12_Click(object sender, EventArgs e)
+        private void DashboardPnlVisiblity()
         {
-
+            pnlAbout.Visible = false;
+            pnlAllowance.Visible = true;
+            pnDashboard.Visible = true;
+            pnlLogExpenses.Visible = false;
         }
+
+        private void LogExpensePnlVisiblity()
+        {
+            pnlAbout.Visible = false;
+            pnlAllowance.Visible = false;
+            pnDashboard.Visible = false;
+            pnlLogExpenses.Visible = true;
+        }
+
+        private void btnLogExpense_Click(object sender, EventArgs e)
+        {
+            LogExpensePnlVisiblity();
+        }
+
+        private void btnLogAnother_Click(object sender, EventArgs e)
+        {
+            BBProcess.LogAnotherWeek();
+        }
+
+        private void btnDone_Click(object sender, EventArgs e)
+        {
+            var days = comboBox1.SelectedIndex +1;
+
+            lblAllocationCount.Text = BBProcess.WeeklyAllowance(days, userUsername, userPassword).ToString("F2");
+            MessageBox.Show("GREAT!\nNote: Try to keep expenses under the allocation to save money!");
+        }
+
+
     }
 }
