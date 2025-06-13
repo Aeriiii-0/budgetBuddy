@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            Label label4;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             pictureBox2 = new PictureBox();
             sidebarContainer = new FlowLayoutPanel();
@@ -74,6 +75,16 @@
             button14 = new Button();
             profilebarTimer = new System.Windows.Forms.Timer(components);
             panel16 = new Panel();
+            pnlDays = new Panel();
+            btnFr = new Button();
+            btnSun = new Button();
+            btnSat = new Button();
+            btnThu = new Button();
+            btnWed = new Button();
+            btnTue = new Button();
+            btnMon = new Button();
+            btnNext = new Button();
+            label17 = new Label();
             settingsTimer = new System.Windows.Forms.Timer(components);
             pnDashboard = new Panel();
             lblAllowanceLeft = new Label();
@@ -94,7 +105,6 @@
             label7 = new Label();
             label6 = new Label();
             label5 = new Label();
-            label4 = new Label();
             pnlAllowance = new Panel();
             lblAllowanceCount = new Label();
             label2 = new Label();
@@ -107,16 +117,18 @@
             label14 = new Label();
             comboBox1 = new ComboBox();
             label13 = new Label();
-            pnlDays = new Panel();
-            radioButton5 = new RadioButton();
-            radioButton6 = new RadioButton();
-            radioButton7 = new RadioButton();
-            radioButton4 = new RadioButton();
-            radioButton3 = new RadioButton();
-            radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
-            btnNext = new Button();
-            label17 = new Label();
+            pnlDailyExpense = new Panel();
+            btnExpenseSubmit = new Button();
+            txtMiscellaneous = new TextBox();
+            label22 = new Label();
+            txtDinner = new TextBox();
+            label21 = new Label();
+            txtLunch = new TextBox();
+            label18 = new Label();
+            txtBreakfast = new TextBox();
+            label16 = new Label();
+            label15 = new Label();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             sidebarContainer.SuspendLayout();
             panel3.SuspendLayout();
@@ -141,12 +153,25 @@
             panel13.SuspendLayout();
             panel14.SuspendLayout();
             panel15.SuspendLayout();
+            pnlDays.SuspendLayout();
             pnDashboard.SuspendLayout();
             pnlAllowance.SuspendLayout();
             pnlAbout.SuspendLayout();
             pnlLogExpenses.SuspendLayout();
-            pnlDays.SuspendLayout();
+            pnlDailyExpense.SuspendLayout();
             SuspendLayout();
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(172, 30);
+            label4.Name = "label4";
+            label4.Size = new Size(187, 23);
+            label4.TabIndex = 19;
+            label4.Text = "WEEKLY SUMMARY";
             // 
             // pictureBox2
             // 
@@ -683,6 +708,118 @@
             panel16.Size = new Size(1077, 79);
             panel16.TabIndex = 31;
             // 
+            // pnlDays
+            // 
+            pnlDays.BackColor = Color.WhiteSmoke;
+            pnlDays.BorderStyle = BorderStyle.Fixed3D;
+            pnlDays.Controls.Add(btnFr);
+            pnlDays.Controls.Add(btnSun);
+            pnlDays.Controls.Add(btnSat);
+            pnlDays.Controls.Add(btnThu);
+            pnlDays.Controls.Add(btnWed);
+            pnlDays.Controls.Add(btnTue);
+            pnlDays.Controls.Add(btnMon);
+            pnlDays.Controls.Add(btnNext);
+            pnlDays.Controls.Add(label17);
+            pnlDays.Location = new Point(668, 159);
+            pnlDays.Name = "pnlDays";
+            pnlDays.Size = new Size(460, 392);
+            pnlDays.TabIndex = 23;
+            pnlDays.Visible = false;
+            // 
+            // btnFr
+            // 
+            btnFr.BackColor = Color.Black;
+            btnFr.Location = new Point(269, 97);
+            btnFr.Name = "btnFr";
+            btnFr.Size = new Size(140, 29);
+            btnFr.TabIndex = 30;
+            btnFr.Text = "Friday";
+            btnFr.UseVisualStyleBackColor = false;
+            // 
+            // btnSun
+            // 
+            btnSun.BackColor = Color.Black;
+            btnSun.Location = new Point(269, 205);
+            btnSun.Name = "btnSun";
+            btnSun.Size = new Size(140, 29);
+            btnSun.TabIndex = 29;
+            btnSun.Text = "Sunday";
+            btnSun.UseVisualStyleBackColor = false;
+            // 
+            // btnSat
+            // 
+            btnSat.BackColor = Color.Black;
+            btnSat.Location = new Point(269, 149);
+            btnSat.Name = "btnSat";
+            btnSat.Size = new Size(140, 29);
+            btnSat.TabIndex = 28;
+            btnSat.Text = "Saturday";
+            btnSat.UseVisualStyleBackColor = false;
+            // 
+            // btnThu
+            // 
+            btnThu.BackColor = Color.Black;
+            btnThu.Location = new Point(170, 267);
+            btnThu.Name = "btnThu";
+            btnThu.Size = new Size(140, 29);
+            btnThu.TabIndex = 26;
+            btnThu.Text = "Thursday";
+            btnThu.UseVisualStyleBackColor = false;
+            // 
+            // btnWed
+            // 
+            btnWed.BackColor = Color.Black;
+            btnWed.Location = new Point(54, 205);
+            btnWed.Name = "btnWed";
+            btnWed.Size = new Size(142, 29);
+            btnWed.TabIndex = 25;
+            btnWed.Text = "Wednesday";
+            btnWed.UseVisualStyleBackColor = false;
+            // 
+            // btnTue
+            // 
+            btnTue.BackColor = Color.Black;
+            btnTue.Location = new Point(54, 149);
+            btnTue.Name = "btnTue";
+            btnTue.Size = new Size(142, 29);
+            btnTue.TabIndex = 24;
+            btnTue.Text = "Tuesday";
+            btnTue.UseVisualStyleBackColor = false;
+            // 
+            // btnMon
+            // 
+            btnMon.BackColor = Color.Black;
+            btnMon.Location = new Point(54, 97);
+            btnMon.Name = "btnMon";
+            btnMon.Size = new Size(140, 29);
+            btnMon.TabIndex = 23;
+            btnMon.Text = "Monday";
+            btnMon.UseVisualStyleBackColor = false;
+            // 
+            // btnNext
+            // 
+            btnNext.ForeColor = Color.Black;
+            btnNext.Location = new Point(343, 331);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new Size(94, 29);
+            btnNext.TabIndex = 22;
+            btnNext.Text = "Back";
+            btnNext.UseVisualStyleBackColor = true;
+            btnNext.Click += btnDays_Click;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.BackColor = Color.Transparent;
+            label17.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label17.ForeColor = Color.Black;
+            label17.Location = new Point(183, 37);
+            label17.Name = "label17";
+            label17.Size = new Size(96, 21);
+            label17.TabIndex = 18;
+            label17.Text = "Select Day";
+            // 
             // settingsTimer
             // 
             settingsTimer.Interval = 10;
@@ -932,18 +1069,6 @@
             label5.TabIndex = 20;
             label5.Text = "MON";
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(172, 30);
-            label4.Name = "label4";
-            label4.Size = new Size(187, 23);
-            label4.TabIndex = 19;
-            label4.Text = "WEEKLY SUMMARY";
-            // 
             // pnlAllowance
             // 
             pnlAllowance.BackColor = Color.WhiteSmoke;
@@ -1022,7 +1147,7 @@
             pnlLogExpenses.Controls.Add(label14);
             pnlLogExpenses.Controls.Add(comboBox1);
             pnlLogExpenses.Controls.Add(label13);
-            pnlLogExpenses.Location = new Point(378, 160);
+            pnlLogExpenses.Location = new Point(269, 162);
             pnlLogExpenses.Name = "pnlLogExpenses";
             pnlLogExpenses.Size = new Size(460, 376);
             pnlLogExpenses.TabIndex = 20;
@@ -1086,138 +1211,128 @@
             label13.TabIndex = 18;
             label13.Text = "How many days do you go to school or work?";
             // 
-            // pnlDays
+            // pnlDailyExpense
             // 
-            pnlDays.BackColor = Color.WhiteSmoke;
-            pnlDays.BorderStyle = BorderStyle.Fixed3D;
-            pnlDays.Controls.Add(radioButton5);
-            pnlDays.Controls.Add(radioButton6);
-            pnlDays.Controls.Add(radioButton7);
-            pnlDays.Controls.Add(radioButton4);
-            pnlDays.Controls.Add(radioButton3);
-            pnlDays.Controls.Add(radioButton2);
-            pnlDays.Controls.Add(radioButton1);
-            pnlDays.Controls.Add(btnNext);
-            pnlDays.Controls.Add(label17);
-            pnlDays.Location = new Point(479, 165);
-            pnlDays.Name = "pnlDays";
-            pnlDays.Size = new Size(460, 376);
-            pnlDays.TabIndex = 23;
-            pnlDays.Visible = false;
+            pnlDailyExpense.BackColor = Color.FromArgb(11, 22, 41);
+            pnlDailyExpense.Controls.Add(btnExpenseSubmit);
+            pnlDailyExpense.Controls.Add(txtMiscellaneous);
+            pnlDailyExpense.Controls.Add(label22);
+            pnlDailyExpense.Controls.Add(txtDinner);
+            pnlDailyExpense.Controls.Add(label21);
+            pnlDailyExpense.Controls.Add(txtLunch);
+            pnlDailyExpense.Controls.Add(label18);
+            pnlDailyExpense.Controls.Add(txtBreakfast);
+            pnlDailyExpense.Controls.Add(label16);
+            pnlDailyExpense.Controls.Add(label15);
+            pnlDailyExpense.Location = new Point(286, 181);
+            pnlDailyExpense.Name = "pnlDailyExpense";
+            pnlDailyExpense.Size = new Size(811, 320);
+            pnlDailyExpense.TabIndex = 35;
+            pnlDailyExpense.Visible = false;
             // 
-            // radioButton5
+            // btnExpenseSubmit
             // 
-            radioButton5.AutoSize = true;
-            radioButton5.BackColor = Color.Transparent;
-            radioButton5.ForeColor = Color.DarkSlateGray;
-            radioButton5.Location = new Point(237, 182);
-            radioButton5.Name = "radioButton5";
-            radioButton5.Size = new Size(81, 23);
-            radioButton5.TabIndex = 29;
-            radioButton5.TabStop = true;
-            radioButton5.Text = "Sunday";
-            radioButton5.UseVisualStyleBackColor = false;
+            btnExpenseSubmit.BackColor = Color.White;
+            btnExpenseSubmit.ForeColor = Color.Black;
+            btnExpenseSubmit.Location = new Point(697, 273);
+            btnExpenseSubmit.Name = "btnExpenseSubmit";
+            btnExpenseSubmit.Size = new Size(94, 29);
+            btnExpenseSubmit.TabIndex = 27;
+            btnExpenseSubmit.Text = "Submit";
+            btnExpenseSubmit.UseVisualStyleBackColor = false;
+            btnExpenseSubmit.Click += btnExpenseSubmit_Click;
             // 
-            // radioButton6
+            // txtMiscellaneous
             // 
-            radioButton6.AutoSize = true;
-            radioButton6.BackColor = Color.Transparent;
-            radioButton6.ForeColor = Color.DarkSlateGray;
-            radioButton6.Location = new Point(237, 143);
-            radioButton6.Name = "radioButton6";
-            radioButton6.Size = new Size(92, 23);
-            radioButton6.TabIndex = 28;
-            radioButton6.TabStop = true;
-            radioButton6.Text = "Saturday";
-            radioButton6.UseVisualStyleBackColor = false;
+            txtMiscellaneous.BackColor = SystemColors.ActiveCaption;
+            txtMiscellaneous.Location = new Point(443, 201);
+            txtMiscellaneous.Name = "txtMiscellaneous";
+            txtMiscellaneous.Size = new Size(296, 27);
+            txtMiscellaneous.TabIndex = 26;
             // 
-            // radioButton7
+            // label22
             // 
-            radioButton7.AutoSize = true;
-            radioButton7.BackColor = Color.Transparent;
-            radioButton7.ForeColor = Color.DarkSlateGray;
-            radioButton7.Location = new Point(237, 105);
-            radioButton7.Name = "radioButton7";
-            radioButton7.Size = new Size(73, 23);
-            radioButton7.TabIndex = 27;
-            radioButton7.TabStop = true;
-            radioButton7.Text = "Friday";
-            radioButton7.UseVisualStyleBackColor = false;
+            label22.AutoSize = true;
+            label22.BackColor = Color.Transparent;
+            label22.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label22.ForeColor = Color.SkyBlue;
+            label22.Location = new Point(441, 171);
+            label22.Name = "label22";
+            label22.Size = new Size(129, 21);
+            label22.TabIndex = 25;
+            label22.Text = "Miscellaneous";
             // 
-            // radioButton4
+            // txtDinner
             // 
-            radioButton4.AutoSize = true;
-            radioButton4.BackColor = Color.Transparent;
-            radioButton4.ForeColor = Color.DarkSlateGray;
-            radioButton4.Location = new Point(56, 218);
-            radioButton4.Name = "radioButton4";
-            radioButton4.Size = new Size(95, 23);
-            radioButton4.TabIndex = 26;
-            radioButton4.TabStop = true;
-            radioButton4.Text = "Thursday";
-            radioButton4.UseVisualStyleBackColor = false;
+            txtDinner.BackColor = SystemColors.ActiveCaption;
+            txtDinner.Location = new Point(443, 112);
+            txtDinner.Name = "txtDinner";
+            txtDinner.Size = new Size(296, 27);
+            txtDinner.TabIndex = 24;
             // 
-            // radioButton3
+            // label21
             // 
-            radioButton3.AutoSize = true;
-            radioButton3.BackColor = Color.Transparent;
-            radioButton3.ForeColor = Color.DarkSlateGray;
-            radioButton3.Location = new Point(56, 182);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(111, 23);
-            radioButton3.TabIndex = 25;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "Wednesday";
-            radioButton3.UseVisualStyleBackColor = false;
+            label21.AutoSize = true;
+            label21.BackColor = Color.Transparent;
+            label21.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label21.ForeColor = Color.SkyBlue;
+            label21.Location = new Point(441, 82);
+            label21.Name = "label21";
+            label21.Size = new Size(69, 21);
+            label21.TabIndex = 23;
+            label21.Text = "Dinner";
             // 
-            // radioButton2
+            // txtLunch
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.BackColor = Color.Transparent;
-            radioButton2.ForeColor = Color.DarkSlateGray;
-            radioButton2.Location = new Point(56, 143);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(88, 23);
-            radioButton2.TabIndex = 24;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Tuesday";
-            radioButton2.UseVisualStyleBackColor = false;
+            txtLunch.BackColor = SystemColors.ActiveCaption;
+            txtLunch.Location = new Point(72, 201);
+            txtLunch.Name = "txtLunch";
+            txtLunch.Size = new Size(296, 27);
+            txtLunch.TabIndex = 22;
             // 
-            // radioButton1
+            // label18
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.BackColor = Color.Transparent;
-            radioButton1.ForeColor = Color.DarkSlateGray;
-            radioButton1.Location = new Point(56, 105);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(87, 23);
-            radioButton1.TabIndex = 23;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Monday";
-            radioButton1.UseVisualStyleBackColor = false;
+            label18.AutoSize = true;
+            label18.BackColor = Color.Transparent;
+            label18.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label18.ForeColor = Color.SkyBlue;
+            label18.Location = new Point(70, 171);
+            label18.Name = "label18";
+            label18.Size = new Size(61, 21);
+            label18.TabIndex = 21;
+            label18.Text = "Lunch";
             // 
-            // btnNext
+            // txtBreakfast
             // 
-            btnNext.ForeColor = Color.Black;
-            btnNext.Location = new Point(335, 310);
-            btnNext.Name = "btnNext";
-            btnNext.Size = new Size(94, 29);
-            btnNext.TabIndex = 22;
-            btnNext.Text = "Next";
-            btnNext.UseVisualStyleBackColor = true;
-            btnNext.Click += btnDays_Click;
+            txtBreakfast.BackColor = SystemColors.ActiveCaption;
+            txtBreakfast.Location = new Point(70, 112);
+            txtBreakfast.Name = "txtBreakfast";
+            txtBreakfast.Size = new Size(296, 27);
+            txtBreakfast.TabIndex = 20;
             // 
-            // label17
+            // label16
             // 
-            label17.AutoSize = true;
-            label17.BackColor = Color.Transparent;
-            label17.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label17.ForeColor = Color.Black;
-            label17.Location = new Point(147, 33);
-            label17.Name = "label17";
-            label17.Size = new Size(96, 21);
-            label17.TabIndex = 18;
-            label17.Text = "Select Day";
+            label16.AutoSize = true;
+            label16.BackColor = Color.Transparent;
+            label16.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label16.ForeColor = Color.SkyBlue;
+            label16.Location = new Point(68, 82);
+            label16.Name = "label16";
+            label16.Size = new Size(92, 21);
+            label16.TabIndex = 19;
+            label16.Text = "Breakfast";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.BackColor = Color.Transparent;
+            label15.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label15.ForeColor = Color.SkyBlue;
+            label15.Location = new Point(27, 30);
+            label15.Name = "label15";
+            label15.Size = new Size(605, 21);
+            label15.TabIndex = 18;
+            label15.Text = "Enter the exact amount (in PHP) you spent based on the asked category";
             // 
             // Dashboard
             // 
@@ -1226,16 +1341,17 @@
             BackColor = Color.White;
             BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(1143, 625);
-            Controls.Add(pnDashboard);
+            Controls.Add(pnlDays);
             Controls.Add(pnlLogExpenses);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(sidebarProfile);
             Controls.Add(sidebarContainer);
             Controls.Add(panel16);
+            Controls.Add(pnDashboard);
             Controls.Add(pnlAllowance);
             Controls.Add(pnlAbout);
-            Controls.Add(pnlDays);
+            Controls.Add(pnlDailyExpense);
             Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ForeColor = Color.Transparent;
             FormBorderStyle = FormBorderStyle.None;
@@ -1267,6 +1383,8 @@
             panel13.ResumeLayout(false);
             panel14.ResumeLayout(false);
             panel15.ResumeLayout(false);
+            pnlDays.ResumeLayout(false);
+            pnlDays.PerformLayout();
             pnDashboard.ResumeLayout(false);
             pnDashboard.PerformLayout();
             pnlAllowance.ResumeLayout(false);
@@ -1275,8 +1393,8 @@
             pnlAbout.PerformLayout();
             pnlLogExpenses.ResumeLayout(false);
             pnlLogExpenses.PerformLayout();
-            pnlDays.ResumeLayout(false);
-            pnlDays.PerformLayout();
+            pnlDailyExpense.ResumeLayout(false);
+            pnlDailyExpense.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1361,12 +1479,23 @@
         private Panel pnlDays;
         private Button btnNext;
         private Label label17;
-        private RadioButton radioButton4;
-        private RadioButton radioButton3;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
-        private RadioButton radioButton5;
-        private RadioButton radioButton6;
-        private RadioButton radioButton7;
+        private Panel pnlDailyExpense;
+        private Label label15;
+        private Label label16;
+        private Button btnExpenseSubmit;
+        private TextBox txtMiscellaneous;
+        private Label label22;
+        private TextBox txtDinner;
+        private Label label21;
+        private TextBox txtLunch;
+        private Label label18;
+        private TextBox txtBreakfast;
+        private Button btnMon;
+        private Button btnThu;
+        private Button btnWed;
+        private Button btnTue;
+        private Button btnSun;
+        private Button btnSat;
+        private Button btnFr;
     }
 }
