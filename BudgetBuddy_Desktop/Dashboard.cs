@@ -348,31 +348,12 @@ namespace BudgetBuddy_Desktop
 
         private void btnDays_Click(object sender, EventArgs e)
         {
+        var dayInput = cmbCurrentDay.SelectedIndex + 1;
 
-            if (!BBProcess.CheckLoggedDays(days)) //flawed logic. baka ilipat to before logging expense.
-            {
-                MessageBox.Show("Oh No! You've already logged for all the days you registered.\nPlease come back next week <3", "Notification");
-            }
+        var result =BBProcess.AddUserInput(dayInput);
+         DailyExpensePnlVisibility();
 
-
-            else
-            {
-
-                var result = BBProcess.AddUserInput(dayInput);
-
-                if (result)
-                {
-                    DailyExpensePnlVisibility();
-                }
-                else
-                {
-                    MessageBox.Show("You've already logged for the selected day. Please come back tomorrow.", "Notification");
-                }
-
-
-            }
         }
-
         private void btnExpenseSubmit_Click(object sender, EventArgs e)
         {
             var Breakfast = Convert.ToDouble(txtBreakfast.Text);
@@ -385,7 +366,11 @@ namespace BudgetBuddy_Desktop
             ClearFieldsDayExpense();
         }
 
-      
+        private void pnlDailyExpense_Paint(object sender, PaintEventArgs e)
+        {
+            //del
+        }
+
         private void ClearFieldsDayExpense()
         {
             txtBreakfast.Clear();
@@ -394,6 +379,14 @@ namespace BudgetBuddy_Desktop
             txtMiscellaneous.Clear();
         }
 
-     
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //del
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //del
+        }
     }
 }

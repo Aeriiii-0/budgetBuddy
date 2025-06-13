@@ -76,13 +76,7 @@
             profilebarTimer = new System.Windows.Forms.Timer(components);
             panel16 = new Panel();
             pnlDays = new Panel();
-            btnFr = new Button();
-            btnSun = new Button();
-            btnSat = new Button();
-            btnThu = new Button();
-            btnWed = new Button();
-            btnTue = new Button();
-            btnMon = new Button();
+            cmbCurrentDay = new ComboBox();
             btnNext = new Button();
             label17 = new Label();
             settingsTimer = new System.Windows.Forms.Timer(components);
@@ -712,95 +706,30 @@
             // 
             pnlDays.BackColor = Color.WhiteSmoke;
             pnlDays.BorderStyle = BorderStyle.Fixed3D;
-            pnlDays.Controls.Add(btnFr);
-            pnlDays.Controls.Add(btnSun);
-            pnlDays.Controls.Add(btnSat);
-            pnlDays.Controls.Add(btnThu);
-            pnlDays.Controls.Add(btnWed);
-            pnlDays.Controls.Add(btnTue);
-            pnlDays.Controls.Add(btnMon);
+            pnlDays.Controls.Add(cmbCurrentDay);
             pnlDays.Controls.Add(btnNext);
             pnlDays.Controls.Add(label17);
-            pnlDays.Location = new Point(668, 159);
+            pnlDays.Location = new Point(668, 211);
             pnlDays.Name = "pnlDays";
-            pnlDays.Size = new Size(460, 392);
+            pnlDays.Size = new Size(460, 272);
             pnlDays.TabIndex = 23;
             pnlDays.Visible = false;
             // 
-            // btnFr
+            // cmbCurrentDay
             // 
-            btnFr.BackColor = Color.Black;
-            btnFr.Location = new Point(269, 97);
-            btnFr.Name = "btnFr";
-            btnFr.Size = new Size(140, 29);
-            btnFr.TabIndex = 30;
-            btnFr.Text = "Friday";
-            btnFr.UseVisualStyleBackColor = false;
-            // 
-            // btnSun
-            // 
-            btnSun.BackColor = Color.Black;
-            btnSun.Location = new Point(269, 205);
-            btnSun.Name = "btnSun";
-            btnSun.Size = new Size(140, 29);
-            btnSun.TabIndex = 29;
-            btnSun.Text = "Sunday";
-            btnSun.UseVisualStyleBackColor = false;
-            // 
-            // btnSat
-            // 
-            btnSat.BackColor = Color.Black;
-            btnSat.Location = new Point(269, 149);
-            btnSat.Name = "btnSat";
-            btnSat.Size = new Size(140, 29);
-            btnSat.TabIndex = 28;
-            btnSat.Text = "Saturday";
-            btnSat.UseVisualStyleBackColor = false;
-            // 
-            // btnThu
-            // 
-            btnThu.BackColor = Color.Black;
-            btnThu.Location = new Point(170, 267);
-            btnThu.Name = "btnThu";
-            btnThu.Size = new Size(140, 29);
-            btnThu.TabIndex = 26;
-            btnThu.Text = "Thursday";
-            btnThu.UseVisualStyleBackColor = false;
-            // 
-            // btnWed
-            // 
-            btnWed.BackColor = Color.Black;
-            btnWed.Location = new Point(54, 205);
-            btnWed.Name = "btnWed";
-            btnWed.Size = new Size(142, 29);
-            btnWed.TabIndex = 25;
-            btnWed.Text = "Wednesday";
-            btnWed.UseVisualStyleBackColor = false;
-            // 
-            // btnTue
-            // 
-            btnTue.BackColor = Color.Black;
-            btnTue.Location = new Point(54, 149);
-            btnTue.Name = "btnTue";
-            btnTue.Size = new Size(142, 29);
-            btnTue.TabIndex = 24;
-            btnTue.Text = "Tuesday";
-            btnTue.UseVisualStyleBackColor = false;
-            // 
-            // btnMon
-            // 
-            btnMon.BackColor = Color.Black;
-            btnMon.Location = new Point(54, 97);
-            btnMon.Name = "btnMon";
-            btnMon.Size = new Size(140, 29);
-            btnMon.TabIndex = 23;
-            btnMon.Text = "Monday";
-            btnMon.UseVisualStyleBackColor = false;
+            cmbCurrentDay.BackColor = SystemColors.GradientActiveCaption;
+            cmbCurrentDay.FormattingEnabled = true;
+            cmbCurrentDay.Items.AddRange(new object[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday\t", "Saturday", "Sunday" });
+            cmbCurrentDay.Location = new Point(72, 122);
+            cmbCurrentDay.Name = "cmbCurrentDay";
+            cmbCurrentDay.Size = new Size(335, 27);
+            cmbCurrentDay.TabIndex = 23;
+            cmbCurrentDay.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // btnNext
             // 
             btnNext.ForeColor = Color.Black;
-            btnNext.Location = new Point(343, 331);
+            btnNext.Location = new Point(313, 201);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(94, 29);
             btnNext.TabIndex = 22;
@@ -814,11 +743,11 @@
             label17.BackColor = Color.Transparent;
             label17.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label17.ForeColor = Color.Black;
-            label17.Location = new Point(183, 37);
+            label17.Location = new Point(146, 71);
             label17.Name = "label17";
-            label17.Size = new Size(96, 21);
+            label17.Size = new Size(165, 21);
             label17.TabIndex = 18;
-            label17.Text = "Select Day";
+            label17.Text = "Select Current Day";
             // 
             // settingsTimer
             // 
@@ -1490,12 +1419,6 @@
         private TextBox txtLunch;
         private Label label18;
         private TextBox txtBreakfast;
-        private Button btnMon;
-        private Button btnThu;
-        private Button btnWed;
-        private Button btnTue;
-        private Button btnSun;
-        private Button btnSat;
-        private Button btnFr;
+        private ComboBox cmbCurrentDay;
     }
 }

@@ -131,8 +131,8 @@ namespace BB_BusinessDataLogic
             TotalDailyExpense = Breakfast + Lunch + Dinner + Transportation;
             dailyExpenses.Add(TotalDailyExpense);
 
-            string[] daysOfWeek = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-            string dayOfWeek = daysOfWeek[dayInput - 1];
+            string[] daysOfWeek = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };  //might remove
+            string dayOfWeek = daysOfWeek[dayInput - 1];  //++
 
             SaveDailyExpenseToDB(userUsername, userPassword, dayOfWeek, TotalDailyExpense);
 
