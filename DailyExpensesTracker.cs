@@ -350,7 +350,7 @@ namespace budgetBuddy
                     newAllowance = Convert.ToDouble(Console.ReadLine());
                     Console.WriteLine("\n----------------------------------------------------");
                     Console.WriteLine("\nAccount Updated!");
-                    BBProcess.UpdateAccount(userUsername, userPassword, newPassword, newAllowance);
+                    BBProcess.UpdateAccount(userUsername, userPassword, newPassword);
                     break;
                 case 2:
                     AccountChecker();

@@ -13,7 +13,7 @@ namespace BB_BusinessDataLogic
     public class BBProcess
     {
         public static double allocation, TotalDailyExpense;
-        static HashSet<int> selectedDay = new HashSet<int>();
+        public static HashSet<int> selectedDay = new HashSet<int>();
         public static List<string> dayArray = new List<string>();
         public static List<double> dailyExpenses = new List<double>();
         static BBDataManager dataManager = new BBDataManager();
@@ -131,8 +131,8 @@ namespace BB_BusinessDataLogic
             TotalDailyExpense = Breakfast + Lunch + Dinner + Transportation;
             dailyExpenses.Add(TotalDailyExpense);
 
-            string[] daysOfWeek = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };  //might remove
-            string dayOfWeek = daysOfWeek[dayInput - 1];  //++
+            string[] daysOfWeek = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };  
+            string dayOfWeek = daysOfWeek[dayInput - 1];  
 
             SaveDailyExpenseToDB(userUsername, userPassword, dayOfWeek, TotalDailyExpense);
 
@@ -284,6 +284,13 @@ namespace BB_BusinessDataLogic
             selectedDay.Clear(); 
                 dayArray.Clear();
             dailyExpenses.Clear();
+        }
+
+        public static double GetExpenseForDay(int dayIndex)
+        {
+            if (dayIndex < dailyExpenses.Count)
+                return dailyExpenses[dayIndex];
+            return 0;
         }
 
     }

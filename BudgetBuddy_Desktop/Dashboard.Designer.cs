@@ -192,7 +192,6 @@
             sidebarContainer.Name = "sidebarContainer";
             sidebarContainer.Size = new Size(258, 624);
             sidebarContainer.TabIndex = 17;
-            sidebarContainer.Paint += sidebarContainer_Paint;
             // 
             // panel3
             // 
@@ -225,7 +224,6 @@
             label1.Size = new Size(67, 21);
             label1.TabIndex = 17;
             label1.Text = "  MENU";
-            label1.Click += label1_Click_2;
             // 
             // budgetActContainer
             // 
@@ -242,7 +240,6 @@
             budgetActContainer.Name = "budgetActContainer";
             budgetActContainer.Size = new Size(250, 309);
             budgetActContainer.TabIndex = 29;
-            budgetActContainer.Paint += budgetActContainer_Paint_1;
             // 
             // panel12
             // 
@@ -539,7 +536,6 @@
             label3.Size = new Size(67, 21);
             label3.TabIndex = 31;
             label3.Text = "Profile";
-            label3.Click += label3_Click;
             // 
             // pictureBox3
             // 
@@ -719,12 +715,11 @@
             // 
             cmbCurrentDay.BackColor = SystemColors.GradientActiveCaption;
             cmbCurrentDay.FormattingEnabled = true;
-            cmbCurrentDay.Items.AddRange(new object[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday\t", "Saturday", "Sunday" });
+            cmbCurrentDay.Items.AddRange(new object[] { "Select Day", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday\t", "Saturday", "Sunday" });
             cmbCurrentDay.Location = new Point(72, 122);
             cmbCurrentDay.Name = "cmbCurrentDay";
             cmbCurrentDay.Size = new Size(335, 27);
             cmbCurrentDay.TabIndex = 23;
-            cmbCurrentDay.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // btnNext
             // 
@@ -805,6 +800,7 @@
             lblTotal.Size = new Size(22, 23);
             lblTotal.TabIndex = 36;
             lblTotal.Text = "0";
+            lblTotal.Click += lblTotal_Click;
             // 
             // label20
             // 
@@ -1121,12 +1117,11 @@
             // 
             comboBox1.ForeColor = Color.DarkSlateGray;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7" });
+            comboBox1.Items.AddRange(new object[] { "Select Days", "1", "2", "3", "4", "5", "6", "7" });
             comboBox1.Location = new Point(34, 81);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(369, 27);
             comboBox1.TabIndex = 19;
-            comboBox1.Text = "Select Days";
             // 
             // label13
             // 
@@ -1272,15 +1267,15 @@
             ClientSize = new Size(1143, 625);
             Controls.Add(pnlDays);
             Controls.Add(pnlLogExpenses);
+            Controls.Add(pnlDailyExpense);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(sidebarProfile);
             Controls.Add(sidebarContainer);
             Controls.Add(panel16);
-            Controls.Add(pnDashboard);
             Controls.Add(pnlAllowance);
+            Controls.Add(pnDashboard);
             Controls.Add(pnlAbout);
-            Controls.Add(pnlDailyExpense);
             Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ForeColor = Color.Transparent;
             FormBorderStyle = FormBorderStyle.None;
