@@ -129,7 +129,6 @@
             btnEnter.AccessibleName = "btnEnter";
             btnEnter.BackColor = Color.FromArgb(40, 89, 157);
             btnEnter.BackgroundImageLayout = ImageLayout.None;
-            btnEnter.FlatStyle = FlatStyle.Flat;
             btnEnter.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEnter.ForeColor = Color.White;
             btnEnter.Location = new Point(331, 362);
@@ -170,13 +169,14 @@
             // btnExit
             // 
             btnExit.BackColor = Color.FromArgb(11, 22, 41);
-            btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.FlatStyle = FlatStyle.System;
+            btnExit.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnExit.ForeColor = Color.Transparent;
             btnExit.Location = new Point(899, 604);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(94, 29);
             btnExit.TabIndex = 14;
-            btnExit.Text = "Exit";
+            btnExit.Text = "Back";
             btnExit.UseVisualStyleBackColor = false;
             btnExit.Click += btnExit_Click;
             // 
@@ -192,6 +192,7 @@
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Name = "InputForms";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "InputForms";
             Load += InputForms_Load;
             panel1.ResumeLayout(false);

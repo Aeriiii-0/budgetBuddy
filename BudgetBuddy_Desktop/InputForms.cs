@@ -13,6 +13,7 @@ namespace BudgetBuddy_Desktop
 {
     public partial class InputForms : Form
     {
+        string userUsername, userPassword;
         public InputForms()
         {
             InitializeComponent();
@@ -45,7 +46,10 @@ namespace BudgetBuddy_Desktop
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            Dashboard dashboard = new Dashboard(userUsername, userPassword);
+            dashboard.Show();
+
+            this.Hide();
         }
 
         private void label3_Click_1(object sender, EventArgs e)
@@ -60,8 +64,8 @@ namespace BudgetBuddy_Desktop
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            var userUsername = txtUsername.Text;
-            var userPassword = txtPassword.Text;
+             userUsername = txtUsername.Text;
+             userPassword = txtPassword.Text;
             var allowance = Convert.ToDouble(txtAllowance.Text);
 
             BBProcess.CreateAccount(userUsername, userPassword, allowance);

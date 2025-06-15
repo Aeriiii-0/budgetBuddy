@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
-            btnExit = new Button();
             pictureBox1 = new PictureBox();
             btnExt = new Button();
             txtPassword = new TextBox();
@@ -46,37 +45,25 @@
             panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // btnExit
-            // 
-            btnExit.BackColor = Color.FromArgb(11, 22, 41);
-            btnExit.FlatStyle = FlatStyle.Flat;
-            btnExit.ForeColor = Color.Transparent;
-            btnExit.Location = new Point(881, 547);
-            btnExit.Name = "btnExit";
-            btnExit.Size = new Size(94, 29);
-            btnExit.TabIndex = 19;
-            btnExit.Text = "Exit";
-            btnExit.UseVisualStyleBackColor = false;
-            // 
             // pictureBox1
             // 
             pictureBox1.ErrorImage = (Image)resources.GetObject("pictureBox1.ErrorImage");
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(-43, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1103, 653);
+            pictureBox1.Size = new Size(1079, 657);
             pictureBox1.TabIndex = 20;
             pictureBox1.TabStop = false;
             // 
             // btnExt
             // 
-            btnExt.FlatStyle = FlatStyle.Flat;
-            btnExt.ForeColor = Color.Transparent;
+            btnExt.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExt.ForeColor = Color.Black;
             btnExt.Location = new Point(881, 582);
             btnExt.Name = "btnExt";
             btnExt.Size = new Size(94, 29);
             btnExt.TabIndex = 21;
-            btnExt.Text = "Exit";
+            btnExt.Text = "Back";
             btnExt.UseVisualStyleBackColor = true;
             btnExt.Click += button1_Click;
             // 
@@ -160,14 +147,12 @@
             txtNewPassword.Name = "txtNewPassword";
             txtNewPassword.Size = new Size(402, 27);
             txtNewPassword.TabIndex = 23;
-            txtNewPassword.Visible = false;
             // 
             // btnEnter
             // 
             btnEnter.AccessibleName = "btnEnter";
             btnEnter.BackColor = Color.FromArgb(40, 89, 157);
             btnEnter.BackgroundImageLayout = ImageLayout.None;
-            btnEnter.FlatStyle = FlatStyle.Flat;
             btnEnter.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEnter.ForeColor = Color.White;
             btnEnter.Location = new Point(331, 362);
@@ -212,9 +197,9 @@
             Controls.Add(panel1);
             Controls.Add(btnExt);
             Controls.Add(pictureBox1);
-            Controls.Add(btnExit);
             FormBorderStyle = FormBorderStyle.None;
             Name = "SettingsForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "SettingsForm";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
@@ -223,8 +208,6 @@
         }
 
         #endregion
-
-        private Button btnExit;
         private PictureBox pictureBox1;
         private Button btnExt;
         private TextBox txtPassword;

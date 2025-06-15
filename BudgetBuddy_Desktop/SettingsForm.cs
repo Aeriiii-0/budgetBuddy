@@ -13,6 +13,7 @@ namespace BudgetBuddy_Desktop
 {
     public partial class SettingsForm : Form
     {
+        string userUsername, userPassword;
         public SettingsForm()
         {
             InitializeComponent();
@@ -22,19 +23,29 @@ namespace BudgetBuddy_Desktop
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            Dashboard dashboard = new Dashboard(userUsername, userPassword);
+            dashboard.Show();
+
+            this.Hide();
         }
 
 
 
         private void btnEnter_Click_1(object sender, EventArgs e)
         {
-            var userUsername = txtUsername.Text;
-            var userPassword = txtPassword.Text;
+            userUsername = txtUsername.Text;
+            userPassword = txtPassword.Text;
             var newPassword = txtNewPassword.Text;
 
             BBProcess.UpdateAccount(userUsername, userPassword, newPassword);
+            MessageBox.Show("Password Updated!", "Notification");
             ClearFields();
+
+            Dashboard dashboard = new Dashboard(userUsername, userPassword);
+            dashboard.Show();
+
+            this.Hide();
+
         }
 
         private void ClearFields()

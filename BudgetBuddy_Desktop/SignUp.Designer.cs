@@ -57,14 +57,15 @@ namespace BudgetBuddy_Desktop
             // 
             // btnExit
             // 
-            btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.BackColor = SystemColors.ActiveCaption;
+            btnExit.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnExit.ForeColor = Color.Transparent;
-            btnExit.Location = new Point(910, 616);
+            btnExit.Location = new Point(968, 12);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(94, 29);
+            btnExit.Size = new Size(36, 29);
             btnExit.TabIndex = 13;
-            btnExit.Text = "Exit";
-            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Text = "X";
+            btnExit.UseVisualStyleBackColor = false;
             btnExit.Click += btnExit_Click;
             // 
             // btnCreateAcc
@@ -72,10 +73,11 @@ namespace BudgetBuddy_Desktop
             btnCreateAcc.AccessibleName = "btnCreateAcc";
             btnCreateAcc.BackColor = Color.FromArgb(40, 89, 157);
             btnCreateAcc.BackgroundImageLayout = ImageLayout.None;
-            btnCreateAcc.FlatStyle = FlatStyle.Popup;
+            btnCreateAcc.FlatAppearance.BorderSize = 0;
+            btnCreateAcc.FlatStyle = FlatStyle.Flat;
             btnCreateAcc.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCreateAcc.ForeColor = Color.White;
-            btnCreateAcc.Location = new Point(50, 376);
+            btnCreateAcc.Location = new Point(50, 389);
             btnCreateAcc.Name = "btnCreateAcc";
             btnCreateAcc.Size = new Size(187, 42);
             btnCreateAcc.TabIndex = 12;
@@ -191,7 +193,6 @@ namespace BudgetBuddy_Desktop
             btnLogin.AccessibleName = "btnLogin";
             btnLogin.BackColor = Color.FromArgb(40, 89, 157);
             btnLogin.BackgroundImageLayout = ImageLayout.None;
-            btnLogin.FlatStyle = FlatStyle.Popup;
             btnLogin.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogin.ForeColor = Color.White;
             btnLogin.Location = new Point(22, 298);
@@ -335,6 +336,7 @@ namespace BudgetBuddy_Desktop
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "BudgetBuddy";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Budget Buddy";
             Load += BudgetBuddy_Load;
             panel1.ResumeLayout(false);

@@ -155,7 +155,7 @@ namespace BudgetBuddy_Desktop
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            MessageBox.Show("Feature will be released soon...", "Notice");
         }
 
 
@@ -262,9 +262,10 @@ namespace BudgetBuddy_Desktop
             pnlLogExpenses.Visible = false;
             pnlDays.Visible = false;
             pnlDailyExpense.Visible = false;
-
-            UpdateAllowance updateAllowance = new UpdateAllowance(userUsername, userPassword, days);
-            updateAllowance.Hide();
+            pnlUpdateAllowance.Visible = false;
+            pnlDash.Visible = false;
+            pnlDash2.Visible = false;
+            pnlDash1.Visible = false;
         }
 
         private void SummaryPnlVisiblity()
@@ -275,9 +276,10 @@ namespace BudgetBuddy_Desktop
             pnlLogExpenses.Visible = false;
             pnlDays.Visible = false;
             pnlDailyExpense.Visible = false;
-
-            UpdateAllowance updateAllowance = new UpdateAllowance(userUsername, userPassword, days);
-            updateAllowance.Hide();
+            pnlUpdateAllowance.Visible = false;
+            pnlDash.Visible = false;
+            pnlDash2.Visible = false;
+            pnlDash1.Visible = false;
         }
 
         private void LogExpensePnlVisiblity() //allocation panel
@@ -288,9 +290,8 @@ namespace BudgetBuddy_Desktop
             pnlLogExpenses.Visible = true;
             pnlDays.Visible = false;
             pnlDailyExpense.Visible = false;
-
-            UpdateAllowance updateAllowance = new UpdateAllowance(userUsername, userPassword, days);
-            updateAllowance.Hide();
+            pnlUpdateAllowance.Visible = false;
+            pnlDash.Visible = false;
         }
 
         private void LogDaysPnlVisiblity()  //select days panel
@@ -301,9 +302,8 @@ namespace BudgetBuddy_Desktop
             pnlLogExpenses.Visible = false;
             pnlDays.Visible = true;
             pnlDailyExpense.Visible = false;
-
-            UpdateAllowance updateAllowance = new UpdateAllowance(userUsername, userPassword, days);
-            updateAllowance.Hide();
+            pnlUpdateAllowance.Visible = false;
+            pnlDash.Visible = false;
         }
 
         private void DailyExpensePnlVisibility(int dayInput)
@@ -314,9 +314,10 @@ namespace BudgetBuddy_Desktop
             pnlLogExpenses.Visible = false;
             pnlDays.Visible = false;
             pnlDailyExpense.Visible = true;
-
-            UpdateAllowance updateAllowance = new UpdateAllowance(userUsername, userPassword, days);
-            updateAllowance.Hide();
+            pnlUpdateAllowance.Visible = false;
+            pnlDash.Visible = false;
+            pnlDash1.Visible = false;
+            pnlDash2.Visible = false;
 
         }
 
@@ -328,8 +329,24 @@ namespace BudgetBuddy_Desktop
             pnlLogExpenses.Visible = false;
             pnlDays.Visible = false;
             pnlDailyExpense.Visible = false;
+            pnlDash.Visible = false;
             pnlUpdateAllowance.Visible = true;
         }
+
+        private void DashPanelVisibility()
+        {
+            pnlAbout.Visible = false;
+            pnlAllowance.Visible = false;
+            pnDashboard.Visible = false;
+            pnlLogExpenses.Visible = false;
+            pnlDays.Visible = false;
+            pnlDailyExpense.Visible = false;
+            pnlUpdateAllowance.Visible = false;
+            pnlDash.Visible = true;
+            pnlDash1.Visible = true;
+            pnlDash2.Visible = true;
+        }
+
 
 
         private void btnLogExpense_Click(object sender, EventArgs e)
@@ -472,10 +489,7 @@ namespace BudgetBuddy_Desktop
 
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
 
         private void btnIncrease_Click(object sender, EventArgs e)
         {
@@ -493,6 +507,37 @@ namespace BudgetBuddy_Desktop
             BBProcess.UpdateWeeklyAllowance(Amount, ToDo, userUsername, days, userPassword);
             MessageBox.Show("Allowance Updated!", "Notification");
             tbxAmounToUpdate.Clear();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DashPanelVisibility();
+
+        }
+
+        private void label34_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void label35_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void label36_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void label37_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void label43_Click(object sender, EventArgs e)
+        {
+            //
         }
     }
 }

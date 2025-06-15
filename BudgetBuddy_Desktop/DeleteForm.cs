@@ -13,6 +13,7 @@ namespace BudgetBuddy_Desktop
 {
     public partial class DeleteForm : Form
     {
+        string userUsername, userPassword;
         public DeleteForm()
         {
             InitializeComponent();
@@ -20,13 +21,16 @@ namespace BudgetBuddy_Desktop
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            Dashboard dashboard = new Dashboard(userUsername, userPassword);
+            dashboard.Show();
+
+            this.Hide();
         }
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
-            var userUsername = txtUsername.Text;
-            var userPassword = txtPassword.Text;    
+             userUsername = txtUsername.Text;
+             userPassword = txtPassword.Text;    
             DialogResult result = MessageBox.Show("Are you sure you want to Delete Your Account?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
@@ -36,6 +40,8 @@ namespace BudgetBuddy_Desktop
                 
                 txtUsername.Clear();
                 txtPassword.Clear();
+
+               
             }
         }
     }

@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeleteForm));
             panel1 = new Panel();
+            label5 = new Label();
+            label4 = new Label();
             label1 = new Label();
             label7 = new Label();
             txtPassword = new TextBox();
@@ -39,8 +41,6 @@
             btnEnter = new Button();
             btnExit = new Button();
             pictureBox1 = new PictureBox();
-            label4 = new Label();
-            label5 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -56,10 +56,32 @@
             panel1.Controls.Add(label2);
             panel1.Controls.Add(txtUsername);
             panel1.Controls.Add(btnEnter);
-            panel1.Location = new Point(344, 69);
+            panel1.Location = new Point(266, 99);
             panel1.Name = "panel1";
             panel1.Size = new Size(474, 434);
             panel1.TabIndex = 15;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Cambria", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.DimGray;
+            label5.Location = new Point(24, 314);
+            label5.Name = "label5";
+            label5.Size = new Size(348, 17);
+            label5.TabIndex = 25;
+            label5.Text = "be permanently removed and cannot be recovered.";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Cambria", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.DimGray;
+            label4.Location = new Point(24, 295);
+            label4.Name = "label4";
+            label4.Size = new Size(417, 17);
+            label4.TabIndex = 24;
+            label4.Text = "All saved data, including budgets, expenses, and reports, will ";
             // 
             // label1
             // 
@@ -132,7 +154,6 @@
             btnEnter.AccessibleName = "btnEnter";
             btnEnter.BackColor = Color.FromArgb(40, 89, 157);
             btnEnter.BackgroundImageLayout = ImageLayout.None;
-            btnEnter.FlatStyle = FlatStyle.Flat;
             btnEnter.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEnter.ForeColor = Color.White;
             btnEnter.Location = new Point(331, 362);
@@ -146,14 +167,15 @@
             // 
             // btnExit
             // 
-            btnExit.BackColor = Color.FromArgb(11, 22, 41);
-            btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.BackColor = SystemColors.ActiveCaption;
+            btnExit.FlatStyle = FlatStyle.System;
+            btnExit.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnExit.ForeColor = Color.Transparent;
-            btnExit.Location = new Point(987, 551);
+            btnExit.Location = new Point(894, 585);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(94, 29);
             btnExit.TabIndex = 16;
-            btnExit.Text = "Exit";
+            btnExit.Text = "Back";
             btnExit.UseVisualStyleBackColor = false;
             btnExit.Click += btnExit_Click;
             // 
@@ -163,42 +185,21 @@
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(-26, -14);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1174, 653);
+            pictureBox1.Size = new Size(1045, 678);
             pictureBox1.TabIndex = 21;
             pictureBox1.TabStop = false;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Cambria", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.DimGray;
-            label4.Location = new Point(24, 295);
-            label4.Name = "label4";
-            label4.Size = new Size(417, 17);
-            label4.TabIndex = 24;
-            label4.Text = "All saved data, including budgets, expenses, and reports, will ";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Cambria", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.DimGray;
-            label5.Location = new Point(24, 314);
-            label5.Name = "label5";
-            label5.Size = new Size(348, 17);
-            label5.TabIndex = 25;
-            label5.Text = "be permanently removed and cannot be recovered.";
             // 
             // DeleteForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1143, 625);
+            ClientSize = new Size(1016, 657);
             Controls.Add(panel1);
             Controls.Add(btnExit);
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "DeleteForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "DeleteForm";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
