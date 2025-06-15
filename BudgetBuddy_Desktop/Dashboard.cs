@@ -20,7 +20,7 @@ namespace BudgetBuddy_Desktop
         bool profileCollapsed;
         public string userUsername;
         public string userPassword;
-        int days, dayInput;
+        public int days, dayInput;
 
         public Dashboard(string userUsername, string userPassword)
         {
@@ -205,14 +205,8 @@ namespace BudgetBuddy_Desktop
             this.Hide();
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            DashboardPnlVisiblity();
-            lblAllowanceCount.Text = BBProcess.DisplayAllowance(userUsername, userPassword).ToString("F2");
-            lblAllowanceLeft.Text = BBProcess.allocation.ToString("F2");
-            lblTotal.Text = BBProcess.DisplayWeeklyExpenses().ToString("F2");
-           
-        }
+
+
 
         private void button4_Click_1(object sender, EventArgs e)
         {
@@ -268,9 +262,12 @@ namespace BudgetBuddy_Desktop
             pnlLogExpenses.Visible = false;
             pnlDays.Visible = false;
             pnlDailyExpense.Visible = false;
+
+            UpdateAllowance updateAllowance = new UpdateAllowance(userUsername, userPassword, days);
+            updateAllowance.Hide();
         }
 
-        private void DashboardPnlVisiblity()
+        private void SummaryPnlVisiblity()
         {
             pnlAbout.Visible = false;
             pnlAllowance.Visible = true;
@@ -278,6 +275,9 @@ namespace BudgetBuddy_Desktop
             pnlLogExpenses.Visible = false;
             pnlDays.Visible = false;
             pnlDailyExpense.Visible = false;
+
+            UpdateAllowance updateAllowance = new UpdateAllowance(userUsername, userPassword, days);
+            updateAllowance.Hide();
         }
 
         private void LogExpensePnlVisiblity() //allocation panel
@@ -288,6 +288,9 @@ namespace BudgetBuddy_Desktop
             pnlLogExpenses.Visible = true;
             pnlDays.Visible = false;
             pnlDailyExpense.Visible = false;
+
+            UpdateAllowance updateAllowance = new UpdateAllowance(userUsername, userPassword, days);
+            updateAllowance.Hide();
         }
 
         private void LogDaysPnlVisiblity()  //select days panel
@@ -298,6 +301,9 @@ namespace BudgetBuddy_Desktop
             pnlLogExpenses.Visible = false;
             pnlDays.Visible = true;
             pnlDailyExpense.Visible = false;
+
+            UpdateAllowance updateAllowance = new UpdateAllowance(userUsername, userPassword, days);
+            updateAllowance.Hide();
         }
 
         private void DailyExpensePnlVisibility(int dayInput)
@@ -308,7 +314,23 @@ namespace BudgetBuddy_Desktop
             pnlLogExpenses.Visible = false;
             pnlDays.Visible = false;
             pnlDailyExpense.Visible = true;
+
+            UpdateAllowance updateAllowance = new UpdateAllowance(userUsername, userPassword, days);
+            updateAllowance.Hide();
+
         }
+
+        private void UpdAllowancePanelVisibility()
+        {
+            pnlAbout.Visible = false;
+            pnlAllowance.Visible = false;
+            pnDashboard.Visible = false;
+            pnlLogExpenses.Visible = false;
+            pnlDays.Visible = false;
+            pnlDailyExpense.Visible = false;
+            pnlUpdateAllowance.Visible = true;
+        }
+
 
         private void btnLogExpense_Click(object sender, EventArgs e)
         {
@@ -327,20 +349,33 @@ namespace BudgetBuddy_Desktop
 
         private void btnLogAnother_Click(object sender, EventArgs e)
         {
-            BBProcess.LogAnotherWeek();
+
             LogExpensePnlVisiblity();
+            BBProcess.LogAnotherWeek();
+
+            lblAllocationCount.Text = "0.00";
+            lblAllowanceCount.Text = "0.00";
+            lblAllowanceLeft.Text = "0.00";
+            lblTotal.Text = "0.00";
+
+            Label[] dayLabels = { lblMon, lblTue, lblWed, lblThu, lblFri, lblSat, lblSun };
+            foreach (var lbl in dayLabels)
+            {
+                lbl.Text = "0.00";
+            }
+
         }
 
         private void btnDone_Click(object sender, EventArgs e)
         {
-            days = comboBox1.SelectedIndex + 1;
-
-            MessageBox.Show("GREAT!\nNote: Try to keep expenses under the allocation to save money!", "Notification");
+            days = comboBox1.SelectedIndex;
             lblAllocationCount.Text = BBProcess.WeeklyAllowance(days, userUsername, userPassword).ToString("F2");
-
-            LogDaysPnlVisiblity();
+            MessageBox.Show("GREAT!\nNote: Try to keep expenses under the allocation to save money!", "Notification");
 
             comboBox1.SelectedIndex = 0;
+            LogDaysPnlVisiblity();
+
+
         }
 
         private void btnDays_Click(object sender, EventArgs e)
@@ -370,7 +405,7 @@ namespace BudgetBuddy_Desktop
                 DailyExpensePnlVisibility(dayInput);
             }
 
-
+            cmbCurrentDay.SelectedIndex = 0;
         }
         private void btnExpenseSubmit_Click(object sender, EventArgs e)
         {
@@ -411,11 +446,6 @@ namespace BudgetBuddy_Desktop
 
         }
 
-        private void lblTotal_Click(object sender, EventArgs e)
-        {
-            //D
-        }
-
         private void DisplayDailyExpense()
         {
             Label[] dayLabels = { lblMon, lblTue, lblWed, lblThu, lblFri, lblSat, lblSun };
@@ -426,6 +456,43 @@ namespace BudgetBuddy_Desktop
             }
         }
 
-        
+        private void btnWeeklySummary_Click(object sender, EventArgs e)
+        {
+            SummaryPnlVisiblity();
+            lblAllowanceCount.Text = BBProcess.UpdateAllowanceDisplay(userUsername, userPassword).ToString("F2");
+            lblAllowanceLeft.Text = BBProcess.allocation.ToString("F2");
+            lblTotal.Text = BBProcess.DisplayWeeklyExpenses().ToString("F2");
         }
+
+
+
+        private void btnUpdateAllowance_Click(object sender, EventArgs e)
+        {
+            UpdAllowancePanelVisibility();
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnIncrease_Click(object sender, EventArgs e)
+        {
+            double ToDo = 1;
+            var Amount = Convert.ToDouble(tbxAmounToUpdate.Text);
+            BBProcess.UpdateWeeklyAllowance(Amount, ToDo, userUsername, days, userPassword);
+            MessageBox.Show("Allowance Updated!", "Notification");
+            tbxAmounToUpdate.Clear();
+        }
+
+        private void btnDecrease_Click(object sender, EventArgs e)
+        {
+            double ToDo = 2;
+            var Amount = Convert.ToDouble(tbxAmounToUpdate.Text);
+            BBProcess.UpdateWeeklyAllowance(Amount, ToDo, userUsername, days, userPassword);
+            MessageBox.Show("Allowance Updated!", "Notification");
+            tbxAmounToUpdate.Clear();
+        }
+    }
 }

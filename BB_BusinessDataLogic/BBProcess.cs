@@ -282,8 +282,9 @@ namespace BB_BusinessDataLogic
         public static void LogAnotherWeek()
         {
             selectedDay.Clear(); 
-                dayArray.Clear();
+            dayArray.Clear();
             dailyExpenses.Clear();
+            allocation = 0;
         }
 
         public static double GetExpenseForDay(int dayIndex)

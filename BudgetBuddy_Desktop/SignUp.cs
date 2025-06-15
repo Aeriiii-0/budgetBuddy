@@ -137,7 +137,7 @@ namespace BudgetBuddy_Desktop
             {
                 ClearFields();
                 MessageBox.Show("Failed");
-              
+
             }
         }
 
@@ -154,7 +154,7 @@ namespace BudgetBuddy_Desktop
             }
             else
             {
-                txtPassword.UseSystemPasswordChar= false;
+                txtPassword.UseSystemPasswordChar = false;
             }
         }
 
@@ -162,6 +162,11 @@ namespace BudgetBuddy_Desktop
         {
             txtUsername.Clear();
             txtPassword.Clear();
+        }
+
+        private void BudgetBuddy_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

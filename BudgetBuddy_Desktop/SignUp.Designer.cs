@@ -336,6 +336,7 @@ namespace BudgetBuddy_Desktop
             FormBorderStyle = FormBorderStyle.None;
             Name = "BudgetBuddy";
             Text = "Budget Buddy";
+            Load += BudgetBuddy_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

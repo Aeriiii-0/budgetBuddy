@@ -55,6 +55,10 @@
             button4 = new Button();
             panel4 = new Panel();
             button3 = new Button();
+            pnlDays = new Panel();
+            cmbCurrentDay = new ComboBox();
+            btnNext = new Button();
+            label17 = new Label();
             sidebarTimer = new System.Windows.Forms.Timer(components);
             pictureBox1 = new PictureBox();
             budgetActionTimer = new System.Windows.Forms.Timer(components);
@@ -75,10 +79,12 @@
             button14 = new Button();
             profilebarTimer = new System.Windows.Forms.Timer(components);
             panel16 = new Panel();
-            pnlDays = new Panel();
-            cmbCurrentDay = new ComboBox();
-            btnNext = new Button();
-            label17 = new Label();
+            pnlLogExpenses = new Panel();
+            label14 = new Label();
+            btnDone = new Button();
+            lblAllocationCount = new Label();
+            comboBox1 = new ComboBox();
+            label13 = new Label();
             settingsTimer = new System.Windows.Forms.Timer(components);
             pnDashboard = new Panel();
             lblAllowanceLeft = new Label();
@@ -103,14 +109,8 @@
             lblAllowanceCount = new Label();
             label2 = new Label();
             pnlAbout = new Panel();
-            richTextBox1 = new RichTextBox();
             label12 = new Label();
-            pnlLogExpenses = new Panel();
-            btnDone = new Button();
-            lblAllocationCount = new Label();
-            label14 = new Label();
-            comboBox1 = new ComboBox();
-            label13 = new Label();
+            richTextBox1 = new RichTextBox();
             pnlDailyExpense = new Panel();
             btnExpenseSubmit = new Button();
             txtMiscellaneous = new TextBox();
@@ -122,6 +122,12 @@
             txtBreakfast = new TextBox();
             label16 = new Label();
             label15 = new Label();
+            pnlUpdateAllowance = new Panel();
+            label24 = new Label();
+            tbxAmounToUpdate = new TextBox();
+            btnDecrease = new Button();
+            btnIncrease = new Button();
+            label23 = new Label();
             label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             sidebarContainer.SuspendLayout();
@@ -137,6 +143,7 @@
             panel2.SuspendLayout();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
+            pnlDays.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sidebarProfile.SuspendLayout();
             panel7.SuspendLayout();
@@ -147,12 +154,12 @@
             panel13.SuspendLayout();
             panel14.SuspendLayout();
             panel15.SuspendLayout();
-            pnlDays.SuspendLayout();
+            pnlLogExpenses.SuspendLayout();
             pnDashboard.SuspendLayout();
             pnlAllowance.SuspendLayout();
             pnlAbout.SuspendLayout();
-            pnlLogExpenses.SuspendLayout();
             pnlDailyExpense.SuspendLayout();
+            pnlUpdateAllowance.SuspendLayout();
             SuspendLayout();
             // 
             // label4
@@ -173,7 +180,7 @@
             pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
             pictureBox2.Location = new Point(0, 563);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(1178, 87);
+            pictureBox2.Size = new Size(1195, 87);
             pictureBox2.TabIndex = 2;
             pictureBox2.TabStop = false;
             // 
@@ -201,12 +208,13 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(288, 150);
             panel3.TabIndex = 22;
+            panel3.Paint += panel3_Paint;
             // 
             // pictureBox4
             // 
             pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
             pictureBox4.Cursor = Cursors.Hand;
-            pictureBox4.Location = new Point(13, 92);
+            pictureBox4.Location = new Point(11, 97);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(56, 50);
             pictureBox4.TabIndex = 6;
@@ -219,7 +227,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.SkyBlue;
-            label1.Location = new Point(73, 103);
+            label1.Location = new Point(65, 110);
             label1.Name = "label1";
             label1.Size = new Size(67, 21);
             label1.TabIndex = 17;
@@ -238,7 +246,7 @@
             budgetActContainer.MaximumSize = new Size(250, 309);
             budgetActContainer.MinimumSize = new Size(250, 66);
             budgetActContainer.Name = "budgetActContainer";
-            budgetActContainer.Size = new Size(250, 309);
+            budgetActContainer.Size = new Size(250, 66);
             budgetActContainer.TabIndex = 29;
             // 
             // panel12
@@ -262,10 +270,11 @@
             btnWeeklySummary.Location = new Point(0, 0);
             btnWeeklySummary.Name = "btnWeeklySummary";
             btnWeeklySummary.Padding = new Padding(1, 0, 0, 0);
-            btnWeeklySummary.Size = new Size(228, 47);
+            btnWeeklySummary.Size = new Size(254, 47);
             btnWeeklySummary.TabIndex = 0;
             btnWeeklySummary.Text = "            WEEKLY SUMMARY";
             btnWeeklySummary.UseVisualStyleBackColor = true;
+            btnWeeklySummary.Click += btnWeeklySummary_Click;
             // 
             // panel11
             // 
@@ -288,10 +297,11 @@
             btnUpdateAllowance.Location = new Point(0, 0);
             btnUpdateAllowance.Name = "btnUpdateAllowance";
             btnUpdateAllowance.Padding = new Padding(1, 0, 0, 0);
-            btnUpdateAllowance.Size = new Size(228, 38);
+            btnUpdateAllowance.Size = new Size(255, 38);
             btnUpdateAllowance.TabIndex = 0;
             btnUpdateAllowance.Text = "                UPDATE ALLOWANCE";
             btnUpdateAllowance.UseVisualStyleBackColor = true;
+            btnUpdateAllowance.Click += btnUpdateAllowance_Click;
             // 
             // panel10
             // 
@@ -314,7 +324,7 @@
             btnLogAnother.Location = new Point(0, 0);
             btnLogAnother.Name = "btnLogAnother";
             btnLogAnother.Padding = new Padding(1, 0, 0, 0);
-            btnLogAnother.Size = new Size(228, 38);
+            btnLogAnother.Size = new Size(251, 38);
             btnLogAnother.TabIndex = 0;
             btnLogAnother.Text = "                  LOG ANOTHER WEEK";
             btnLogAnother.UseVisualStyleBackColor = true;
@@ -341,7 +351,7 @@
             btnLogExpense.Location = new Point(0, 0);
             btnLogExpense.Name = "btnLogExpense";
             btnLogExpense.Padding = new Padding(1, 0, 0, 0);
-            btnLogExpense.Size = new Size(228, 47);
+            btnLogExpense.Size = new Size(258, 47);
             btnLogExpense.TabIndex = 0;
             btnLogExpense.Text = "     LOG EXPENSES";
             btnLogExpense.UseVisualStyleBackColor = true;
@@ -368,7 +378,7 @@
             btnLog.Location = new Point(0, 0);
             btnLog.Name = "btnLog";
             btnLog.Padding = new Padding(1, 0, 0, 0);
-            btnLog.Size = new Size(228, 38);
+            btnLog.Size = new Size(254, 38);
             btnLog.TabIndex = 0;
             btnLog.Text = "CLEAR LOGS";
             btnLog.UseVisualStyleBackColor = true;
@@ -379,7 +389,7 @@
             panel1.Controls.Add(button1);
             panel1.Location = new Point(0, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(255, 35);
+            panel1.Size = new Size(255, 68);
             panel1.TabIndex = 20;
             // 
             // button1
@@ -395,7 +405,7 @@
             button1.Location = new Point(0, 0);
             button1.Name = "button1";
             button1.Padding = new Padding(1, 0, 0, 0);
-            button1.Size = new Size(205, 35);
+            button1.Size = new Size(255, 68);
             button1.TabIndex = 0;
             button1.Text = "         BUDGET ACTIONS";
             button1.UseVisualStyleBackColor = true;
@@ -405,7 +415,7 @@
             // 
             panel2.Anchor = AnchorStyles.None;
             panel2.Controls.Add(button2);
-            panel2.Location = new Point(3, 474);
+            panel2.Location = new Point(3, 231);
             panel2.Name = "panel2";
             panel2.Size = new Size(255, 64);
             panel2.TabIndex = 21;
@@ -425,12 +435,11 @@
             button2.TabIndex = 0;
             button2.Text = "DASHBOARD";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click_1;
             // 
             // panel5
             // 
             panel5.Controls.Add(button4);
-            panel5.Location = new Point(3, 544);
+            panel5.Location = new Point(3, 301);
             panel5.Name = "panel5";
             panel5.Size = new Size(255, 64);
             panel5.TabIndex = 21;
@@ -458,7 +467,7 @@
             // panel4
             // 
             panel4.Controls.Add(button3);
-            panel4.Location = new Point(3, 614);
+            panel4.Location = new Point(3, 371);
             panel4.Name = "panel4";
             panel4.Size = new Size(255, 64);
             panel4.TabIndex = 21;
@@ -480,6 +489,53 @@
             button3.TextAlign = ContentAlignment.MiddleLeft;
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click_1;
+            // 
+            // pnlDays
+            // 
+            pnlDays.Anchor = AnchorStyles.None;
+            pnlDays.BackColor = Color.FromArgb(11, 22, 41);
+            pnlDays.Controls.Add(cmbCurrentDay);
+            pnlDays.Controls.Add(btnNext);
+            pnlDays.Controls.Add(label17);
+            pnlDays.Location = new Point(470, 150);
+            pnlDays.Name = "pnlDays";
+            pnlDays.Size = new Size(460, 415);
+            pnlDays.TabIndex = 23;
+            pnlDays.Visible = false;
+            // 
+            // cmbCurrentDay
+            // 
+            cmbCurrentDay.BackColor = SystemColors.GradientActiveCaption;
+            cmbCurrentDay.FormattingEnabled = true;
+            cmbCurrentDay.Items.AddRange(new object[] { "Select Day", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday\t", "Saturday", "Sunday" });
+            cmbCurrentDay.Location = new Point(55, 121);
+            cmbCurrentDay.Name = "cmbCurrentDay";
+            cmbCurrentDay.Size = new Size(335, 27);
+            cmbCurrentDay.TabIndex = 23;
+            // 
+            // btnNext
+            // 
+            btnNext.BackColor = SystemColors.ActiveCaption;
+            btnNext.ForeColor = Color.Transparent;
+            btnNext.Location = new Point(313, 201);
+            btnNext.Name = "btnNext";
+            btnNext.Size = new Size(94, 29);
+            btnNext.TabIndex = 22;
+            btnNext.Text = "Next";
+            btnNext.UseVisualStyleBackColor = false;
+            btnNext.Click += btnDays_Click;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.BackColor = Color.Transparent;
+            label17.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label17.ForeColor = Color.SkyBlue;
+            label17.Location = new Point(139, 59);
+            label17.Name = "label17";
+            label17.Size = new Size(165, 21);
+            label17.TabIndex = 18;
+            label17.Text = "Select Current Day";
             // 
             // sidebarTimer
             // 
@@ -693,56 +749,83 @@
             // panel16
             // 
             panel16.BackColor = Color.WhiteSmoke;
-            panel16.Location = new Point(73, 77);
+            panel16.Location = new Point(263, 77);
             panel16.Name = "panel16";
-            panel16.Size = new Size(1077, 79);
+            panel16.Size = new Size(907, 79);
             panel16.TabIndex = 31;
             // 
-            // pnlDays
+            // pnlLogExpenses
             // 
-            pnlDays.BackColor = Color.WhiteSmoke;
-            pnlDays.BorderStyle = BorderStyle.Fixed3D;
-            pnlDays.Controls.Add(cmbCurrentDay);
-            pnlDays.Controls.Add(btnNext);
-            pnlDays.Controls.Add(label17);
-            pnlDays.Location = new Point(668, 211);
-            pnlDays.Name = "pnlDays";
-            pnlDays.Size = new Size(460, 272);
-            pnlDays.TabIndex = 23;
-            pnlDays.Visible = false;
+            pnlLogExpenses.BackColor = Color.FromArgb(11, 22, 41);
+            pnlLogExpenses.Controls.Add(label14);
+            pnlLogExpenses.Controls.Add(btnDone);
+            pnlLogExpenses.Controls.Add(lblAllocationCount);
+            pnlLogExpenses.Controls.Add(comboBox1);
+            pnlLogExpenses.Controls.Add(label13);
+            pnlLogExpenses.Location = new Point(470, 150);
+            pnlLogExpenses.Name = "pnlLogExpenses";
+            pnlLogExpenses.Size = new Size(460, 415);
+            pnlLogExpenses.TabIndex = 20;
+            pnlLogExpenses.Visible = false;
             // 
-            // cmbCurrentDay
+            // label14
             // 
-            cmbCurrentDay.BackColor = SystemColors.GradientActiveCaption;
-            cmbCurrentDay.FormattingEnabled = true;
-            cmbCurrentDay.Items.AddRange(new object[] { "Select Day", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday\t", "Saturday", "Sunday" });
-            cmbCurrentDay.Location = new Point(72, 122);
-            cmbCurrentDay.Name = "cmbCurrentDay";
-            cmbCurrentDay.Size = new Size(335, 27);
-            cmbCurrentDay.TabIndex = 23;
+            label14.AutoSize = true;
+            label14.BackColor = Color.Transparent;
+            label14.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label14.ForeColor = Color.SkyBlue;
+            label14.Location = new Point(111, 168);
+            label14.Name = "label14";
+            label14.Size = new Size(242, 21);
+            label14.TabIndex = 20;
+            label14.Text = "Suggested Daily Allocation: ";
             // 
-            // btnNext
+            // btnDone
             // 
-            btnNext.ForeColor = Color.Black;
-            btnNext.Location = new Point(313, 201);
-            btnNext.Name = "btnNext";
-            btnNext.Size = new Size(94, 29);
-            btnNext.TabIndex = 22;
-            btnNext.Text = "Back";
-            btnNext.UseVisualStyleBackColor = true;
-            btnNext.Click += btnDays_Click;
+            btnDone.BackColor = SystemColors.ActiveCaption;
+            btnDone.ForeColor = Color.Transparent;
+            btnDone.Location = new Point(343, 315);
+            btnDone.Name = "btnDone";
+            btnDone.Size = new Size(94, 29);
+            btnDone.TabIndex = 22;
+            btnDone.Text = "Done";
+            btnDone.UseVisualStyleBackColor = false;
+            btnDone.Click += btnDone_Click;
             // 
-            // label17
+            // lblAllocationCount
             // 
-            label17.AutoSize = true;
-            label17.BackColor = Color.Transparent;
-            label17.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label17.ForeColor = Color.Black;
-            label17.Location = new Point(146, 71);
-            label17.Name = "label17";
-            label17.Size = new Size(165, 21);
-            label17.TabIndex = 18;
-            label17.Text = "Select Current Day";
+            lblAllocationCount.AutoSize = true;
+            lblAllocationCount.BackColor = Color.Transparent;
+            lblAllocationCount.Font = new Font("Cambria", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAllocationCount.ForeColor = Color.Lime;
+            lblAllocationCount.Location = new Point(157, 221);
+            lblAllocationCount.Name = "lblAllocationCount";
+            lblAllocationCount.Size = new Size(32, 33);
+            lblAllocationCount.TabIndex = 21;
+            lblAllocationCount.Text = "0";
+            // 
+            // comboBox1
+            // 
+            comboBox1.BackColor = SystemColors.ActiveCaption;
+            comboBox1.ForeColor = SystemColors.ActiveCaptionText;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Select Days", "1", "2", "3", "4", "5", "6", "7" });
+            comboBox1.Location = new Point(40, 104);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(369, 27);
+            comboBox1.TabIndex = 19;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.BackColor = Color.Transparent;
+            label13.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label13.ForeColor = Color.SkyBlue;
+            label13.Location = new Point(40, 54);
+            label13.Name = "label13";
+            label13.Size = new Size(376, 21);
+            label13.TabIndex = 18;
+            label13.Text = "How many days do you go to school or work?";
             // 
             // settingsTimer
             // 
@@ -800,7 +883,6 @@
             lblTotal.Size = new Size(22, 23);
             lblTotal.TabIndex = 36;
             lblTotal.Text = "0";
-            lblTotal.Click += lblTotal_Click;
             // 
             // label20
             // 
@@ -832,7 +914,7 @@
             lblSun.BackColor = Color.Transparent;
             lblSun.Font = new Font("Cambria", 13.8F, FontStyle.Bold);
             lblSun.ForeColor = Color.White;
-            lblSun.Location = new Point(452, 110);
+            lblSun.Location = new Point(438, 113);
             lblSun.Name = "lblSun";
             lblSun.Size = new Size(26, 27);
             lblSun.TabIndex = 33;
@@ -844,7 +926,7 @@
             lblSat.BackColor = Color.Transparent;
             lblSat.Font = new Font("Cambria", 13.8F, FontStyle.Bold);
             lblSat.ForeColor = Color.White;
-            lblSat.Location = new Point(388, 110);
+            lblSat.Location = new Point(374, 113);
             lblSat.Name = "lblSat";
             lblSat.Size = new Size(26, 27);
             lblSat.TabIndex = 32;
@@ -856,7 +938,7 @@
             lblFri.BackColor = Color.Transparent;
             lblFri.Font = new Font("Cambria", 13.8F, FontStyle.Bold);
             lblFri.ForeColor = Color.White;
-            lblFri.Location = new Point(328, 110);
+            lblFri.Location = new Point(314, 113);
             lblFri.Name = "lblFri";
             lblFri.Size = new Size(26, 27);
             lblFri.TabIndex = 31;
@@ -868,7 +950,7 @@
             lblThu.BackColor = Color.Transparent;
             lblThu.Font = new Font("Cambria", 13.8F, FontStyle.Bold);
             lblThu.ForeColor = Color.White;
-            lblThu.Location = new Point(262, 110);
+            lblThu.Location = new Point(248, 113);
             lblThu.Name = "lblThu";
             lblThu.Size = new Size(26, 27);
             lblThu.TabIndex = 30;
@@ -880,7 +962,7 @@
             lblWed.BackColor = Color.Transparent;
             lblWed.Font = new Font("Cambria", 13.8F, FontStyle.Bold);
             lblWed.ForeColor = Color.White;
-            lblWed.Location = new Point(190, 110);
+            lblWed.Location = new Point(176, 113);
             lblWed.Name = "lblWed";
             lblWed.Size = new Size(26, 27);
             lblWed.TabIndex = 29;
@@ -892,7 +974,7 @@
             lblTue.BackColor = Color.Transparent;
             lblTue.Font = new Font("Cambria", 13.8F, FontStyle.Bold);
             lblTue.ForeColor = Color.White;
-            lblTue.Location = new Point(123, 110);
+            lblTue.Location = new Point(109, 113);
             lblTue.Name = "lblTue";
             lblTue.Size = new Size(26, 27);
             lblTue.TabIndex = 28;
@@ -904,7 +986,7 @@
             lblMon.BackColor = Color.Transparent;
             lblMon.Font = new Font("Cambria", 13.8F, FontStyle.Bold);
             lblMon.ForeColor = Color.White;
-            lblMon.Location = new Point(51, 110);
+            lblMon.Location = new Point(37, 113);
             lblMon.Name = "lblMon";
             lblMon.Size = new Size(26, 27);
             lblMon.TabIndex = 27;
@@ -996,7 +1078,7 @@
             // 
             // pnlAllowance
             // 
-            pnlAllowance.BackColor = Color.WhiteSmoke;
+            pnlAllowance.BackColor = SystemColors.Control;
             pnlAllowance.BorderStyle = BorderStyle.Fixed3D;
             pnlAllowance.Controls.Add(lblAllowanceCount);
             pnlAllowance.Controls.Add(label2);
@@ -1023,33 +1105,23 @@
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.FromArgb(11, 22, 41);
-            label2.Location = new Point(20, 70);
+            label2.ForeColor = Color.Black;
+            label2.Location = new Point(41, 76);
             label2.Name = "label2";
-            label2.Size = new Size(208, 23);
+            label2.Size = new Size(181, 23);
             label2.TabIndex = 18;
-            label2.Text = "WEEKLY ALLOWANCE";
+            label2.Text = " ALLOWANCE LEFT";
             // 
             // pnlAbout
             // 
-            pnlAbout.Controls.Add(richTextBox1);
+            pnlAbout.AutoSize = true;
             pnlAbout.Controls.Add(label12);
-            pnlAbout.Location = new Point(283, 172);
+            pnlAbout.Controls.Add(richTextBox1);
+            pnlAbout.Location = new Point(264, 162);
             pnlAbout.Name = "pnlAbout";
-            pnlAbout.Size = new Size(842, 346);
+            pnlAbout.Size = new Size(881, 553);
             pnlAbout.TabIndex = 34;
             pnlAbout.Visible = false;
-            // 
-            // richTextBox1
-            // 
-            richTextBox1.BorderStyle = BorderStyle.None;
-            richTextBox1.ForeColor = Color.DarkSlateGray;
-            richTextBox1.Location = new Point(3, 64);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical;
-            richTextBox1.Size = new Size(836, 438);
-            richTextBox1.TabIndex = 19;
-            richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
             // label12
             // 
@@ -1063,81 +1135,23 @@
             label12.TabIndex = 18;
             label12.Text = "About Budget Buddy";
             // 
-            // pnlLogExpenses
+            // richTextBox1
             // 
-            pnlLogExpenses.BackColor = Color.WhiteSmoke;
-            pnlLogExpenses.BorderStyle = BorderStyle.Fixed3D;
-            pnlLogExpenses.Controls.Add(btnDone);
-            pnlLogExpenses.Controls.Add(lblAllocationCount);
-            pnlLogExpenses.Controls.Add(label14);
-            pnlLogExpenses.Controls.Add(comboBox1);
-            pnlLogExpenses.Controls.Add(label13);
-            pnlLogExpenses.Location = new Point(269, 162);
-            pnlLogExpenses.Name = "pnlLogExpenses";
-            pnlLogExpenses.Size = new Size(460, 376);
-            pnlLogExpenses.TabIndex = 20;
-            pnlLogExpenses.Visible = false;
-            // 
-            // btnDone
-            // 
-            btnDone.ForeColor = Color.Black;
-            btnDone.Location = new Point(335, 310);
-            btnDone.Name = "btnDone";
-            btnDone.Size = new Size(94, 29);
-            btnDone.TabIndex = 22;
-            btnDone.Text = "Done";
-            btnDone.UseVisualStyleBackColor = true;
-            btnDone.Click += btnDone_Click;
-            // 
-            // lblAllocationCount
-            // 
-            lblAllocationCount.AutoSize = true;
-            lblAllocationCount.BackColor = Color.Transparent;
-            lblAllocationCount.Font = new Font("Cambria", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAllocationCount.ForeColor = Color.DarkGreen;
-            lblAllocationCount.Location = new Point(149, 216);
-            lblAllocationCount.Name = "lblAllocationCount";
-            lblAllocationCount.Size = new Size(32, 33);
-            lblAllocationCount.TabIndex = 21;
-            lblAllocationCount.Text = "0";
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.BackColor = Color.Transparent;
-            label14.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label14.ForeColor = Color.Black;
-            label14.Location = new Point(103, 163);
-            label14.Name = "label14";
-            label14.Size = new Size(242, 21);
-            label14.TabIndex = 20;
-            label14.Text = "Suggested Daily Allocation: ";
-            // 
-            // comboBox1
-            // 
-            comboBox1.ForeColor = Color.DarkSlateGray;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Select Days", "1", "2", "3", "4", "5", "6", "7" });
-            comboBox1.Location = new Point(34, 81);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(369, 27);
-            comboBox1.TabIndex = 19;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.BackColor = Color.Transparent;
-            label13.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label13.ForeColor = Color.Black;
-            label13.Location = new Point(27, 34);
-            label13.Name = "label13";
-            label13.Size = new Size(376, 21);
-            label13.TabIndex = 18;
-            label13.Text = "How many days do you go to school or work?";
+            richTextBox1.BackColor = SystemColors.Control;
+            richTextBox1.BorderStyle = BorderStyle.None;
+            richTextBox1.ForeColor = Color.DarkSlateGray;
+            richTextBox1.Location = new Point(33, 50);
+            richTextBox1.MaximumSize = new Size(990, 438);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.ScrollBars = RichTextBoxScrollBars.Vertical;
+            richTextBox1.Size = new Size(836, 438);
+            richTextBox1.TabIndex = 19;
+            richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
             // pnlDailyExpense
             // 
             pnlDailyExpense.BackColor = Color.FromArgb(11, 22, 41);
+            pnlDailyExpense.BorderStyle = BorderStyle.Fixed3D;
             pnlDailyExpense.Controls.Add(btnExpenseSubmit);
             pnlDailyExpense.Controls.Add(txtMiscellaneous);
             pnlDailyExpense.Controls.Add(label22);
@@ -1148,9 +1162,9 @@
             pnlDailyExpense.Controls.Add(txtBreakfast);
             pnlDailyExpense.Controls.Add(label16);
             pnlDailyExpense.Controls.Add(label15);
-            pnlDailyExpense.Location = new Point(286, 181);
+            pnlDailyExpense.Location = new Point(260, 155);
             pnlDailyExpense.Name = "pnlDailyExpense";
-            pnlDailyExpense.Size = new Size(811, 320);
+            pnlDailyExpense.Size = new Size(900, 500);
             pnlDailyExpense.TabIndex = 35;
             pnlDailyExpense.Visible = false;
             // 
@@ -1252,34 +1266,112 @@
             label15.BackColor = Color.Transparent;
             label15.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.SkyBlue;
-            label15.Location = new Point(27, 30);
+            label15.Location = new Point(49, 40);
             label15.Name = "label15";
             label15.Size = new Size(605, 21);
             label15.TabIndex = 18;
             label15.Text = "Enter the exact amount (in PHP) you spent based on the asked category";
             // 
+            // pnlUpdateAllowance
+            // 
+            pnlUpdateAllowance.Anchor = AnchorStyles.Right;
+            pnlUpdateAllowance.BackColor = Color.FromArgb(11, 22, 41);
+            pnlUpdateAllowance.BackgroundImageLayout = ImageLayout.Center;
+            pnlUpdateAllowance.Controls.Add(label24);
+            pnlUpdateAllowance.Controls.Add(tbxAmounToUpdate);
+            pnlUpdateAllowance.Controls.Add(btnDecrease);
+            pnlUpdateAllowance.Controls.Add(btnIncrease);
+            pnlUpdateAllowance.Controls.Add(label23);
+            pnlUpdateAllowance.Location = new Point(470, 150);
+            pnlUpdateAllowance.Name = "pnlUpdateAllowance";
+            pnlUpdateAllowance.RightToLeft = RightToLeft.Yes;
+            pnlUpdateAllowance.Size = new Size(460, 415);
+            pnlUpdateAllowance.TabIndex = 28;
+            pnlUpdateAllowance.Visible = false;
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.BackColor = Color.Transparent;
+            label24.Font = new Font("Cambria", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label24.ForeColor = Color.SkyBlue;
+            label24.Location = new Point(40, 124);
+            label24.Name = "label24";
+            label24.Size = new Size(71, 20);
+            label24.TabIndex = 26;
+            label24.Text = "Amount";
+            // 
+            // tbxAmounToUpdate
+            // 
+            tbxAmounToUpdate.BackColor = SystemColors.ActiveCaption;
+            tbxAmounToUpdate.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            tbxAmounToUpdate.Location = new Point(60, 153);
+            tbxAmounToUpdate.Name = "tbxAmounToUpdate";
+            tbxAmounToUpdate.Size = new Size(325, 27);
+            tbxAmounToUpdate.TabIndex = 25;
+            // 
+            // btnDecrease
+            // 
+            btnDecrease.BackColor = SystemColors.ActiveCaption;
+            btnDecrease.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDecrease.ForeColor = Color.Transparent;
+            btnDecrease.Location = new Point(250, 243);
+            btnDecrease.Name = "btnDecrease";
+            btnDecrease.Size = new Size(113, 29);
+            btnDecrease.TabIndex = 21;
+            btnDecrease.Text = "Decrease";
+            btnDecrease.UseVisualStyleBackColor = false;
+            btnDecrease.Click += btnDecrease_Click;
+            // 
+            // btnIncrease
+            // 
+            btnIncrease.BackColor = SystemColors.ActiveCaption;
+            btnIncrease.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnIncrease.ForeColor = Color.White;
+            btnIncrease.Location = new Point(88, 243);
+            btnIncrease.Name = "btnIncrease";
+            btnIncrease.Size = new Size(113, 29);
+            btnIncrease.TabIndex = 20;
+            btnIncrease.Text = "Increase";
+            btnIncrease.UseVisualStyleBackColor = false;
+            btnIncrease.Click += btnIncrease_Click;
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.BackColor = Color.Transparent;
+            label23.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label23.ForeColor = Color.SkyBlue;
+            label23.Location = new Point(39, 54);
+            label23.Name = "label23";
+            label23.Size = new Size(363, 21);
+            label23.TabIndex = 19;
+            label23.Text = "Select operation to update your allowance";
+            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = SystemColors.Control;
             BackgroundImageLayout = ImageLayout.None;
-            ClientSize = new Size(1143, 625);
-            Controls.Add(pnlDays);
-            Controls.Add(pnlLogExpenses);
-            Controls.Add(pnlDailyExpense);
-            Controls.Add(pictureBox2);
+            ClientSize = new Size(1144, 625);
             Controls.Add(pictureBox1);
+            Controls.Add(pictureBox2);
             Controls.Add(sidebarProfile);
             Controls.Add(sidebarContainer);
             Controls.Add(panel16);
             Controls.Add(pnlAllowance);
             Controls.Add(pnDashboard);
             Controls.Add(pnlAbout);
+            Controls.Add(pnlDailyExpense);
+            Controls.Add(pnlUpdateAllowance);
+            Controls.Add(pnlDays);
+            Controls.Add(pnlLogExpenses);
             Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ForeColor = Color.Transparent;
             FormBorderStyle = FormBorderStyle.None;
             Name = "Dashboard";
+            StartPosition = FormStartPosition.CenterScreen;
             Load += Dashboard_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             sidebarContainer.ResumeLayout(false);
@@ -1296,6 +1388,8 @@
             panel2.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel4.ResumeLayout(false);
+            pnlDays.ResumeLayout(false);
+            pnlDays.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             sidebarProfile.ResumeLayout(false);
             panel7.ResumeLayout(false);
@@ -1307,19 +1401,20 @@
             panel13.ResumeLayout(false);
             panel14.ResumeLayout(false);
             panel15.ResumeLayout(false);
-            pnlDays.ResumeLayout(false);
-            pnlDays.PerformLayout();
+            pnlLogExpenses.ResumeLayout(false);
+            pnlLogExpenses.PerformLayout();
             pnDashboard.ResumeLayout(false);
             pnDashboard.PerformLayout();
             pnlAllowance.ResumeLayout(false);
             pnlAllowance.PerformLayout();
             pnlAbout.ResumeLayout(false);
             pnlAbout.PerformLayout();
-            pnlLogExpenses.ResumeLayout(false);
-            pnlLogExpenses.PerformLayout();
             pnlDailyExpense.ResumeLayout(false);
             pnlDailyExpense.PerformLayout();
+            pnlUpdateAllowance.ResumeLayout(false);
+            pnlUpdateAllowance.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -1415,5 +1510,11 @@
         private Label label18;
         private TextBox txtBreakfast;
         private ComboBox cmbCurrentDay;
+        private Panel pnlUpdateAllowance;
+        private Label label24;
+        private TextBox tbxAmounToUpdate;
+        private Button btnDecrease;
+        private Button btnIncrease;
+        private Label label23;
     }
 }

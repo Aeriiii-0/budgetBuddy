@@ -2706,7 +2706,9 @@ Set and monitor your allowances with ease. Budget Buddy helps you stick to your 
 Intuitive and User-Friendly Interface: 
 We believe managing your money should be straightforward, not complicated. Budget Buddy features a clean, intuitive design that makes tracking your finances a breeze, even for beginners.
 
-Secure and Private: 
-Your financial data is sensitive, and we treat it with the utmost care. Budget Buddy is built with robust security measures to ensure your information remains private and protected.</value>
+Secure and Private: </value>
   </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>25</value>
+  </metadata>
 </root>
