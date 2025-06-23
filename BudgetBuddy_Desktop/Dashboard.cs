@@ -493,20 +493,27 @@ namespace BudgetBuddy_Desktop
 
         private void btnIncrease_Click(object sender, EventArgs e)
         {
-            double ToDo = 1;
+            Actions userAction = Actions.Increase;
             var Amount = Convert.ToDouble(tbxAmounToUpdate.Text);
-            BBProcess.UpdateWeeklyAllowance(Amount, ToDo, userUsername, days, userPassword);
+            BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername, days, userPassword);
             MessageBox.Show("Allowance Updated!", "Notification");
             tbxAmounToUpdate.Clear();
         }
 
         private void btnDecrease_Click(object sender, EventArgs e)
         {
-            double ToDo = 2;
+            Actions userAction = Actions.Decrease;
             var Amount = Convert.ToDouble(tbxAmounToUpdate.Text);
-            BBProcess.UpdateWeeklyAllowance(Amount, ToDo, userUsername, days, userPassword);
-            MessageBox.Show("Allowance Updated!", "Notification");
-            tbxAmounToUpdate.Clear();
+
+           if(BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername, days, userPassword))
+            {
+                MessageBox.Show("Allowance Updated!", "Notification");
+            }
+            else
+            {
+                MessageBox.Show("Insufficient Balance!", "Notification");
+            }
+                tbxAmounToUpdate.Clear();
         }
 
         private void button2_Click(object sender, EventArgs e)

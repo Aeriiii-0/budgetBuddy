@@ -77,13 +77,13 @@ namespace BB_DataLayer
 
         }
 
-        public void UpdateAccount(UserAccounts userAccounts)
+        public void UpdateAccount(UserAccounts userAccounts) 
         {
             sqlConnection.Open();
             var updateStatement = $"UPDATE accounts SET allowance= @allowance, password = @password WHERE username = @username";
             SqlCommand updateCommand = new SqlCommand(updateStatement, sqlConnection);
 
-            updateCommand.Parameters.AddWithValue("@allowance", userAccounts.allowance);
+            updateCommand.Parameters.AddWithValue("@allowance", userAccounts.allowance); 
             updateCommand.Parameters.AddWithValue("@password", userAccounts.password);
             updateCommand.Parameters.AddWithValue("@username", userAccounts.username);
             updateCommand.ExecuteNonQuery();

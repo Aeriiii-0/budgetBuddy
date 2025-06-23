@@ -16,7 +16,8 @@ namespace BB_BusinessDataLogic
         public static HashSet<int> selectedDay = new HashSet<int>();
         public static List<string> dayArray = new List<string>();
         public static List<double> dailyExpenses = new List<double>();
-        static BBDataManager dataManager = new BBDataManager();
+        public static BBDataManager dataManager = new BBDataManager();
+
 
 
         public static bool Login(string userUsername, string userPassword)
@@ -91,24 +92,32 @@ namespace BB_BusinessDataLogic
             return allocation;
         }
 
-        public static double UpdateWeeklyAllowance(double Amount, double ToDo, string userUsername, int days, string userPassword )
+        public static bool UpdateWeeklyAllowance(double Amount, Actions userAction, string userUsername, string userPassword )
         {
             var userAccounts = GetUserAccounts(userUsername, userPassword);
             double allowance = userAccounts.allowance;
 
-            if (ToDo == 1)
+            if (userAction == Actions.Increase)
             {
                 allowance += Amount;
                 userAccounts.allowance = allowance;
+                dataManager.UpdateAccount(userAccounts);
+                return true;
             }
-            else
-            {
+           if (userAction == Actions.Decrease) {
+            
+               if(!CheckAmount(Amount, allowance, userUsername, userPassword))
+                {
+                    return false;
+                }
+
                 allowance -= Amount;
                 userAccounts.allowance = allowance;
-                
+                dataManager.UpdateAccount(userAccounts);
+                return true;
             }
-            dataManager.UpdateAccount(userAccounts);
-            return allowance;
+            
+            return false;
         }
 
         public static double DisplayWeeklyExpenses()
@@ -204,10 +213,9 @@ namespace BB_BusinessDataLogic
         }
 
 
-        public static void DeleteAccount(string userUsername, string userPassword)
+        public static void DeleteAccount(string userUsername, string userPassword) 
         {
             UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
-
             if (userAccounts == null)
             {
                 throw new Exception("User account not found.");
@@ -218,7 +226,7 @@ namespace BB_BusinessDataLogic
             }
         }
 
-        public static void UpdateAccount(string userUsername, string userPassword,  string newPassword) //removed allowance sa ui be
+        public static void UpdateAccount(string userUsername, string userPassword,  string newPassword) 
         {
             UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
 
@@ -233,7 +241,7 @@ namespace BB_BusinessDataLogic
             }
         }
 
-        public static void UpdateAllowance(string userUsername, string userPassword,  double newAllowance) //added update allowance method
+        public static void UpdateAllowance(string userUsername, string userPassword,  double newAllowance) 
         {
             UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
 
@@ -293,6 +301,17 @@ namespace BB_BusinessDataLogic
                 return dailyExpenses[dayIndex];
             return 0;
         }
+
+
+        public static List<UserAccounts> GetAccounts()
+        {
+            return dataManager.GetAccounts(); 
+        }
+
+
+
+
+
 
     }
 }

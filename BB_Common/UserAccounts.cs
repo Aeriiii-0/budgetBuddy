@@ -8,7 +8,7 @@ namespace BB_Common
 {
     public class UserAccounts
     {
-        string Password = "1234";
+        public string Password = "1234";
         public string password
         {
             get { return Password; }
@@ -21,7 +21,7 @@ namespace BB_Common
             }
         }
 
-        string Username = "four";
+        public string Username = "four";
         public string username
         {
             get { return Username; }

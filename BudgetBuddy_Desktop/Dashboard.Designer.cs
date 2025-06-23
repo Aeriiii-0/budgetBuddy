@@ -427,7 +427,7 @@
             button1.Padding = new Padding(1, 0, 0, 0);
             button1.Size = new Size(255, 68);
             button1.TabIndex = 0;
-            button1.Text = "         BUDGET ACTIONS";
+            button1.Text = "                 BUDGET ACTIONS  ▼";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click_2;
             // 
@@ -608,11 +608,11 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.SteelBlue;
-            label3.Location = new Point(93, 27);
+            label3.Location = new Point(80, 27);
             label3.Name = "label3";
-            label3.Size = new Size(67, 21);
+            label3.Size = new Size(88, 21);
             label3.TabIndex = 31;
-            label3.Text = "Profile";
+            label3.Text = "▼  Profile";
             // 
             // pictureBox3
             // 

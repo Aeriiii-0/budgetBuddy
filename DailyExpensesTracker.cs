@@ -19,10 +19,17 @@ namespace budgetBuddy
         static List<UserAccounts> userAccount = new List<UserAccounts>();
         static string newUsername, newPassword;
         static double newAllowance;
-
+        static BB_BusinessDataLogic.BBProcess bBProcess = new BB_BusinessDataLogic.BBProcess();
 
         static void Main(string[] args)
         {
+            var accounts = BB_BusinessDataLogic.BBProcess.GetAccounts();
+            foreach (var account in accounts)
+            {
+                Console.WriteLine(account.Password);
+                Console.WriteLine(account.Username);
+                Console.WriteLine(account.allowance);
+            }
 
             Console.WriteLine("--------------------------");
             Console.WriteLine("WELCOME TO BUDGET BUDDY! ");
