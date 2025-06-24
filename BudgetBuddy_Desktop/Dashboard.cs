@@ -495,7 +495,7 @@ namespace BudgetBuddy_Desktop
         {
             Actions userAction = Actions.Increase;
             var Amount = Convert.ToDouble(tbxAmounToUpdate.Text);
-            BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername, days, userPassword);
+            BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername,  userPassword);
             MessageBox.Show("Allowance Updated!", "Notification");
             tbxAmounToUpdate.Clear();
         }
@@ -505,7 +505,7 @@ namespace BudgetBuddy_Desktop
             Actions userAction = Actions.Decrease;
             var Amount = Convert.ToDouble(tbxAmounToUpdate.Text);
 
-           if(BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername, days, userPassword))
+           if(BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername, userPassword))
             {
                 MessageBox.Show("Allowance Updated!", "Notification");
             }

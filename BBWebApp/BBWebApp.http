@@ -1,0 +1,6 @@
+@BBWebApp_HostAddress = http://localhost:5042
+
+GET {{BBWebApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

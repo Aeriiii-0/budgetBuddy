@@ -193,7 +193,7 @@ namespace BB_BusinessDataLogic
             return foundAccount;
         }
 
-        public static void CreateAccount(string userUsername, string userPassword, double allowance)
+        public static bool CreateAccount(string userUsername, string userPassword, double allowance)
         {
             UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
             if (userAccounts != null)
@@ -205,24 +205,27 @@ namespace BB_BusinessDataLogic
                     allowance = allowance,
                 };
                 dataManager.CreateAccount(userAccounts);
+                return true;
             }
             else
             {
-                throw new Exception("Can't create  account");
+                return false;
             }
         }
 
 
-        public static void DeleteAccount(string userUsername, string userPassword) 
+        public static bool DeleteAccount(string userUsername, string userPassword) 
         {
             UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
             if (userAccounts == null)
             {
-                throw new Exception("User account not found.");
+                return false;
+                
             }
             else
             {
                 dataManager.DeleteAccount(userAccounts);
+                return true;
             }
         }
 
