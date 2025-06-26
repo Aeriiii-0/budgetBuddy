@@ -26,6 +26,11 @@ namespace BB_DataLayer
             return budgetBuddyData.GetAccounts();
         }
 
+        public List<FinancialReport> GetExpensesOnAcc(int accountId)
+        {
+            return budgetBuddyData.GetExpensesOnAcc(accountId);
+        }
+
         public void CreateAccount(UserAccounts userAccounts)
         {
             budgetBuddyData.CreateAccount(userAccounts);

@@ -14,6 +14,7 @@ namespace BudgetBuddy_Desktop
     public partial class SettingsForm : Form
     {
         string userUsername, userPassword;
+        double allowance;
         public SettingsForm()
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace BudgetBuddy_Desktop
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Dashboard dashboard = new Dashboard(userUsername, userPassword);
+            Dashboard dashboard = new Dashboard(userUsername, userPassword, allowance);
             dashboard.Show();
 
             this.Hide();
@@ -41,7 +42,7 @@ namespace BudgetBuddy_Desktop
             MessageBox.Show("Password Updated!", "Notification");
             ClearFields();
 
-            Dashboard dashboard = new Dashboard(userUsername, userPassword);
+            Dashboard dashboard = new Dashboard(userUsername, userPassword, allowance);
             dashboard.Show();
 
             this.Hide();

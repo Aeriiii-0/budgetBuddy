@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             Label label4;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             pictureBox2 = new PictureBox();
             sidebarContainer = new FlowLayoutPanel();
             panel3 = new Panel();
@@ -80,6 +81,8 @@
             profilebarTimer = new System.Windows.Forms.Timer(components);
             panel16 = new Panel();
             pnlLogExpenses = new Panel();
+            btnNextAlloc = new Button();
+            lblAllocationComment = new Label();
             label14 = new Label();
             btnDone = new Button();
             lblAllocationCount = new Label();
@@ -146,6 +149,7 @@
             label28 = new Label();
             label27 = new Label();
             label26 = new Label();
+            dtgvHistory = new DataGridView();
             label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             sidebarContainer.SuspendLayout();
@@ -181,6 +185,7 @@
             pnlDash1.SuspendLayout();
             pnlDash2.SuspendLayout();
             pnlDash.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtgvHistory).BeginInit();
             SuspendLayout();
             // 
             // label4
@@ -425,7 +430,7 @@
             button1.Location = new Point(0, 0);
             button1.Name = "button1";
             button1.Padding = new Padding(1, 0, 0, 0);
-            button1.Size = new Size(255, 68);
+            button1.Size = new Size(258, 68);
             button1.TabIndex = 0;
             button1.Text = "                 BUDGET ACTIONS  ▼";
             button1.UseVisualStyleBackColor = true;
@@ -478,7 +483,7 @@
             button4.Margin = new Padding(8, 5, 3, 3);
             button4.Name = "button4";
             button4.Padding = new Padding(7, 0, 0, 0);
-            button4.Size = new Size(228, 64);
+            button4.Size = new Size(258, 64);
             button4.TabIndex = 0;
             button4.Text = "                       ABOUT";
             button4.TextAlign = ContentAlignment.MiddleLeft;
@@ -504,9 +509,9 @@
             button3.ImageAlign = ContentAlignment.MiddleLeft;
             button3.Location = new Point(0, 0);
             button3.Name = "button3";
-            button3.Size = new Size(231, 64);
+            button3.Size = new Size(258, 64);
             button3.TabIndex = 0;
-            button3.Text = "                         TUTORIAL";
+            button3.Text = "                         HISTORY";
             button3.TextAlign = ContentAlignment.MiddleLeft;
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click_1;
@@ -778,6 +783,8 @@
             // pnlLogExpenses
             // 
             pnlLogExpenses.BackColor = Color.FromArgb(11, 22, 41);
+            pnlLogExpenses.Controls.Add(btnNextAlloc);
+            pnlLogExpenses.Controls.Add(lblAllocationComment);
             pnlLogExpenses.Controls.Add(label14);
             pnlLogExpenses.Controls.Add(btnDone);
             pnlLogExpenses.Controls.Add(lblAllocationCount);
@@ -788,6 +795,31 @@
             pnlLogExpenses.Size = new Size(460, 415);
             pnlLogExpenses.TabIndex = 20;
             pnlLogExpenses.Visible = false;
+            // 
+            // btnNextAlloc
+            // 
+            btnNextAlloc.BackColor = SystemColors.ActiveCaption;
+            btnNextAlloc.ForeColor = Color.Transparent;
+            btnNextAlloc.Location = new Point(305, 359);
+            btnNextAlloc.Name = "btnNextAlloc";
+            btnNextAlloc.Size = new Size(64, 29);
+            btnNextAlloc.TabIndex = 24;
+            btnNextAlloc.Text = "Next";
+            btnNextAlloc.UseVisualStyleBackColor = false;
+            btnNextAlloc.Click += btnNextAlloc_Click;
+            // 
+            // lblAllocationComment
+            // 
+            lblAllocationComment.AutoSize = true;
+            lblAllocationComment.BackColor = Color.Transparent;
+            lblAllocationComment.Font = new Font("Cambria", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblAllocationComment.ForeColor = Color.LightCyan;
+            lblAllocationComment.Location = new Point(55, 290);
+            lblAllocationComment.Name = "lblAllocationComment";
+            lblAllocationComment.Size = new Size(372, 17);
+            lblAllocationComment.TabIndex = 23;
+            lblAllocationComment.Text = "Try to spend below your daily allocation to save more!\r\n";
+            lblAllocationComment.Visible = false;
             // 
             // label14
             // 
@@ -805,9 +837,9 @@
             // 
             btnDone.BackColor = SystemColors.ActiveCaption;
             btnDone.ForeColor = Color.Transparent;
-            btnDone.Location = new Point(343, 315);
+            btnDone.Location = new Point(375, 359);
             btnDone.Name = "btnDone";
-            btnDone.Size = new Size(94, 29);
+            btnDone.Size = new Size(65, 29);
             btnDone.TabIndex = 22;
             btnDone.Text = "Done";
             btnDone.UseVisualStyleBackColor = false;
@@ -1191,8 +1223,8 @@
             // 
             // btnExpenseSubmit
             // 
-            btnExpenseSubmit.BackColor = Color.White;
-            btnExpenseSubmit.ForeColor = Color.Black;
+            btnExpenseSubmit.BackColor = SystemColors.ActiveCaption;
+            btnExpenseSubmit.ForeColor = Color.Transparent;
             btnExpenseSubmit.Location = new Point(697, 273);
             btnExpenseSubmit.Name = "btnExpenseSubmit";
             btnExpenseSubmit.Size = new Size(94, 29);
@@ -1328,6 +1360,7 @@
             tbxAmounToUpdate.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tbxAmounToUpdate.Location = new Point(60, 153);
             tbxAmounToUpdate.Name = "tbxAmounToUpdate";
+            tbxAmounToUpdate.RightToLeft = RightToLeft.No;
             tbxAmounToUpdate.Size = new Size(325, 27);
             tbxAmounToUpdate.TabIndex = 25;
             // 
@@ -1415,7 +1448,6 @@
             label35.Size = new Size(156, 68);
             label35.TabIndex = 28;
             label35.Text = "Log daily. \r\nSpend wisely.\r\nLet us track it for you.\r\n\r\n";
-            label35.Click += label35_Click;
             // 
             // label34
             // 
@@ -1428,7 +1460,6 @@
             label34.Size = new Size(110, 20);
             label34.TabIndex = 28;
             label34.Text = " Your Role 🎯";
-            label34.Click += label34_Click;
             // 
             // label37
             // 
@@ -1442,7 +1473,6 @@
             label37.TabIndex = 29;
             label37.Text = ">  Goal-Setting Mode  <\r\n>  Link E-wallet Account  <\r\n\r\n\r\n";
             label37.TextAlign = ContentAlignment.MiddleRight;
-            label37.Click += label37_Click;
             // 
             // label36
             // 
@@ -1455,7 +1485,6 @@
             label36.Size = new Size(140, 20);
             label36.TabIndex = 28;
             label36.Text = "📢 Coming Soon  ";
-            label36.Click += label36_Click;
             // 
             // pnlDash2
             // 
@@ -1598,6 +1627,26 @@
             label26.TabIndex = 19;
             label26.Text = "💡 Motivational Quote\r\n\r\n";
             // 
+            // dtgvHistory
+            // 
+            dtgvHistory.BackgroundColor = SystemColors.Control;
+            dtgvHistory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Transparent;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Navy;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dtgvHistory.DefaultCellStyle = dataGridViewCellStyle1;
+            dtgvHistory.GridColor = SystemColors.ActiveCaption;
+            dtgvHistory.Location = new Point(259, 156);
+            dtgvHistory.Name = "dtgvHistory";
+            dtgvHistory.RowHeadersWidth = 51;
+            dtgvHistory.Size = new Size(886, 409);
+            dtgvHistory.TabIndex = 0;
+            dtgvHistory.Visible = false;
+            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
@@ -1606,20 +1655,21 @@
             BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(1144, 625);
             Controls.Add(pictureBox2);
-            Controls.Add(pnlDash1);
             Controls.Add(pictureBox1);
             Controls.Add(sidebarProfile);
             Controls.Add(sidebarContainer);
             Controls.Add(panel16);
+            Controls.Add(pnlDash1);
+            Controls.Add(pnlDash2);
+            Controls.Add(pnlLogExpenses);
+            Controls.Add(pnlDash);
             Controls.Add(pnlUpdateAllowance);
             Controls.Add(pnlDays);
-            Controls.Add(pnlLogExpenses);
-            Controls.Add(pnlAllowance);
-            Controls.Add(pnlDash);
             Controls.Add(pnDashboard);
+            Controls.Add(pnlAllowance);
             Controls.Add(pnlAbout);
             Controls.Add(pnlDailyExpense);
-            Controls.Add(pnlDash2);
+            Controls.Add(dtgvHistory);
             Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ForeColor = Color.Transparent;
             FormBorderStyle = FormBorderStyle.None;
@@ -1672,6 +1722,7 @@
             pnlDash2.PerformLayout();
             pnlDash.ResumeLayout(false);
             pnlDash.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dtgvHistory).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1793,5 +1844,8 @@
         private Label label36;
         private Label label38;
         private CheckedListBox checkedListBox1;
+        private Label lblAllocationComment;
+        private Button btnNextAlloc;
+        private DataGridView dtgvHistory;
     }
 }

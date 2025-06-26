@@ -57,14 +57,15 @@
             // 
             // btnExt
             // 
+            btnExt.BackColor = SystemColors.ActiveCaption;
             btnExt.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnExt.ForeColor = Color.Black;
+            btnExt.ForeColor = Color.Transparent;
             btnExt.Location = new Point(881, 582);
             btnExt.Name = "btnExt";
             btnExt.Size = new Size(94, 29);
             btnExt.TabIndex = 21;
             btnExt.Text = "Back";
-            btnExt.UseVisualStyleBackColor = true;
+            btnExt.UseVisualStyleBackColor = false;
             btnExt.Click += button1_Click;
             // 
             // txtPassword
@@ -87,7 +88,6 @@
             lblNewPass.Size = new Size(125, 20);
             lblNewPass.TabIndex = 21;
             lblNewPass.Text = "New Password";
-            lblNewPass.Visible = false;
             // 
             // label3
             // 

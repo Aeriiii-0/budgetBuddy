@@ -10,6 +10,7 @@ namespace BB_DataLayer
     public interface IBudgetBuddyData
     {
         public List<UserAccounts> GetAccounts();
+        public List<FinancialReport> GetExpensesOnAcc(int accountId);
         public void CreateAccount(UserAccounts userAccounts);
         public void UpdateAccount(UserAccounts userAccounts);
         public void DeleteAccount(UserAccounts userAccounts);

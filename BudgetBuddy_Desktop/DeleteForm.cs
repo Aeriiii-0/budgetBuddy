@@ -14,6 +14,7 @@ namespace BudgetBuddy_Desktop
     public partial class DeleteForm : Form
     {
         string userUsername, userPassword;
+        double allowance;
         public DeleteForm()
         {
             InitializeComponent();
@@ -21,7 +22,7 @@ namespace BudgetBuddy_Desktop
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Dashboard dashboard = new Dashboard(userUsername, userPassword);
+            Dashboard dashboard = new Dashboard(userUsername, userPassword, allowance);
             dashboard.Show();
 
             this.Hide();

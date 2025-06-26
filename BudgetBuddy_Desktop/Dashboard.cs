@@ -21,12 +21,14 @@ namespace BudgetBuddy_Desktop
         public string userUsername;
         public string userPassword;
         public int days, dayInput;
+        public double allowance;
 
-        public Dashboard(string userUsername, string userPassword)
+        public Dashboard(string userUsername, string userPassword, double allowance)
         {
             InitializeComponent();
             this.userUsername = userUsername;
             this.userPassword = userPassword;
+            this.allowance = allowance;
 
         }
 
@@ -77,7 +79,7 @@ namespace BudgetBuddy_Desktop
 
         private void btnExt_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0); //delete this
+            Environment.Exit(0);
         }
 
 
@@ -155,7 +157,10 @@ namespace BudgetBuddy_Desktop
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("Feature will be released soon...", "Notice");
+            HistoryVisibility();
+            var expenses = BBProcess.GetUserExpenses(userUsername, userPassword);
+            dtgvHistory.DataSource = expenses;
+            dtgvHistory.DefaultCellStyle.ForeColor = Color.Navy;
         }
 
 
@@ -199,7 +204,7 @@ namespace BudgetBuddy_Desktop
 
         private void button5_Click_2(object sender, EventArgs e)
         {
-            SettingsForm settingsForm = new SettingsForm(); //delete form
+            SettingsForm settingsForm = new SettingsForm(); 
             settingsForm.Show();
 
             this.Hide();
@@ -213,9 +218,6 @@ namespace BudgetBuddy_Desktop
             AboutPnlVisiblity();
 
         }
-
-
-
 
 
         private void button14_Click(object sender, EventArgs e)
@@ -254,99 +256,7 @@ namespace BudgetBuddy_Desktop
 
         }
 
-        private void AboutPnlVisiblity()
-        {
-            pnlAbout.Visible = true;
-            pnlAllowance.Visible = false;
-            pnDashboard.Visible = false;
-            pnlLogExpenses.Visible = false;
-            pnlDays.Visible = false;
-            pnlDailyExpense.Visible = false;
-            pnlUpdateAllowance.Visible = false;
-            pnlDash.Visible = false;
-            pnlDash2.Visible = false;
-            pnlDash1.Visible = false;
-        }
-
-        private void SummaryPnlVisiblity()
-        {
-            pnlAbout.Visible = false;
-            pnlAllowance.Visible = true;
-            pnDashboard.Visible = true;
-            pnlLogExpenses.Visible = false;
-            pnlDays.Visible = false;
-            pnlDailyExpense.Visible = false;
-            pnlUpdateAllowance.Visible = false;
-            pnlDash.Visible = false;
-            pnlDash2.Visible = false;
-            pnlDash1.Visible = false;
-        }
-
-        private void LogExpensePnlVisiblity() //allocation panel
-        {
-            pnlAbout.Visible = false;
-            pnlAllowance.Visible = false;
-            pnDashboard.Visible = false;
-            pnlLogExpenses.Visible = true;
-            pnlDays.Visible = false;
-            pnlDailyExpense.Visible = false;
-            pnlUpdateAllowance.Visible = false;
-            pnlDash.Visible = false;
-        }
-
-        private void LogDaysPnlVisiblity()  //select days panel
-        {
-            pnlAbout.Visible = false;
-            pnlAllowance.Visible = false;
-            pnDashboard.Visible = false;
-            pnlLogExpenses.Visible = false;
-            pnlDays.Visible = true;
-            pnlDailyExpense.Visible = false;
-            pnlUpdateAllowance.Visible = false;
-            pnlDash.Visible = false;
-        }
-
-        private void DailyExpensePnlVisibility(int dayInput)
-        {
-            pnlAbout.Visible = false;
-            pnlAllowance.Visible = false;
-            pnDashboard.Visible = false;
-            pnlLogExpenses.Visible = false;
-            pnlDays.Visible = false;
-            pnlDailyExpense.Visible = true;
-            pnlUpdateAllowance.Visible = false;
-            pnlDash.Visible = false;
-            pnlDash1.Visible = false;
-            pnlDash2.Visible = false;
-
-        }
-
-        private void UpdAllowancePanelVisibility()
-        {
-            pnlAbout.Visible = false;
-            pnlAllowance.Visible = false;
-            pnDashboard.Visible = false;
-            pnlLogExpenses.Visible = false;
-            pnlDays.Visible = false;
-            pnlDailyExpense.Visible = false;
-            pnlDash.Visible = false;
-            pnlUpdateAllowance.Visible = true;
-        }
-
-        private void DashPanelVisibility()
-        {
-            pnlAbout.Visible = false;
-            pnlAllowance.Visible = false;
-            pnDashboard.Visible = false;
-            pnlLogExpenses.Visible = false;
-            pnlDays.Visible = false;
-            pnlDailyExpense.Visible = false;
-            pnlUpdateAllowance.Visible = false;
-            pnlDash.Visible = true;
-            pnlDash1.Visible = true;
-            pnlDash2.Visible = true;
-        }
-
+      
 
 
         private void btnLogExpense_Click(object sender, EventArgs e)
@@ -360,6 +270,7 @@ namespace BudgetBuddy_Desktop
             else
             {
                 LogExpensePnlVisiblity();
+                BBProcess.LogAnotherWeek();
             }
 
         }
@@ -387,10 +298,7 @@ namespace BudgetBuddy_Desktop
         {
             days = comboBox1.SelectedIndex;
             lblAllocationCount.Text = BBProcess.WeeklyAllowance(days, userUsername, userPassword).ToString("F2");
-            MessageBox.Show("GREAT!\nNote: Try to keep expenses under the allocation to save money!", "Notification");
-
-            comboBox1.SelectedIndex = 0;
-            LogDaysPnlVisiblity();
+            lblAllocationComment.Visible = true;
 
 
         }
@@ -399,6 +307,12 @@ namespace BudgetBuddy_Desktop
         {
 
             dayInput = cmbCurrentDay.SelectedIndex;
+
+            if (cmbCurrentDay.SelectedIndex == 0)
+            {
+                MessageBox.Show("Please select a valid day from the dropdown.", "Invalid Selection");
+                return;
+            }
 
             if (!BBProcess.CheckLoggedDays(days))
             {
@@ -409,14 +323,11 @@ namespace BudgetBuddy_Desktop
             if (!BBProcess.AddUserInput(dayInput))
             {
                 MessageBox.Show("You've already logged for the selected day. Please come back tomorrow", "Notification");
+                cmbCurrentDay.SelectedIndex = 0;
                 return;
             }
 
-            if (cmbCurrentDay.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select a valid day from the dropdown.", "Invalid Selection");
-                return;
-            }
+           
             else
             {
                 DailyExpensePnlVisibility(dayInput);
@@ -431,10 +342,13 @@ namespace BudgetBuddy_Desktop
             var Dinner = Convert.ToDouble(txtDinner.Text);
             var Transportation = Convert.ToDouble(txtMiscellaneous.Text);
 
-            MessageBox.Show($"You have spent {BBProcess.DisplayDailyExpenses(Breakfast, Lunch, Dinner, Transportation, userUsername, userPassword, dayInput)} for today.", "Notification");
+            MessageBox.Show($"You have spent {BBProcess.DisplayDailyExpenses(Breakfast, Lunch, Dinner, Transportation, userUsername, userPassword, dayInput, allowance)} for today.", "Notification");
+
             AllowanceReminder();
             DisplayDailyExpense();
             ClearFieldsDayExpense();
+            MessageBox.Show("We'll see you tomorrow", "Notification");
+            DashPanelVisibility();
         }
 
 
@@ -476,7 +390,7 @@ namespace BudgetBuddy_Desktop
         private void btnWeeklySummary_Click(object sender, EventArgs e)
         {
             SummaryPnlVisiblity();
-            lblAllowanceCount.Text = BBProcess.UpdateAllowanceDisplay(userUsername, userPassword).ToString("F2");
+            lblAllowanceCount.Text = BBProcess.UpdateAllowanceDisplay(userUsername,userPassword).ToString("F2");
             lblAllowanceLeft.Text = BBProcess.allocation.ToString("F2");
             lblTotal.Text = BBProcess.DisplayWeeklyExpenses().ToString("F2");
         }
@@ -490,12 +404,11 @@ namespace BudgetBuddy_Desktop
         }
 
 
-
         private void btnIncrease_Click(object sender, EventArgs e)
         {
             Actions userAction = Actions.Increase;
             var Amount = Convert.ToDouble(tbxAmounToUpdate.Text);
-            BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername,  userPassword);
+            BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername, userPassword);
             MessageBox.Show("Allowance Updated!", "Notification");
             tbxAmounToUpdate.Clear();
         }
@@ -505,7 +418,7 @@ namespace BudgetBuddy_Desktop
             Actions userAction = Actions.Decrease;
             var Amount = Convert.ToDouble(tbxAmounToUpdate.Text);
 
-           if(BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername, userPassword))
+            if (BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername, userPassword))
             {
                 MessageBox.Show("Allowance Updated!", "Notification");
             }
@@ -513,7 +426,7 @@ namespace BudgetBuddy_Desktop
             {
                 MessageBox.Show("Insufficient Balance!", "Notification");
             }
-                tbxAmounToUpdate.Clear();
+            tbxAmounToUpdate.Clear();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -522,29 +435,132 @@ namespace BudgetBuddy_Desktop
 
         }
 
-        private void label34_Click(object sender, EventArgs e)
+        private void btnNextAlloc_Click(object sender, EventArgs e)
         {
-            //
+            lblAllocationCount.Text = "0.00";
+            comboBox1.SelectedIndex = 0;
+            LogDaysPnlVisiblity();
         }
 
-        private void label35_Click(object sender, EventArgs e)
+        //panel settings
+        private void AboutPnlVisiblity()
         {
-            //
+            pnlAbout.Visible = true;
+            pnlAllowance.Visible = false;
+            pnDashboard.Visible = false;
+            pnlLogExpenses.Visible = false;
+            pnlDays.Visible = false;
+            pnlDailyExpense.Visible = false;
+            pnlUpdateAllowance.Visible = false;
+            pnlDash.Visible = false;
+            pnlDash2.Visible = false;
+            pnlDash1.Visible = false;
+            dtgvHistory.Visible = false;
         }
 
-        private void label36_Click(object sender, EventArgs e)
+        private void SummaryPnlVisiblity()
         {
-            //
+            pnlAbout.Visible = false;
+            pnlAllowance.Visible = true;
+            pnDashboard.Visible = true;
+            pnlLogExpenses.Visible = false;
+            pnlDays.Visible = false;
+            pnlDailyExpense.Visible = false;
+            pnlUpdateAllowance.Visible = false;
+            pnlDash.Visible = false;
+            pnlDash2.Visible = false;
+            pnlDash1.Visible = false;
+            dtgvHistory.Visible = false;
         }
 
-        private void label37_Click(object sender, EventArgs e)
+        private void LogExpensePnlVisiblity() //allocation panel
         {
-            //
+            pnlAbout.Visible = false;
+            pnlAllowance.Visible = false;
+            pnDashboard.Visible = false;
+            pnlLogExpenses.Visible = true;
+            pnlDays.Visible = false;
+            pnlDailyExpense.Visible = false;
+            pnlUpdateAllowance.Visible = false;
+            pnlDash.Visible = false;
+            dtgvHistory.Visible = false;
         }
 
-        private void label43_Click(object sender, EventArgs e)
+        private void LogDaysPnlVisiblity()  //select days panel
         {
-            //
+            pnlAbout.Visible = false;
+            pnlAllowance.Visible = false;
+            pnDashboard.Visible = false;
+            pnlLogExpenses.Visible = false;
+            pnlDays.Visible = true;
+            pnlDailyExpense.Visible = false;
+            pnlUpdateAllowance.Visible = false;
+            pnlDash.Visible = false;
+            pnlDash1.Visible = true;
+            pnlDash2.Visible = true;
+            dtgvHistory.Visible = false;
         }
+
+        private void DailyExpensePnlVisibility(int dayInput)
+        {
+            pnlAbout.Visible = false;
+            pnlAllowance.Visible = false;
+            pnDashboard.Visible = false;
+            pnlLogExpenses.Visible = false;
+            pnlDays.Visible = false;
+            pnlDailyExpense.Visible = true;
+            pnlUpdateAllowance.Visible = false;
+            pnlDash.Visible = false;
+            pnlDash1.Visible = false;
+            pnlDash2.Visible = false;
+            dtgvHistory.Visible = false;
+        }
+
+        private void UpdAllowancePanelVisibility()
+        {
+            pnlAbout.Visible = false;
+            pnlAllowance.Visible = false;
+            pnDashboard.Visible = false;
+            pnlLogExpenses.Visible = false;
+            pnlDays.Visible = false;
+            pnlDailyExpense.Visible = false;
+            pnlDash.Visible = false;
+            pnlUpdateAllowance.Visible = true;
+            pnlDash1.Visible = true;
+            pnlDash2.Visible = true;
+            dtgvHistory.Visible = false;
+        }
+
+        private void DashPanelVisibility()
+        {
+            pnlAbout.Visible = false;
+            pnlAllowance.Visible = false;
+            pnDashboard.Visible = false;
+            pnlLogExpenses.Visible = false;
+            pnlDays.Visible = false;
+            pnlDailyExpense.Visible = false;
+            pnlUpdateAllowance.Visible = false;
+            pnlDash.Visible = true;
+            pnlDash1.Visible = true;
+            pnlDash2.Visible = true;
+            dtgvHistory.Visible = false;
+        }
+
+        private void HistoryVisibility()
+        {
+            pnlAbout.Visible = false;
+            pnlAllowance.Visible = false;
+            pnDashboard.Visible = false;
+            pnlLogExpenses.Visible = false;
+            pnlDays.Visible = false;
+            pnlDailyExpense.Visible = false;
+            pnlUpdateAllowance.Visible = false;
+            pnlDash.Visible = false;
+            pnlDash1.Visible = false;
+            pnlDash2.Visible = false;
+            dtgvHistory.Visible = true;
+        }
+
+
     }
 }

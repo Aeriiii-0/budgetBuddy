@@ -4,6 +4,7 @@ namespace BudgetBuddy_Desktop
 {
     public partial class BudgetBuddy : Form
     {
+        double allowance;
         public BudgetBuddy()
         {
             InitializeComponent();
@@ -127,7 +128,7 @@ namespace BudgetBuddy_Desktop
             {
                 ClearFields();
                 MessageBox.Show("Successful");
-                Dashboard dashboardForm = new Dashboard(userUsername, userPassword);
+                Dashboard dashboardForm = new Dashboard(userUsername, userPassword, allowance);
                 dashboardForm.Show();
 
                 this.Hide();

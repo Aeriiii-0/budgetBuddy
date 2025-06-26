@@ -168,7 +168,6 @@
             // btnExit
             // 
             btnExit.BackColor = SystemColors.ActiveCaption;
-            btnExit.FlatStyle = FlatStyle.System;
             btnExit.Font = new Font("Gadugi", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnExit.ForeColor = Color.Transparent;
             btnExit.Location = new Point(894, 585);

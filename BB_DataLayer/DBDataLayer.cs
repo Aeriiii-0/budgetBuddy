@@ -77,6 +77,7 @@ namespace BB_DataLayer
 
         }
 
+
         public void UpdateAccount(UserAccounts userAccounts) 
         {
             sqlConnection.Open();
@@ -121,6 +122,36 @@ namespace BB_DataLayer
                 conn.Open();
                 return (int)selectCommand.ExecuteScalar();
             }
+        }
+
+        public List<FinancialReport> GetExpensesOnAcc(int accountId)
+        {
+            List<FinancialReport> reports = new List<FinancialReport>();
+
+            string selectStatement = "SELECT expense_id, account_id, DayOfWeek, TotalExpense, ExpenseDate FROM WeeklyExpenses WHERE account_id = @account_id";
+            using (SqlCommand command = new SqlCommand(selectStatement, sqlConnection))
+            {
+                command.Parameters.AddWithValue("@account_id", accountId);
+                sqlConnection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    FinancialReport report = new FinancialReport
+                    {
+                        expense_ID = Convert.ToInt32(reader["expense_id"]),
+                        account_id = Convert.ToInt32(reader["account_id"]),
+                        DayOfWeek = reader["DayOfWeek"].ToString(),
+                        TotalExpense = Convert.ToDouble(reader["TotalExpense"]),
+                        ExpenseDate = Convert.ToDateTime(reader["ExpenseDate"])
+                    };
+                    reports.Add(report);
+                }
+
+                sqlConnection.Close();
+            }
+
+            return reports;
         }
 
         public void DeleteLoggedDays(int accountId)

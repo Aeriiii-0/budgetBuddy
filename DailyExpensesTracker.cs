@@ -20,6 +20,7 @@ namespace budgetBuddy
         static string newUsername, newPassword;
         static double newAllowance;
         static BB_BusinessDataLogic.BBProcess bBProcess = new BB_BusinessDataLogic.BBProcess();
+        static Actions userAction = new Actions();
 
         static void Main(string[] args)
         {
@@ -186,7 +187,7 @@ namespace budgetBuddy
 
                 Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                 Console.WriteLine("\nAllowance Updated!");
-                Console.WriteLine("\nAllowance Available:" + BBProcess.UpdateWeeklyAllowance(Amount, ToDo, userUsername, days, userPassword));
+                Console.WriteLine("\nAllowance Available:" + BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername, userPassword));
             }
 
             else
@@ -198,7 +199,7 @@ namespace budgetBuddy
 
                 Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                 Console.WriteLine("\nAllowance Updated!");
-                Console.WriteLine("\nAllowance Available:" + BBProcess.UpdateWeeklyAllowance(Amount, ToDo, userUsername, days, userPassword));
+                Console.WriteLine("\nAllowance Available:" + BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername, userPassword));
             }
             return Amount;
         }
@@ -270,7 +271,7 @@ namespace budgetBuddy
             Console.Write("\nTransportation: ");
             double Transportation = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine("\nTotal expenses for the day: " + BBProcess.DisplayDailyExpenses(Breakfast, Lunch, Dinner, Transportation, userUsername, userPassword, dayInput));
+            Console.WriteLine("\nTotal expenses for the day: " + BBProcess.DisplayDailyExpenses(Breakfast, Lunch, Dinner, Transportation, userUsername, userPassword, dayInput, allowance));
 
             AllowanceReminder();
             AskToLogDay();
@@ -327,7 +328,8 @@ namespace budgetBuddy
             Console.WriteLine("\n" + string.Join("\t", BBProcess.dayArray));
             Console.WriteLine("\n" + string.Join("\t", BBProcess.dailyExpenses));
             Console.WriteLine("\nTotal expenses throughout the week: " + BBProcess.DisplayWeeklyExpenses());
-            Console.WriteLine("\nAllowance left: " + BBProcess.DisplayAllowance(userUsername, userPassword));
+            Console.WriteLine("\nAllowance left: " + BBProcess.UpdateAllowanceDisplay(userUsername, userPassword));
+        
             Console.WriteLine("\n------------------------------------------------");
 
         }

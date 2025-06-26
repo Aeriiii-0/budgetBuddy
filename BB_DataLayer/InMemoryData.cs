@@ -109,5 +109,10 @@ namespace BB_DataLayer
            
         }
 
+        public List<FinancialReport> GetExpensesOnAcc(int accountId)
+        {
+            return new List<FinancialReport>();
+        }
+
     }
 }

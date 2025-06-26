@@ -18,8 +18,42 @@ namespace BB_BusinessDataLogic
         public static List<double> dailyExpenses = new List<double>();
         public static BBDataManager dataManager = new BBDataManager();
 
+        //methods in previous ui
+        public static bool WorkDays(int days)
+        {
+            if (days < 1 || days > 7)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public static bool ValidDay(int dayInput)
+        {
+            if (dayInput > 0 && dayInput < 8)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool CheckAmount(double Amount, double allowance, string userUsername, string userPassword)
+        {
+            var userAccounts = GetUserAccounts(userUsername, userPassword);
+            allowance = userAccounts.allowance;
+            return Amount <= allowance;
+        }
+
+        public static bool FinancialReportChecker()
+        {
+            return selectedDay.Count > 0;
+        }
 
 
+        //used in winforms
         public static bool Login(string userUsername, string userPassword)
         {
             var userAccounts = dataManager.GetAccounts();
@@ -35,18 +69,6 @@ namespace BB_BusinessDataLogic
             return false;
         }
 
-        public static bool WorkDays(int days)
-        {
-            if (days < 1 || days > 7)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
         public static bool CheckLoggedDays(int days)
         {
             if (selectedDay.Count >= days)
@@ -58,16 +80,7 @@ namespace BB_BusinessDataLogic
                 return true;
             }
         }
-
-        public static bool ValidDay(int dayInput) 
-        {
-            if (dayInput > 0 && dayInput < 8)
-            {
-                return true ;
-            }
-                return false;
-        }
-
+       
         public static bool AddUserInput(int dayInput)
         {
 
@@ -85,7 +98,7 @@ namespace BB_BusinessDataLogic
             }
         }
 
-        public static double WeeklyAllowance(int days, string userUsername, string userPassword)
+        public static double WeeklyAllowance(int days, string userUsername, string userPassword)  //daily allocation
         {
             var userAccounts = GetUserAccounts(userUsername, userPassword);
             allocation = userAccounts.allowance / days;
@@ -126,39 +139,53 @@ namespace BB_BusinessDataLogic
             WeeklyExpenses = dailyExpenses.Sum();
             return WeeklyExpenses;
         }
-
-        public static bool CheckAmount(double Amount, double allowance, string userUsername, string userPassword)
+       
+        public static double DisplayDailyExpenses(double Breakfast, double Lunch, double Dinner, double Transportation, string userUsername, string userPassword, int dayInput, double allowance)
         {
-            var userAccounts = GetUserAccounts(userUsername, userPassword); 
-            allowance = userAccounts.allowance;
-            return Amount <= allowance;
-        }
-
-        public static double DisplayDailyExpenses(double Breakfast, double Lunch, double Dinner, double Transportation, string userUsername, string userPassword, int dayInput)
-        {
-            
+            var userAccounts = GetUserAccounts(userUsername, userPassword);
             TotalDailyExpense = Breakfast + Lunch + Dinner + Transportation;
+
+            userAccounts.allowance -= TotalDailyExpense; 
+            dataManager.UpdateAccount(userAccounts);     
             dailyExpenses.Add(TotalDailyExpense);
 
             string[] daysOfWeek = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };  
-            string dayOfWeek = daysOfWeek[dayInput - 1];  
+            string dayOfWeek = daysOfWeek[dayInput - 1];
 
             SaveDailyExpenseToDB(userUsername, userPassword, dayOfWeek, TotalDailyExpense);
-
 
             return TotalDailyExpense;
         }
 
-        public static double DisplayAllowance(string userUsername, string userPassword) 
+        public static void SaveDailyExpenseToDB(string userUsername, string userPassword, string dayOfWeek, double totalExpense)
         {
-
             var userAccounts = GetUserAccounts(userUsername, userPassword);
-            double WeeklyExpenses = dailyExpenses.Sum();
+            int accountId = dataManager.GetAccountId(userAccounts);
 
-            userAccounts.allowance -= WeeklyExpenses;
-            dataManager.UpdateAccount(userAccounts);
+            FinancialReport expense = new FinancialReport
+            {
+                account_id = accountId,
+                DayOfWeek = dayOfWeek,
+                TotalExpense = totalExpense,
+                ExpenseDate = DateTime.Today
+            };
 
-            return UpdateAllowanceDisplay(userUsername, userPassword);
+            UpdateAllowanceDisplay(userUsername, userPassword);
+            dataManager.AddExpense(expense);
+
+        }
+
+        public static double GetExpenseForDay(int dayIndex)
+        {
+            if (dayIndex < dailyExpenses.Count)
+                return dailyExpenses[dayIndex];
+            return 0;
+        }
+
+        public static bool AllowanceModerator()
+        {
+            return TotalDailyExpense < allocation;
+
         }
 
         public static double UpdateAllowanceDisplay(string userUsername, string userPassword)
@@ -166,17 +193,9 @@ namespace BB_BusinessDataLogic
             var userAccounts = GetUserAccounts(userUsername, userPassword);
             return userAccounts.allowance;
         }
-        public static bool AllowanceModerator()
-        {
-            return TotalDailyExpense < allocation;
+       
 
-        }
-
-        public static bool FinancialReportChecker()
-        {
-            return selectedDay.Count > 0;
-        }
-
+       
         public static UserAccounts GetUserAccounts(string userUsername, string userPassword)
         {
             var userAccounts = dataManager.GetAccounts();
@@ -244,74 +263,40 @@ namespace BB_BusinessDataLogic
             }
         }
 
-        public static void UpdateAllowance(string userUsername, string userPassword,  double newAllowance) 
-        {
-            UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
-
-            if (userAccounts == null)
-            {
-                throw new Exception("User account not found.");
-            }
-            else
-            {
-                userAccounts.allowance = newAllowance;
-                dataManager.UpdateAccount(userAccounts);
-            }
-        }
+       
 
         public static bool ClearData(string userUsername, string userPassword)
         {
             var userAccounts = GetUserAccounts(userUsername, userPassword);
             int accountId = dataManager.GetAccountId(userAccounts);
 
-            if (selectedDay.Count > 0)
-            {
-                dataManager.ClearData(accountId); 
-                return true;
-            }
-            return false;
+            dataManager.ClearData(accountId);
+            return true;
         }
 
 
-        public static void SaveDailyExpenseToDB(string userUsername, string userPassword, string dayOfWeek, double totalExpense)
-        {
-            var userAccounts = GetUserAccounts(userUsername, userPassword);
-            int accountId = dataManager.GetAccountId(userAccounts); 
-
-            FinancialReport expense = new FinancialReport
-            {
-                account_id = accountId,
-                DayOfWeek = dayOfWeek,
-                TotalExpense = totalExpense,
-                ExpenseDate = DateTime.Today
-            };
-
-            dataManager.AddExpense(expense);
-            UpdateAllowanceDisplay( userUsername,  userPassword);
-        }
+      
 
         public static void LogAnotherWeek()
         {
             selectedDay.Clear(); 
             dayArray.Clear();
             dailyExpenses.Clear();
-            allocation = 0;
         }
 
-        public static double GetExpenseForDay(int dayIndex)
-        {
-            if (dayIndex < dailyExpenses.Count)
-                return dailyExpenses[dayIndex];
-            return 0;
-        }
-
+      
 
         public static List<UserAccounts> GetAccounts()
         {
             return dataManager.GetAccounts(); 
         }
 
-
+        public static List<FinancialReport> GetUserExpenses(string userUsername, string userPassword)
+        {
+            var userAccount = GetUserAccounts(userUsername, userPassword);
+            int accountId = dataManager.GetAccountId(userAccount);
+            return dataManager.GetExpensesOnAcc(accountId);
+        }
 
 
 
