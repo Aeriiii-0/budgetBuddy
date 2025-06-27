@@ -199,23 +199,23 @@ namespace BB_BusinessDataLogic
         public static UserAccounts GetUserAccounts(string userUsername, string userPassword)
         {
             var userAccounts = dataManager.GetAccounts();
-            var foundAccount = new UserAccounts();
 
             foreach (var account in userAccounts)
             {
                 if (account.username == userUsername && account.password == userPassword)
                 {
-                    foundAccount = account;
+                    return account;
                 }
 
             }
-            return foundAccount;
+            return null;
         }
 
         public static bool CreateAccount(string userUsername, string userPassword, double allowance)
         {
             UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
-            if (userAccounts != null)
+
+            if (userAccounts == null)
             {
                 userAccounts = new UserAccounts
                 {
@@ -223,12 +223,13 @@ namespace BB_BusinessDataLogic
                     password = userPassword,
                     allowance = allowance,
                 };
+
                 dataManager.CreateAccount(userAccounts);
                 return true;
             }
             else
             {
-                return false;
+                return false; 
             }
         }
 
@@ -236,6 +237,7 @@ namespace BB_BusinessDataLogic
         public static bool DeleteAccount(string userUsername, string userPassword) 
         {
             UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
+
             if (userAccounts == null)
             {
                 return false;
@@ -248,18 +250,19 @@ namespace BB_BusinessDataLogic
             }
         }
 
-        public static void UpdateAccount(string userUsername, string userPassword,  string newPassword) 
+        public static bool UpdateAccount(string userUsername, string userPassword,  string newPassword) 
         {
             UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
 
             if (userAccounts == null)
             {
-                throw new Exception("User account not found.");
+                return false;
             }
             else
             {
                 userAccounts.password = newPassword;
                 dataManager.UpdateAccount(userAccounts);
+                return true;
             }
         }
 

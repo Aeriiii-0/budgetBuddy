@@ -56,6 +56,7 @@
             button4 = new Button();
             panel4 = new Panel();
             button3 = new Button();
+            btnTutorial = new Button();
             pnlDays = new Panel();
             cmbCurrentDay = new ComboBox();
             btnNext = new Button();
@@ -218,6 +219,7 @@
             sidebarContainer.Controls.Add(panel2);
             sidebarContainer.Controls.Add(panel5);
             sidebarContainer.Controls.Add(panel4);
+            sidebarContainer.Controls.Add(btnTutorial);
             sidebarContainer.Dock = DockStyle.Left;
             sidebarContainer.Location = new Point(0, 0);
             sidebarContainer.MaximumSize = new Size(258, 624);
@@ -516,6 +518,23 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click_1;
             // 
+            // btnTutorial
+            // 
+            btnTutorial.FlatAppearance.BorderSize = 0;
+            btnTutorial.FlatStyle = FlatStyle.Flat;
+            btnTutorial.Font = new Font("Cambria", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnTutorial.ForeColor = Color.DarkGray;
+            btnTutorial.Image = (Image)resources.GetObject("btnTutorial.Image");
+            btnTutorial.ImageAlign = ContentAlignment.MiddleLeft;
+            btnTutorial.Location = new Point(3, 441);
+            btnTutorial.Name = "btnTutorial";
+            btnTutorial.Size = new Size(255, 58);
+            btnTutorial.TabIndex = 31;
+            btnTutorial.Text = "                         TUTORIAL";
+            btnTutorial.TextAlign = ContentAlignment.MiddleLeft;
+            btnTutorial.UseVisualStyleBackColor = true;
+            btnTutorial.Click += btnTutorial_Click;
+            // 
             // pnlDays
             // 
             pnlDays.Anchor = AnchorStyles.None;
@@ -586,7 +605,7 @@
             // 
             // sidebarProfile
             // 
-            sidebarProfile.BackColor = Color.WhiteSmoke;
+            sidebarProfile.BackColor = Color.GhostWhite;
             sidebarProfile.Controls.Add(panel7);
             sidebarProfile.Controls.Add(accSettingsContainer);
             sidebarProfile.Controls.Add(panel14);
@@ -600,6 +619,7 @@
             // 
             // panel7
             // 
+            panel7.BackColor = Color.GhostWhite;
             panel7.Controls.Add(label3);
             panel7.Controls.Add(pictureBox3);
             panel7.Location = new Point(3, 3);
@@ -613,7 +633,7 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Cambria", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.SteelBlue;
-            label3.Location = new Point(80, 27);
+            label3.Location = new Point(75, 27);
             label3.Name = "label3";
             label3.Size = new Size(88, 21);
             label3.TabIndex = 31;
@@ -625,7 +645,7 @@
             pictureBox3.Cursor = Cursors.Hand;
             pictureBox3.Location = new Point(28, 15);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(59, 50);
+            pictureBox3.Size = new Size(54, 50);
             pictureBox3.TabIndex = 31;
             pictureBox3.TabStop = false;
             pictureBox3.Click += pictureBox3_Click_2;
@@ -774,7 +794,7 @@
             // 
             // panel16
             // 
-            panel16.BackColor = Color.WhiteSmoke;
+            panel16.BackColor = Color.GhostWhite;
             panel16.Location = new Point(0, 77);
             panel16.Name = "panel16";
             panel16.Size = new Size(1170, 79);
@@ -790,9 +810,9 @@
             pnlLogExpenses.Controls.Add(lblAllocationCount);
             pnlLogExpenses.Controls.Add(comboBox1);
             pnlLogExpenses.Controls.Add(label13);
-            pnlLogExpenses.Location = new Point(470, 150);
+            pnlLogExpenses.Location = new Point(470, 155);
             pnlLogExpenses.Name = "pnlLogExpenses";
-            pnlLogExpenses.Size = new Size(460, 415);
+            pnlLogExpenses.Size = new Size(460, 410);
             pnlLogExpenses.TabIndex = 20;
             pnlLogExpenses.Visible = false;
             // 
@@ -851,7 +871,7 @@
             lblAllocationCount.BackColor = Color.Transparent;
             lblAllocationCount.Font = new Font("Cambria", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblAllocationCount.ForeColor = Color.Lime;
-            lblAllocationCount.Location = new Point(157, 221);
+            lblAllocationCount.Location = new Point(163, 221);
             lblAllocationCount.Name = "lblAllocationCount";
             lblAllocationCount.Size = new Size(32, 33);
             lblAllocationCount.TabIndex = 21;
@@ -1654,14 +1674,14 @@
             BackColor = SystemColors.Control;
             BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(1144, 625);
-            Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(sidebarProfile);
+            Controls.Add(pictureBox2);
+            Controls.Add(pnlDash2);
+            Controls.Add(pnlDash1);
+            Controls.Add(pnlLogExpenses);
             Controls.Add(sidebarContainer);
             Controls.Add(panel16);
-            Controls.Add(pnlDash1);
-            Controls.Add(pnlDash2);
-            Controls.Add(pnlLogExpenses);
             Controls.Add(pnlDash);
             Controls.Add(pnlUpdateAllowance);
             Controls.Add(pnlDays);
@@ -1847,5 +1867,6 @@
         private Label lblAllocationComment;
         private Button btnNextAlloc;
         private DataGridView dtgvHistory;
+        private Button btnTutorial;
     }
 }

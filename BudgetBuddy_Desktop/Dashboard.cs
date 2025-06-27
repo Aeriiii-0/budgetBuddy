@@ -39,14 +39,39 @@ namespace BudgetBuddy_Desktop
 
         }
 
-
-
+       
+        //flow layout panels timer
         private void button1_Click_2(object sender, EventArgs e)
         {
             budgetActionTimer.Start();
         }
 
+        private void budgetActionTimer_Tick(object sender, EventArgs e)
+        {
+            if (budgetActionCollapsed)
+            {
+                budgetActContainer.Height += 10;
+                if (budgetActContainer.Height == budgetActContainer.MaximumSize.Height)
+                {
+                    budgetActionCollapsed = false;
+                    budgetActionTimer.Stop();
+                }
+            }
+            else
+            {
+                budgetActContainer.Height -= 10;
+                if (budgetActContainer.Height == budgetActContainer.MinimumSize.Height)
+                {
+                    budgetActionCollapsed = true;
+                    budgetActionTimer.Stop();
+                }
+            }
+        }
 
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            sidebarTimer.Start();
+        }
 
         private void sidebarTimer_Tick(object sender, EventArgs e)
         {
@@ -72,44 +97,10 @@ namespace BudgetBuddy_Desktop
 
         }
 
-        private void pictureBox4_Click(object sender, EventArgs e)
+        private void pictureBox3_Click_2(object sender, EventArgs e)
         {
-            sidebarTimer.Start();
+            profilebarTimer.Start();
         }
-
-        private void btnExt_Click(object sender, EventArgs e)
-        {
-            Environment.Exit(0);
-        }
-
-
-
-
-
-        private void budgetActionTimer_Tick(object sender, EventArgs e)
-        {
-            if (budgetActionCollapsed)
-            {
-                budgetActContainer.Height += 10;
-                if (budgetActContainer.Height == budgetActContainer.MaximumSize.Height)
-                {
-                    budgetActionCollapsed = false;
-                    budgetActionTimer.Stop();
-                }
-            }
-            else
-            {
-                budgetActContainer.Height -= 10;
-                if (budgetActContainer.Height == budgetActContainer.MinimumSize.Height)
-                {
-                    budgetActionCollapsed = true;
-                    budgetActionTimer.Stop();
-                }
-            }
-        }
-
-
-
 
         private void profilebarTimer_Tick(object sender, EventArgs e)
         {
@@ -135,39 +126,11 @@ namespace BudgetBuddy_Desktop
                 }
             }
         }
-
-        private void pictureBox3_Click_2(object sender, EventArgs e)
-        {
-            profilebarTimer.Start();
-        }
-
-
-
-
-
-        private void button13_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Are you sure you want to exit?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
-        }
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            HistoryVisibility();
-            var expenses = BBProcess.GetUserExpenses(userUsername, userPassword);
-            dtgvHistory.DataSource = expenses;
-            dtgvHistory.DefaultCellStyle.ForeColor = Color.Navy;
-        }
-
-
         private void button11_Click(object sender, EventArgs e)
         {
             settingsTimer.Start();
         }
+
 
         private void settingsTimer_Tick(object sender, EventArgs e)
         {
@@ -194,6 +157,65 @@ namespace BudgetBuddy_Desktop
         }
 
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DashPanelVisibility();
+
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            AboutPnlVisiblity();
+
+        }
+
+        //update allowance panel and methods
+        private void btnUpdateAllowance_Click(object sender, EventArgs e)
+        {
+            UpdAllowancePanelVisibility();
+
+        }
+
+        private void btnIncrease_Click(object sender, EventArgs e)
+        {
+            Actions userAction = Actions.Increase;
+            var AmountString = tbxAmounToUpdate.Text;
+
+            if (string.IsNullOrWhiteSpace(AmountString) || !double.TryParse(AmountString, out double Amount))
+            {
+                MessageBox.Show("Please enter a valid amount.", "Invalid Credential", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbxAmounToUpdate.Clear();
+                return;
+            }
+
+            BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername, userPassword);
+            MessageBox.Show("Allowance Updated!", "Notification");
+            tbxAmounToUpdate.Clear();
+        }
+
+        private void btnDecrease_Click(object sender, EventArgs e)
+        {
+            Actions userAction = Actions.Decrease;
+            var AmountString = tbxAmounToUpdate.Text;
+
+            if (string.IsNullOrWhiteSpace(AmountString) || !double.TryParse(AmountString, out double Amount))
+            {
+                MessageBox.Show("Please enter a valid amount.", "Invalid Credential", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                tbxAmounToUpdate.Clear();
+                return;
+            }
+
+            if (BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername, userPassword))
+            {
+                MessageBox.Show("Allowance Updated!", "Notification");
+            }
+            else
+            {
+                MessageBox.Show("Insufficient Balance!", "Notification");
+                tbxAmounToUpdate.Clear();
+            }
+            tbxAmounToUpdate.Clear();
+        }
 
         private void button12_Click(object sender, EventArgs e)
         {
@@ -202,23 +224,14 @@ namespace BudgetBuddy_Desktop
             this.Hide();
         }
 
+        //settings panel and methods
         private void button5_Click_2(object sender, EventArgs e)
         {
-            SettingsForm settingsForm = new SettingsForm(); 
+            SettingsForm settingsForm = new SettingsForm();
             settingsForm.Show();
 
             this.Hide();
         }
-
-
-
-
-        private void button4_Click_1(object sender, EventArgs e)
-        {
-            AboutPnlVisiblity();
-
-        }
-
 
         private void button14_Click(object sender, EventArgs e)
         {
@@ -235,9 +248,17 @@ namespace BudgetBuddy_Desktop
             this.Hide();
         }
 
+        private void button13_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to exit?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
 
-
+        //clear logged expenses
         private void button6_Click_2(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure to clear the entire logged expenses on your account?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -256,9 +277,8 @@ namespace BudgetBuddy_Desktop
 
         }
 
-      
 
-
+        //log expenses and its methods
         private void btnLogExpense_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Have you registered number of work days? ", "Log Expenses Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -275,6 +295,119 @@ namespace BudgetBuddy_Desktop
 
         }
 
+        private void btnDone_Click(object sender, EventArgs e)
+        {
+            days = comboBox1.SelectedIndex;
+
+            if (comboBox1.SelectedIndex == 0|| comboBox1.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a valid day from the dropdown.", "Invalid Selection");
+                return;
+            }
+
+            lblAllocationCount.Text = BBProcess.WeeklyAllowance(days, userUsername, userPassword).ToString("F2");
+            lblAllocationComment.Visible = true;
+
+        }
+
+        private void btnNextAlloc_Click(object sender, EventArgs e)
+        {
+            lblAllocationCount.Text = "0.00";
+            comboBox1.SelectedIndex = 0;
+            LogDaysPnlVisiblity();
+        }
+
+        private void btnDays_Click(object sender, EventArgs e)
+        {
+
+            dayInput = cmbCurrentDay.SelectedIndex;
+
+            if (cmbCurrentDay.SelectedIndex == 0 || cmbCurrentDay.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a valid day from the dropdown.", "Invalid Selection");
+                return;
+            }
+
+            if (!BBProcess.CheckLoggedDays(days))
+            {
+                MessageBox.Show("Oh No! You've already logged for all the days you registered.\nPlease come back next week ❤", "Notification");
+                return;
+            }
+
+            if (!BBProcess.AddUserInput(dayInput))
+            {
+                MessageBox.Show("You've already logged for the selected day. Please come back tomorrow", "Notification");
+                cmbCurrentDay.SelectedIndex = 0;
+                return;
+            }
+
+
+            else
+            {
+                DailyExpensePnlVisibility(dayInput);
+            }
+
+            cmbCurrentDay.SelectedIndex = 0;
+        }
+
+        private void btnExpenseSubmit_Click(object sender, EventArgs e)
+        {
+            var BreakfastString = txtBreakfast.Text;
+            var LunchString = txtLunch.Text;
+            var DinnerString = txtDinner.Text;
+            var TransportationString = txtMiscellaneous.Text;
+
+            if (string.IsNullOrWhiteSpace(BreakfastString) || string.IsNullOrWhiteSpace(LunchString) ||  string.IsNullOrWhiteSpace(DinnerString) || string.IsNullOrWhiteSpace(TransportationString))
+            {
+                MessageBox.Show("Please fill in all expense fields.", "Missing Credentials", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ClearFieldsDayExpense();
+                return;
+            }
+
+            if(!double.TryParse(BreakfastString, out double Breakfast) ||  !double.TryParse(LunchString, out double Lunch) ||  !double.TryParse(DinnerString, out double Dinner) || !double.TryParse(TransportationString, out double Transportation))
+{
+                MessageBox.Show("Please enter numerical values only for all expenses.", "Invalid Credentials", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ClearFieldsDayExpense();
+                return;
+            }
+
+            MessageBox.Show($"You have spent {BBProcess.DisplayDailyExpenses(Breakfast, Lunch, Dinner, Transportation, userUsername, userPassword, dayInput, allowance)} for today.", "Notification");
+
+            AllowanceReminder();
+            DisplayDailyExpense();
+            ClearFieldsDayExpense();
+            MessageBox.Show("We'll see you tomorrow", "Notification");
+            DashPanelVisibility();
+        }
+
+
+        private static void AllowanceReminder()
+        {
+
+            if (!BBProcess.AllowanceModerator())
+            {
+                MessageBox.Show("You exceeded the expense allocation for the day. Try to spend less for the rest of the week.", "Notification");
+            }
+            else
+            {
+                MessageBox.Show("Good, you have spent just the right allocation for the day!", "Notification");
+            }
+
+        }
+
+        //total daily expenses label
+        private void DisplayDailyExpense()
+        {
+            Label[] dayLabels = { lblMon, lblTue, lblWed, lblThu, lblFri, lblSat, lblSun };
+
+            for (int i = 0; i < BBProcess.dailyExpenses.Count && i < dayLabels.Length; i++)
+            {
+                dayLabels[i].Text = BBProcess.GetExpenseForDay(i).ToString("F2");
+            }
+        }
+
+
+        //log another week label reset
         private void btnLogAnother_Click(object sender, EventArgs e)
         {
 
@@ -294,64 +427,30 @@ namespace BudgetBuddy_Desktop
 
         }
 
-        private void btnDone_Click(object sender, EventArgs e)
+
+        //weekly financial report dashboard
+        private void btnWeeklySummary_Click(object sender, EventArgs e)
         {
-            days = comboBox1.SelectedIndex;
-            lblAllocationCount.Text = BBProcess.WeeklyAllowance(days, userUsername, userPassword).ToString("F2");
-            lblAllocationComment.Visible = true;
-
-
+            SummaryPnlVisiblity();
+            lblAllowanceCount.Text = BBProcess.UpdateAllowanceDisplay(userUsername, userPassword).ToString("F2");
+            lblAllowanceLeft.Text = BBProcess.allocation.ToString("F2");
+            lblTotal.Text = BBProcess.DisplayWeeklyExpenses().ToString("F2");
         }
 
-        private void btnDays_Click(object sender, EventArgs e)
+        //view history
+        private void button3_Click_1(object sender, EventArgs e)
         {
-
-            dayInput = cmbCurrentDay.SelectedIndex;
-
-            if (cmbCurrentDay.SelectedIndex == 0)
-            {
-                MessageBox.Show("Please select a valid day from the dropdown.", "Invalid Selection");
-                return;
-            }
-
-            if (!BBProcess.CheckLoggedDays(days))
-            {
-                MessageBox.Show("Oh No! You've already logged for all the days you registered.\nPlease come back next week ❤", "Notification");
-                return;
-            }
-
-            if (!BBProcess.AddUserInput(dayInput))
-            {
-                MessageBox.Show("You've already logged for the selected day. Please come back tomorrow", "Notification");
-                cmbCurrentDay.SelectedIndex = 0;
-                return;
-            }
-
-           
-            else
-            {
-                DailyExpensePnlVisibility(dayInput);
-            }
-
-            cmbCurrentDay.SelectedIndex = 0;
+            HistoryVisibility();
+            var expenses = BBProcess.GetUserExpenses(userUsername, userPassword);
+            dtgvHistory.DataSource = expenses;
+            dtgvHistory.DefaultCellStyle.ForeColor = Color.Navy;
         }
-        private void btnExpenseSubmit_Click(object sender, EventArgs e)
+
+        private void btnTutorial_Click(object sender, EventArgs e)
         {
-            var Breakfast = Convert.ToDouble(txtBreakfast.Text);
-            var Lunch = Convert.ToDouble(txtLunch.Text);
-            var Dinner = Convert.ToDouble(txtDinner.Text);
-            var Transportation = Convert.ToDouble(txtMiscellaneous.Text);
-
-            MessageBox.Show($"You have spent {BBProcess.DisplayDailyExpenses(Breakfast, Lunch, Dinner, Transportation, userUsername, userPassword, dayInput, allowance)} for today.", "Notification");
-
-            AllowanceReminder();
-            DisplayDailyExpense();
-            ClearFieldsDayExpense();
-            MessageBox.Show("We'll see you tomorrow", "Notification");
             DashPanelVisibility();
+            MessageBox.Show("Feature will be releaded soon! ");
         }
-
-
 
         private void ClearFieldsDayExpense()
         {
@@ -361,86 +460,6 @@ namespace BudgetBuddy_Desktop
             txtMiscellaneous.Clear();
         }
 
-
-
-        private static void AllowanceReminder()
-        {
-
-            if (!BBProcess.AllowanceModerator())
-            {
-                MessageBox.Show("You exceeded the expense allocation for the day. Try to spend less for the rest of the week.", "Notification");
-            }
-            else
-            {
-                MessageBox.Show("Good, you have spent just the right allocation for the day!", "Notification");
-            }
-
-        }
-
-        private void DisplayDailyExpense()
-        {
-            Label[] dayLabels = { lblMon, lblTue, lblWed, lblThu, lblFri, lblSat, lblSun };
-
-            for (int i = 0; i < BBProcess.dailyExpenses.Count && i < dayLabels.Length; i++)
-            {
-                dayLabels[i].Text = BBProcess.GetExpenseForDay(i).ToString("F2");
-            }
-        }
-
-        private void btnWeeklySummary_Click(object sender, EventArgs e)
-        {
-            SummaryPnlVisiblity();
-            lblAllowanceCount.Text = BBProcess.UpdateAllowanceDisplay(userUsername,userPassword).ToString("F2");
-            lblAllowanceLeft.Text = BBProcess.allocation.ToString("F2");
-            lblTotal.Text = BBProcess.DisplayWeeklyExpenses().ToString("F2");
-        }
-
-
-
-        private void btnUpdateAllowance_Click(object sender, EventArgs e)
-        {
-            UpdAllowancePanelVisibility();
-
-        }
-
-
-        private void btnIncrease_Click(object sender, EventArgs e)
-        {
-            Actions userAction = Actions.Increase;
-            var Amount = Convert.ToDouble(tbxAmounToUpdate.Text);
-            BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername, userPassword);
-            MessageBox.Show("Allowance Updated!", "Notification");
-            tbxAmounToUpdate.Clear();
-        }
-
-        private void btnDecrease_Click(object sender, EventArgs e)
-        {
-            Actions userAction = Actions.Decrease;
-            var Amount = Convert.ToDouble(tbxAmounToUpdate.Text);
-
-            if (BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername, userPassword))
-            {
-                MessageBox.Show("Allowance Updated!", "Notification");
-            }
-            else
-            {
-                MessageBox.Show("Insufficient Balance!", "Notification");
-            }
-            tbxAmounToUpdate.Clear();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            DashPanelVisibility();
-
-        }
-
-        private void btnNextAlloc_Click(object sender, EventArgs e)
-        {
-            lblAllocationCount.Text = "0.00";
-            comboBox1.SelectedIndex = 0;
-            LogDaysPnlVisiblity();
-        }
 
         //panel settings
         private void AboutPnlVisiblity()
@@ -561,6 +580,6 @@ namespace BudgetBuddy_Desktop
             dtgvHistory.Visible = true;
         }
 
-
+       
     }
 }

@@ -31,19 +31,40 @@ namespace BudgetBuddy_Desktop
         private void btnEnter_Click(object sender, EventArgs e)
         {
              userUsername = txtUsername.Text;
-             userPassword = txtPassword.Text;    
+             userPassword = txtPassword.Text;
+
+            if (string.IsNullOrWhiteSpace(userUsername) || string.IsNullOrWhiteSpace(userPassword))
+            {
+                MessageBox.Show("Please input all the required information.", "Missing Credentials", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                clearFields();
+                return;
+            }
+
             DialogResult result = MessageBox.Show("Are you sure you want to Delete Your Account?", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
-                BBProcess.DeleteAccount(userUsername, userPassword);
-                MessageBox.Show("Account Deleted!");
-                
-                txtUsername.Clear();
-                txtPassword.Clear();
+                if (BBProcess.DeleteAccount(userUsername, userPassword))
+                {
+                    MessageBox.Show("Account Deleted!");
+                    clearFields();
+                }
 
-               
+                else
+                {
+                    MessageBox.Show("Credentials Incorrect.", "Invalid Credentials", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    clearFields();
+                    return;
+                }
+                
             }
+        }
+
+        private void clearFields()
+        {
+            txtUsername.Clear();
+            txtPassword.Clear();
+
         }
     }
 }

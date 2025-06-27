@@ -88,7 +88,6 @@
             label4.Size = new Size(90, 20);
             label4.TabIndex = 21;
             label4.Text = "Allowance";
-            label4.Click += label4_Click;
             // 
             // label3
             // 
@@ -101,7 +100,6 @@
             label3.Size = new Size(86, 20);
             label3.TabIndex = 20;
             label3.Text = "Password";
-            label3.Click += label3_Click_1;
             // 
             // label2
             // 
@@ -151,7 +149,7 @@
             label1.Size = new Size(402, 20);
             label1.TabIndex = 5;
             label1.Text = "How much money do you plan to spend this week?";
-            label1.Click += label1_Click;
+       
             // 
             // label7
             // 
@@ -164,7 +162,7 @@
             label7.Size = new Size(143, 23);
             label7.TabIndex = 4;
             label7.Text = "Welcome, Bud!";
-            label7.Click += label7_Click;
+       
             // 
             // btnExit
             // 

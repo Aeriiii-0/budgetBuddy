@@ -25,54 +25,41 @@ namespace BudgetBuddy_Desktop
 
         }
 
-        private void label7_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Dashboard dashboard = new Dashboard(userUsername, userPassword, allowance);
-            dashboard.Show();
+            BudgetBuddy budget = new BudgetBuddy();
+            budget.Show();
 
             this.Hide();
         }
 
-        private void label3_Click_1(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnEnter_Click(object sender, EventArgs e)
         {
-             userUsername = txtUsername.Text;
-             userPassword = txtPassword.Text;
-            var allowance = Convert.ToDouble(txtAllowance.Text);
+            userUsername = txtUsername.Text;
+            userPassword = txtPassword.Text;
+            string allowanceString = txtAllowance.Text;
+
+            if (string.IsNullOrWhiteSpace(userUsername) || string.IsNullOrWhiteSpace(userPassword) || string.IsNullOrEmpty(allowanceString))
+            {
+                MessageBox.Show("Please input all the required information.", "Missing Credentials", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                clearFields();
+                return;
+            }
+
+            if (!double.TryParse(allowanceString, out double allowance))
+            {
+                MessageBox.Show("Please input numerical values only.", "Invalid Credentials", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                clearFields();
+                return;
+            }
 
             BBProcess.CreateAccount(userUsername, userPassword, allowance);
 
-            txtUsername.Clear();
-            txtPassword.Clear();
+            clearFields();
 
             Dashboard dashboard = new Dashboard(userUsername, userPassword, allowance);
             dashboard.Show();
@@ -80,9 +67,14 @@ namespace BudgetBuddy_Desktop
 
             this.Hide();
 
-          
 
+        }
 
-    }
+        public void clearFields()
+        {
+            txtUsername.Clear();
+            txtPassword.Clear();
+            txtAllowance.Clear();
+        }
     }
 }

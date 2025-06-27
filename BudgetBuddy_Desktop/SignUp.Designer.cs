@@ -97,7 +97,6 @@ namespace BudgetBuddy_Desktop
             label7.Size = new Size(251, 27);
             label7.TabIndex = 3;
             label7.Text = "Log-in to Your Account";
-            label7.Click += label7_Click;
             // 
             // label8
             // 
@@ -110,7 +109,6 @@ namespace BudgetBuddy_Desktop
             label8.Size = new Size(88, 20);
             label8.TabIndex = 4;
             label8.Text = "Username";
-            label8.Click += label8_Click;
             // 
             // txtUsername
             // 
@@ -123,7 +121,6 @@ namespace BudgetBuddy_Desktop
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(338, 27);
             txtUsername.TabIndex = 5;
-            txtUsername.TextChanged += textBox1_TextChanged_1;
             // 
             // label9
             // 
@@ -136,7 +133,6 @@ namespace BudgetBuddy_Desktop
             label9.Size = new Size(86, 20);
             label9.TabIndex = 6;
             label9.Text = "Password";
-            label9.Click += label9_Click;
             // 
             // txtPassword
             // 
@@ -173,7 +169,7 @@ namespace BudgetBuddy_Desktop
             label10.Size = new Size(332, 15);
             label10.TabIndex = 9;
             label10.Text = "By continuing, you accept our terms of use, our policy, ";
-            label10.Click += label10_Click;
+
             // 
             // label11
             // 
@@ -186,7 +182,7 @@ namespace BudgetBuddy_Desktop
             label11.Size = new Size(259, 15);
             label11.TabIndex = 10;
             label11.Text = "and your data is stored in the Philippines.";
-            label11.Click += label11_Click;
+      
             // 
             // btnLogin
             // 
@@ -220,7 +216,6 @@ namespace BudgetBuddy_Desktop
             panel1.Name = "panel1";
             panel1.Size = new Size(396, 409);
             panel1.TabIndex = 8;
-            panel1.Paint += panel1_Paint_1;
             // 
             // label6
             // 
@@ -245,7 +240,7 @@ namespace BudgetBuddy_Desktop
             label5.Size = new Size(442, 17);
             label5.TabIndex = 6;
             label5.Text = "A friendly, easy-to-use tool for managing your daily expenses, perfect";
-            label5.Click += label5_Click;
+          
             // 
             // label4
             // 
@@ -270,7 +265,7 @@ namespace BudgetBuddy_Desktop
             label3.Size = new Size(458, 44);
             label3.TabIndex = 4;
             label3.Text = " Master Your Money with";
-            label3.Click += label3_Click_1;
+       
             // 
             // label2
             // 
@@ -283,7 +278,7 @@ namespace BudgetBuddy_Desktop
             label2.Size = new Size(108, 17);
             label2.TabIndex = 3;
             label2.Text = " APP OVERVIEW";
-            label2.Click += label2_Click;
+           
             // 
             // label1
             // 

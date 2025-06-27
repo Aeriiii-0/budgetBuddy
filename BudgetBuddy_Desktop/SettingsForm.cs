@@ -38,14 +38,31 @@ namespace BudgetBuddy_Desktop
             userPassword = txtPassword.Text;
             var newPassword = txtNewPassword.Text;
 
-            BBProcess.UpdateAccount(userUsername, userPassword, newPassword);
-            MessageBox.Show("Password Updated!", "Notification");
-            ClearFields();
+            if (string.IsNullOrWhiteSpace(userUsername) || string.IsNullOrWhiteSpace(userPassword) || string.IsNullOrEmpty(newPassword))
+            {
+                MessageBox.Show("Please input all the required information.", "Missing Credentials", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ClearFields();
+                return;
+            }
 
-            Dashboard dashboard = new Dashboard(userUsername, userPassword, allowance);
-            dashboard.Show();
+            if (BBProcess.UpdateAccount(userUsername, userPassword, newPassword))
+            {
+                MessageBox.Show("Password Updated!", "Notification");
+                ClearFields();
 
-            this.Hide();
+                Dashboard dashboard = new Dashboard(userUsername, userPassword, allowance);
+                dashboard.Show();
+
+                this.Hide();
+            }
+
+            else
+            {
+                
+                MessageBox.Show("Incorrect information entered.", "Incorrect Credentials", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ClearFields();
+                return;
+            }
 
         }
 
