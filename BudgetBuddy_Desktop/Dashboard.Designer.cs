@@ -1679,14 +1679,14 @@
             Controls.Add(pictureBox2);
             Controls.Add(pnlDash2);
             Controls.Add(pnlDash1);
-            Controls.Add(pnlLogExpenses);
             Controls.Add(sidebarContainer);
             Controls.Add(panel16);
+            Controls.Add(pnlLogExpenses);
             Controls.Add(pnlDash);
             Controls.Add(pnlUpdateAllowance);
             Controls.Add(pnlDays);
-            Controls.Add(pnDashboard);
             Controls.Add(pnlAllowance);
+            Controls.Add(pnDashboard);
             Controls.Add(pnlAbout);
             Controls.Add(pnlDailyExpense);
             Controls.Add(dtgvHistory);
