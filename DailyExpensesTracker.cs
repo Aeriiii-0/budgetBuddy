@@ -187,7 +187,8 @@ namespace budgetBuddy
 
                 Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                 Console.WriteLine("\nAllowance Updated!");
-                Console.WriteLine("\nAllowance Available:" + BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername, userPassword));
+                BBProcess.UpdateWeeklyAllowance(Amount, Actions.Increase, userUsername, userPassword);
+                Console.WriteLine("\nAllowance Available:" + BBProcess.UpdateAllowanceDisplay(userUsername,userPassword));
             }
 
             else
@@ -199,7 +200,8 @@ namespace budgetBuddy
 
                 Console.WriteLine("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                 Console.WriteLine("\nAllowance Updated!");
-                Console.WriteLine("\nAllowance Available:" + BBProcess.UpdateWeeklyAllowance(Amount, userAction, userUsername, userPassword));
+                BBProcess.UpdateWeeklyAllowance(Amount, Actions.Increase, userUsername, userPassword);
+                Console.WriteLine("\nAllowance Available:" + BBProcess.UpdateAllowanceDisplay(userUsername,userPassword));
             }
             return Amount;
         }
@@ -340,8 +342,7 @@ namespace budgetBuddy
             Console.WriteLine("\nAccount Settings");
             Console.WriteLine("\n[1] Update Account");
             Console.WriteLine("\n[2] Delete Account");
-            Console.WriteLine("\n[3] Clear Logged Data");
-            Console.WriteLine("\n[4] Back to Main Menu");
+            Console.WriteLine("\n[3] Back to Main Menu");
 
 
             Console.Write("\nSelect action: ");
@@ -355,8 +356,6 @@ namespace budgetBuddy
                     Console.Write("\nEnter New Password: ");
                     newPassword = Console.ReadLine().Trim();
 
-                    Console.Write("\nEnter New Allowance: ");
-                    newAllowance = Convert.ToDouble(Console.ReadLine());
                     Console.WriteLine("\n----------------------------------------------------");
                     Console.WriteLine("\nAccount Updated!");
                     BBProcess.UpdateAccount(userUsername, userPassword, newPassword);
@@ -368,14 +367,11 @@ namespace budgetBuddy
                     BBProcess.DeleteAccount(userUsername, userPassword);
                     break;
                 case 3:
-                    ClearData();
-                    break;
-                case 4:
                     Menu();
                     userInput = GetUserInput();
-                    break;
+                    break;         
                 default:
-                    Console.WriteLine("\nInvalid input. (1-4 only)");
+                    Console.WriteLine("\nInvalid input. (1-3 only)");
                     break;
 
             }
@@ -418,22 +414,12 @@ namespace budgetBuddy
 
         static void LogAnotherWeek()
         {
+            Console.WriteLine("You can log another week again!");
             BBProcess.LogAnotherWeek();
             RegistrationForm();
         }
 
-        static void ClearData()
-        {
-            if (!BBProcess.ClearData(userUsername, userPassword))
-            {
-                Console.WriteLine("No data to delete.");
-            }
-            else
-            {
-                Console.WriteLine("Logged days data has been deleted.");
-            }
-
-        }
+      
 
         static void Entrance(){
             float actionInput;

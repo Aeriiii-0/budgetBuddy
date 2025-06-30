@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="BBWebApp\**" />
     <Compile Remove="BB_BusinessDataLogic\**" />
     <Compile Remove="BB_Common\**" />
     <Compile Remove="BB_DataLayer\**" />
@@ -16,6 +17,7 @@
     <Compile Remove="budgetBuddy\**" />
     <Compile Remove="BudgetBuddy_Desktop\**" />
     <Compile Remove="LogInSignUp\**" />
+    <EmbeddedResource Remove="BBWebApp\**" />
     <EmbeddedResource Remove="BB_BusinessDataLogic\**" />
     <EmbeddedResource Remove="BB_Common\**" />
     <EmbeddedResource Remove="BB_DataLayer\**" />
@@ -24,6 +26,7 @@
     <EmbeddedResource Remove="budgetBuddy\**" />
     <EmbeddedResource Remove="BudgetBuddy_Desktop\**" />
     <EmbeddedResource Remove="LogInSignUp\**" />
+    <None Remove="BBWebApp\**" />
     <None Remove="BB_BusinessDataLogic\**" />
     <None Remove="BB_Common\**" />
     <None Remove="BB_DataLayer\**" />
