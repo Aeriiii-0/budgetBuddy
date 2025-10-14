@@ -225,7 +225,16 @@ namespace BB_BusinessDataLogic
                 };
 
                 dataManager.CreateAccount(userAccounts);
+                var emailService = new MailService();
+                bool success = emailService.SendWelcomeEmail("to@example.com", "Test");
+
+                if (success)
+                    Console.WriteLine("Email sent!");
+                else
+                    Console.WriteLine("Email failed to send");
+
                 return true;
+
             }
             else
             {
