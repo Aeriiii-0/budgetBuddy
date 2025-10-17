@@ -1,4 +1,5 @@
-﻿using MailKit.Net.Smtp;
+﻿using BB_Common;
+using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
 using System;
@@ -15,19 +16,40 @@ public class MailService
     private  string _username = "986926ff132db9";
     private  string _password = "80cf5104bdeefc";
 
-    public bool SendWelcomeEmail(string recipientEmail, string recipientName)
+    public bool SendEmail(MailScenario scenario,string recipientEmail, string recipientName)
     {
+        string subject;
+        string body;
+
+        switch (scenario)
+        {
+            case MailScenario.Welcome:
+                subject = "Welcome to Budget Buddy, Bud!";
+                body = $"Hello {recipientName},\n\nCongrats on creating your account! We are excited to help you manage your finances.";
+                break;
+
+                case MailScenario.AccountDelete:
+                subject = "Action Required: Account Deletion Complete";
+                body = $"Dear {recipientName},\n\nThis confirms your Budget Buddy account has been deleted.";
+                break;
+
+            default:
+                Console.WriteLine("Error: Unknown scenario.");
+                return false;
+                
+        }
         try
         {
             var email = new MimeMessage();
-            email.From.Add(new MailboxAddress("Budget Buddy", "from@example.com"));
+            email.From.Add(new MailboxAddress("Budget Buddy", "from@budgetbuddy.com"));
             email.To.Add(new MailboxAddress(recipientName, recipientEmail));
-            email.Subject = "Welcome to Budget Buddy!";
+            email.Subject = subject;
 
             var bodyBuilder = new BodyBuilder
             {
-                TextBody = "Congrats on creating your account!"
+                TextBody = body
             };
+
             email.Body = bodyBuilder.ToMessageBody();
 
             using var client = new SmtpClient();

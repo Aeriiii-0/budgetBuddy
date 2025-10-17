@@ -17,6 +17,8 @@ namespace BB_BusinessDataLogic
         public static List<string> dayArray = new List<string>();
         public static List<double> dailyExpenses = new List<double>();
         public static BBDataManager dataManager = new BBDataManager();
+        public static MailScenario emailService = new MailScenario();
+      
 
         //methods in previous ui
         public static bool WorkDays(int days)
@@ -221,13 +223,12 @@ namespace BB_BusinessDataLogic
                 {
                     username = userUsername,
                     password = userPassword,
-                    allowance = allowance,
+                    allowance = allowance
                 };
 
                 dataManager.CreateAccount(userAccounts);
                 var emailService = new MailService();
-                bool success = emailService.SendWelcomeEmail("to@example.com", "Test");
-
+                bool success = emailService.SendEmail(MailScenario.Welcome, userUsername.ToLower() + "@gmail.com",  userUsername);
                 if (success)
                     Console.WriteLine("Email sent!");
                 else
@@ -254,6 +255,8 @@ namespace BB_BusinessDataLogic
             }
             else
             {
+                var emailService = new MailService();
+                bool success = emailService.SendEmail(MailScenario.AccountDelete, userUsername.ToLower() + "@gmail.com", userUsername);
                 dataManager.DeleteAccount(userAccounts);
                 return true;
             }
