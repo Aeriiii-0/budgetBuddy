@@ -9,7 +9,6 @@ namespace BB_Common
     public enum MailScenario
     {
         Welcome,
-        AccountDelete,
-        WeeklyFinancialReport
+        AccountDelete
     }
 }

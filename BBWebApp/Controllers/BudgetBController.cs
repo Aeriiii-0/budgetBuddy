@@ -8,6 +8,13 @@ namespace BBWebApp.Controllers
     [Route("[controller]")]
     public class BudgetBController : Controller
     {
+        private readonly BB_BusinessDataLogic.BBProcess _bbProcess;
+
+        public BudgetBController(BB_BusinessDataLogic.BBProcess bbProcess)
+        {
+            _bbProcess = bbProcess;
+        }
+
         [HttpGet]
         public IEnumerable<UserAccounts> GetAccounts()
         {

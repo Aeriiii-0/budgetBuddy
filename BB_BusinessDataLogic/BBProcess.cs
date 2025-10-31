@@ -17,8 +17,13 @@ namespace BB_BusinessDataLogic
         public static List<string> dayArray = new List<string>();
         public static List<double> dailyExpenses = new List<double>();
         public static BBDataManager dataManager = new BBDataManager();
+
         public static MailScenario emailService = new MailScenario();
-      
+        private readonly MailService _mailService;
+        public BBProcess(MailService mailService)
+        {
+            _mailService = mailService;
+        }
 
         //methods in previous ui
         public static bool WorkDays(int days)
@@ -213,7 +218,7 @@ namespace BB_BusinessDataLogic
             return null;
         }
 
-        public static bool CreateAccount(string userUsername, string userPassword, double allowance)
+        public  bool CreateAccount(string userUsername, string userPassword, double allowance)
         {
             UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
 
@@ -227,12 +232,8 @@ namespace BB_BusinessDataLogic
                 };
 
                 dataManager.CreateAccount(userAccounts);
-                var emailService = new MailService();
-                bool success = emailService.SendEmail(MailScenario.Welcome, userUsername.ToLower() + "@gmail.com",  userUsername);
-                if (success)
-                    Console.WriteLine("Email sent!");
-                else
-                    Console.WriteLine("Email failed to send");
+                
+                _mailService.SendEmail(MailScenario.Welcome, userUsername.ToLower() + "@gmail.com",  userUsername);
 
                 return true;
 
@@ -244,7 +245,7 @@ namespace BB_BusinessDataLogic
         }
 
 
-        public static bool DeleteAccount(string userUsername, string userPassword) 
+        public  bool DeleteAccount(string userUsername, string userPassword) 
         {
             UserAccounts userAccounts = GetUserAccounts(userUsername, userPassword);
 
@@ -255,9 +256,10 @@ namespace BB_BusinessDataLogic
             }
             else
             {
-                var emailService = new MailService();
-                bool success = emailService.SendEmail(MailScenario.AccountDelete, userUsername.ToLower() + "@gmail.com", userUsername);
+                
+               _mailService.SendEmail(MailScenario.AccountDelete, userUsername.ToLower() + "@gmail.com", userUsername);
                 dataManager.DeleteAccount(userAccounts);
+                
                 return true;
             }
         }

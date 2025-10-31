@@ -1,6 +1,8 @@
 ﻿using BB_Common;
 using MailKit.Net.Smtp;
 using MailKit.Security;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Protocols;
 using MimeKit;
 using System;
 using System.Collections.Generic;
@@ -11,12 +13,13 @@ using System.Threading.Tasks;
 
 public class MailService
 {
-    private  string _smtpServer = "sandbox.smtp.mailtrap.io";
-    private  int _port = 2525;
-    private  string _username = "986926ff132db9";
-    private  string _password = "80cf5104bdeefc";
+    private readonly IConfiguration _configuration;
+    public MailService(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
 
-    public bool SendEmail(MailScenario scenario,string recipientEmail, string recipientName)
+    public bool SendEmail(MailScenario scenario, string recipientEmail, string recipientName)
     {
         string subject;
         string body;
@@ -28,7 +31,7 @@ public class MailService
                 body = $"Hello {recipientName},\n\nCongrats on creating your account! We are excited to help you manage your finances.";
                 break;
 
-                case MailScenario.AccountDelete:
+            case MailScenario.AccountDelete:
                 subject = "Action Required: Account Deletion Complete";
                 body = $"Dear {recipientName},\n\nThis confirms your Budget Buddy account has been deleted.";
                 break;
@@ -36,12 +39,15 @@ public class MailService
             default:
                 Console.WriteLine("Error: Unknown scenario.");
                 return false;
-                
+
         }
         try
         {
             var email = new MimeMessage();
-            email.From.Add(new MailboxAddress("Budget Buddy", "from@budgetbuddy.com"));
+            email.From.Add(new MailboxAddress(
+                _configuration["EmailSettings:FromName"],
+                _configuration["EmailSettings:FromAddress"]
+                ));
             email.To.Add(new MailboxAddress(recipientName, recipientEmail));
             email.Subject = subject;
 
@@ -53,8 +59,12 @@ public class MailService
             email.Body = bodyBuilder.ToMessageBody();
 
             using var client = new SmtpClient();
-            client.Connect(_smtpServer, _port, SecureSocketOptions.StartTlsWhenAvailable);
-            client.Authenticate(_username, _password);
+            client.Connect(_configuration["EmailSettings:SmtpHost"],
+                             int.Parse(_configuration["EmailSettings:SmtpPort"]), 
+                             SecureSocketOptions.StartTlsWhenAvailable);
+
+            client.Authenticate(_configuration["EmailSettings:SmtpUsername"],
+                                _configuration["EmailSettings:SmtpPassword"]);
             client.Send(email);
             client.Disconnect(true);
 
@@ -67,4 +77,4 @@ public class MailService
             return false;
         }
     }
-}
+} 

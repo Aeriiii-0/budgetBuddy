@@ -7,6 +7,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<MailService>();
+builder.Services.AddScoped<BB_BusinessDataLogic.BBProcess>();
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
