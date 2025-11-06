@@ -19,7 +19,7 @@ namespace budgetBuddy
         static List<UserAccounts> userAccount = new List<UserAccounts>();
         static string newUsername, newPassword;
         static double newAllowance;
-        static BB_BusinessDataLogic.BBProcess bBProcess = new BB_BusinessDataLogic.BBProcess();
+      //  static BB_BusinessDataLogic.BBProcess bBProcess = new BB_BusinessDataLogic.BBProcess();
         static Actions userAction = new Actions();
 
         static void Main(string[] args)
@@ -364,7 +364,7 @@ namespace budgetBuddy
                     AccountChecker();
                     Console.WriteLine("\n----------------------------------------------------");
                     Console.WriteLine("\nAccount Deleted!");
-                    BBProcess.DeleteAccount(userUsername, userPassword);
+                //    BBProcess.DeleteAccount(userUsername, userPassword);
                     break;
                 case 3:
                     Menu();
@@ -409,7 +409,7 @@ namespace budgetBuddy
 
             Console.WriteLine("\n----------------------------------------------------");
             Console.WriteLine("\nAccount Created!");
-            BBProcess.CreateAccount(userUsername, userPassword,allowance);
+          //  BBProcess.CreateAccount(userUsername, userPassword,allowance);
         }
 
         static void LogAnotherWeek()

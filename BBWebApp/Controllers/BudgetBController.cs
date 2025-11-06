@@ -41,14 +41,14 @@ namespace BBWebApp.Controllers
         [HttpDelete]
         public bool DeleteAccount(string userUsername, string userPassword)
         {
-           var result= BBProcess.DeleteAccount(userUsername, userPassword);
+           var result= _bbProcess.DeleteAccount(userUsername, userPassword);
             return result;
         }
 
         [HttpPost]
         public bool CreateAccount(string userUsername, string userPassword, double allowance)
         {
-           var result= BBProcess.CreateAccount( userUsername,  userPassword, allowance);
+           var result= _bbProcess.CreateAccount( userUsername,  userPassword, allowance);
             return result;
         }
     }

@@ -18,7 +18,7 @@ namespace BB_BusinessDataLogic
         public static List<double> dailyExpenses = new List<double>();
         public static BBDataManager dataManager = new BBDataManager();
 
-        public static MailScenario emailService = new MailScenario();
+        public  MailScenario emailService = new MailScenario();
         private readonly MailService _mailService;
         public BBProcess(MailService mailService)
         {
